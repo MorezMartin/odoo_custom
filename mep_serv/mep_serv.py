@@ -1,7 +1,7 @@
 from openerp import fields, api
 from openerp.models import Model
 
-#créer automatiquement plusieurs lignes d'enregistrements definies dans code
+#creer automatiquement plusieurs lignes d'enregistrements definies dans code
 #essayer d'abord avec valeurs fixes
 #ensuite essayer avec valeurs heritees de sale.order
 
@@ -15,7 +15,7 @@ class mep_serv(Model):
 
     @api.v8
     @api.multi
-#    @api.depends('sale.order')
+    @api.depends('sale.order')
     @api.model
     def _compute(self):
         domain = [('state', '=', ('done'))] 
@@ -24,4 +24,3 @@ class mep_serv(Model):
             for mep in self:
                 mep.partner_id = so.partner_id
 
-mep_serv()
