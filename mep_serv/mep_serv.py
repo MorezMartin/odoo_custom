@@ -14,11 +14,12 @@ class mep_serv(Model):
     partner_id = fields.Many2one('res.partner', 'Customer')
 #    sale_order_id = fields.Many2one('sale.order', 'Sale Order')
 
-    def _compute(self):
-        for so in self :
-            so.name = "test"
+#    def _compute(self):
+#        for so in self :
+#            so.name = "test"
 
     @api.model
+    @api.v8
     @api.returns
     def create(self):
-        return env[self].create(name="test")
+        return env[self].create({name="test"})
