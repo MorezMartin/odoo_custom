@@ -5,12 +5,13 @@ from openerp.models import Model
 #essayer d'abord avec valeurs fixes
 #ensuite essayer avec valeurs heritees de sale.order
 
+
 class mep_serv(Model):
     _name = "sale.mep_serv"
 
     name = fields.Char('Order Reference')
     date_order = fields.Datetime('Date')
-    partner_id = fields.Many2one( 'Customer', compute='_compute')
+    partner_id = fields.Many2one('res.partner', 'Customer')
 #    sale_order_id = fields.Many2one('sale.order', 'Sale Order')
 
     @api.v8
@@ -18,9 +19,8 @@ class mep_serv(Model):
     @api.depends('sale.order')
     @api.model
     def _compute(self):
-        domain = [('state', '=', ('done'))] 
+        domain = [('state', '=', ('done'))]
         sos = self.env['sale.order'].search([domain])
         for so in sos:
             for mep in self:
                 mep.partner_id = so.partner_id
-
