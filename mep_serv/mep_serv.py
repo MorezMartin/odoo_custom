@@ -20,5 +20,5 @@ class mep_serv(Model):
 
     @api.model
     @api.returns
-    def create():
+    def create(self):
         return env[self].create(name="test")
