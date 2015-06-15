@@ -22,4 +22,4 @@ class mep_serv(Model):
     @api.v8
     @api.returns
     def create(self):
-        return env[self].create({name="test"})
+        return env[self].create({'name'="test"})
