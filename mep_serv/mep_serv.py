@@ -19,7 +19,7 @@ class mep_serv(Model):
     @api.model
     def _compute(self):
         domain = [('state', '=', ('done'))] 
-        sos = []#self.env['sale.order'].search([domain])
+        sos = self.env['sale.order'].search([domain])
         for so in sos:
             for mep in self:
                 mep.partner_id = so.partner_id
