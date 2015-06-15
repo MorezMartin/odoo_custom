@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* tax_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-17 12:10+0000\n"
+"PO-Revision-Date: 2014-11-17 12:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Description"
+msgstr "Description"
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Disc.(%)"
+msgstr "Remise(%)"
+
+#. module: tax_line
+#: field:sale.order.line,price_reduce:0
+msgid "Price Reduce"
+msgstr ""
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: tax_line
+#: model:ir.model,name:tax_line.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Subtotal"
+msgstr "Sous-Total HT"
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Taxed Subtotal"
+msgstr "Sous-Total TTC"
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Taxed Unit Price"
+msgstr "Prix Unitaire TTC"
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Taxes"
+msgstr ""
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Taxes Subtotal"
+msgstr "Taxes"
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Total"
+msgstr ""
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Total Without Taxes"
+msgstr "Total Hors Taxes"
+
+#. module: tax_line
+#: view:website:sale.report_saleorder_document
+msgid "Unit Price"
+msgstr "Prix Unitaire HT"
+
