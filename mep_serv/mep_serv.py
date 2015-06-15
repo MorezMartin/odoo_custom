@@ -18,7 +18,7 @@ class mep_serv(Model):
 #    @api.depends('sale.order')
     @api.model
     def _compute(self):
-        domain = [('state', 'not', 'in', ('draft', 'sent'))] 
+        domain = [('state', '=', ('done'))] 
         sos = []#self.env['sale.order'].search([domain])
         for so in sos:
             for mep in self:
