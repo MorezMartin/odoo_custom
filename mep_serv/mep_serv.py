@@ -39,12 +39,9 @@ class mep_serv(Model):
 
     name = fields.Char('Order Reference')
     date_order = fields.Datetime('Date')
-    partner_id = fields.Many2one('Customer')
+    partner_id = fields.Many2one('res.partner', 'Customer', compute='_compute')
 #    sale_order_id = fields.Many2one('sale.order', 'Sale Order')
 
-#    def _compute(self):
-#        orders = self.env['sale.order'].search([('state', '=', 'done')])
-#        for order in orders:
-#            self.partner_id = order.make_mep(order)['partner_id']
-#            self.date_order = order.make_mep(order)['date_order']
-#            self.name = order.make_mep(order)['name']
+    def _compute(self):
+        orders = self.env['sale.order']
+        orders.make_mep()
