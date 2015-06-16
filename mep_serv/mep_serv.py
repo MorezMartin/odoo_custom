@@ -30,7 +30,7 @@ class sale_o(Model):
         mep_l = self.prepare_mep()
         m = self.env['sale.mep_serv']
         for mep in mep_l:
-            m.create(mep)
+            m.write(mep)
 
 
 class mep_serv(Model):
