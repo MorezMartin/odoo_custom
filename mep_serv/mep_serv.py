@@ -9,6 +9,30 @@ from openerp.models import Model
 #les taxes
 
 
+class sale_o(Model):
+
+    _name = "sale.order"
+    _inherit = "sale.order"
+
+    def prepare_mep(self):
+        orders = self.search(['state', 'not', 'in', ['draft', 'cancel']])
+        for order in orders:
+            mep_list = []
+            mep_vals = {
+                'partner_id': order.partner_id.id,
+                'date_order': order.date_order,
+                'name': order.name
+                    }
+            mep_list.append(mep_vals)
+        return mep_list
+
+    def make_mep(self):
+        mep_l = self.prepare_mep()
+        m = self.env['sale.mep_serv']
+        for mep in mep_l:
+            m.create(mep)
+
+
 class mep_serv(Model):
 
     _name = "sale.mep_serv"
@@ -24,17 +48,3 @@ class mep_serv(Model):
             self.partner_id = order.make_mep(order)['partner_id']
             self.date_order = order.make_mep(order)['date_order']
             self.name = order.make_mep(order)['name']
-
-
-class sale_o(Model):
-
-    _name = "sale.o"
-    _inherit = "sale.order"
-
-    def make_mep(self, order):
-        mep_vals = {
-                'partner_id': order.partner_id.id,
-                'date_order': order.date_order,
-                'name': order.name
-                }
-        return mep_vals
