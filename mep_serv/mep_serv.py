@@ -16,8 +16,8 @@ class sale_o(Model):
 
     def prepare_mep(self):
         orders = self.search([('state', 'in', ['confirmed'])])
+        mep_list = []
         for order in orders:
-            mep_list = []
             mep_vals = {
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
