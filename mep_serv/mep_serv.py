@@ -15,7 +15,7 @@ class sale_o(Model):
     _inherit = "sale.order"
 
     def prepare_mep(self):
-        orders = self.search(['state', 'not', 'in', ['draft', 'cancel']])
+        orders = self.search([('state', 'not in', ['draft', 'cancel'])])
         for order in orders:
             mep_list = []
             mep_vals = {
