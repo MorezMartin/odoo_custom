@@ -9,47 +9,7 @@ from openerp.models import Model
 #les taxes
 
 
-class sale_o(Model):
-
-    _name = "sale.o"
-    _inherit = "sale.order"
-
-    def prepare_mep(self):
-#        orders = self.search([('state', 'in', ['confirmed'])])
-#        mep_list = []
-        mep_vals = {}
-        for order in self:
-            mep_vals = {
-                'partner_id': order.partner_id.id,
-                'date_order': order.date_order,
-                'name': order.name
-                    }
-#            mep_list.append(mep_vals)
-        return mep_vals
-
-#    def make_mep(self):
-#        mep_l = self.prepare_mep()
-#        m = self.env['sale.mep_serv']
-#        for mep in mep_l:
-#            m.create(mep)
-
-    @api.multi
-    @api.model
-    @api.returns('sale.order')
-    @api.onchange('sale.order')
-    def button_confirm(self):
-        return self.write({'state': 'confirmed'}), self.env['sale.mep_serv'].create(self.prepare_mep())
-
-
 class mep_serv(Model):
 
     _name = "sale.mep_serv"
-
-    name = fields.Char('Order Reference')
-    date_order = fields.Datetime('Date')
-    partner_id = fields.Many2one('res.partner', 'Customer') #compute='_compute')
-#    sale_order_id = fields.Many2one('sale.order', 'Sale Order')
-
-#    def _compute(self):
-#        orders = self.env['sale.order']
-#        orders.make_mep()
+    _inherit = "sale.order"

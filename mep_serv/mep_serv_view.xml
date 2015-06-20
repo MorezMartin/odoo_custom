@@ -29,10 +29,11 @@
         <record id="mep_serv_action" model="ir.actions.act_window">
             <field name="name">MEP, Service</field>
             <field name="type">ir.actions.act_window</field>
-	    <field name="res_model">sale.mep_serv</field>
+     	    <field name="res_model">sale.mep_serv</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
-	    <field name="view_id" ref="mep_serv_tree"/>
+     	    <field name="view_id" ref="mep_serv_tree"/>
+            <field name="domain">[('state', not in', ('draft', 'sent', 'cancel'))]</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Cliquez pour créer une mise en place.
