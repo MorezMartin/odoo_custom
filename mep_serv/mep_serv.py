@@ -34,7 +34,7 @@ class sale_o(Model):
 #            m.create(mep)
 
     def button_confirm(self):
-        return self.write({'state': 'confirmed'}), self.env['sale.mep_serv'].create(self.prepare_mep)
+        return self.write({'state': 'confirmed'}), self.env['sale.mep_serv'].create(self.prepare_mep())
 
 
 class mep_serv(Model):
@@ -43,9 +43,9 @@ class mep_serv(Model):
 
     name = fields.Char('Order Reference')
     date_order = fields.Datetime('Date')
-    partner_id = fields.Many2one('res.partner', 'Customer', compute='_compute')
+    partner_id = fields.Many2one('res.partner', 'Customer') #compute='_compute')
 #    sale_order_id = fields.Many2one('sale.order', 'Sale Order')
 
-    def _compute(self):
-        orders = self.env['sale.order']
-        orders.make_mep()
+#    def _compute(self):
+#        orders = self.env['sale.order']
+#        orders.make_mep()
