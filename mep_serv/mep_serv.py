@@ -11,27 +11,30 @@ from openerp.models import Model
 
 class sale_o(Model):
 
-    _name = "sale.order"
+    _name = "sale.o"
     _inherit = "sale.order"
 
     def prepare_mep(self):
-        orders = self.search([('state', 'in', ['confirmed'])])
-        mep_list = []
+#        orders = self.search([('state', 'in', ['confirmed'])])
+#        mep_list = []
         mep_vals = {}
-        for order in orders:
+        for order in self:
             mep_vals = {
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
                 'name': order.name
                     }
-            mep_list.append(mep_vals)
-        return mep_list
+#            mep_list.append(mep_vals)
+        return mep_vals
 
-    def make_mep(self):
-        mep_l = self.prepare_mep()
-        m = self.env['sale.mep_serv']
-        for mep in mep_l:
-            m.create(mep)
+#    def make_mep(self):
+#        mep_l = self.prepare_mep()
+#        m = self.env['sale.mep_serv']
+#        for mep in mep_l:
+#            m.create(mep)
+
+    def button_confirm(self):
+        return self.write({'state': 'confirmed'}), self.env['sale.mep_serv'].create(self.prepare_mep)
 
 
 class mep_serv(Model):
