@@ -33,8 +33,10 @@ class sale_o(Model):
 #        for mep in mep_l:
 #            m.create(mep)
 
+    @api.multi
+    @api.model
     def button_confirm(self):
-        return self.write({'state': 'confirmed'}), self.env['sale.mep_serv'].create(self.prepare_mep())
+        return super(self).button_confirm(), self.env['sale.mep_serv'].create(self.prepare_mep())
 
 
 class mep_serv(Model):
