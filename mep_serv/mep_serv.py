@@ -20,7 +20,7 @@ class sale_o(Model):
         mep_dic = {}
         for order in self:
             mep_dic = {
-                'name': order.name,
+                'name': order.id,
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
                 }
@@ -32,6 +32,6 @@ class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
 
-    name = fields.Char('Reference', related='sale.order')
+    name = fields.Many2one('sale.order', string='Reference')
     partner_id = fields.Many2one('res.partner')
     date_order = fields.Datetime('Date')
