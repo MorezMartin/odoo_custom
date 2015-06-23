@@ -14,6 +14,7 @@ class sale_o(Model):
     _name = "sale.order"
     _inherit = "sale.order"
 
+    @api.model
     def create_mep(self):
         mep = self.env['sale.mep_serv']
         mep_dic = {
