@@ -28,6 +28,6 @@ class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
 
-    name = fields.Many2One('sale.order')
-    partner_id = fields.Many2One('res.partner')
+    name = fields.Many2one('sale.order')
+    partner_id = fields.Many2one('res.partner')
     date_order = fields.Datetime('Date')
