@@ -21,7 +21,7 @@ class sale_o(Model):
         for order in self:
             mep_dic = {
                 'name': order.name,
-                'partner_id': order.partner_id,
+                'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
                 }
         res = mep.create(mep_dic)
