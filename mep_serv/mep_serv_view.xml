@@ -41,16 +41,15 @@
         </record>
 
 	<menuitem name="MEP, Service" parent="base.menu_sales" id="menu_mep_serv" action="mep_serv_action" sequence="2"/>
-    <record id="view_order_form" model="ir.ui.view">
-        <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
+
+        <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.mep</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-            <form string="Sales Order">
-                <header>
+                   <xpath expr="//button[@name='invoice_corrected']" position="after">
                     <button name="create_mep" type="object" states="confirmed" string="Create MEP" groups="base.group_user"/>
-                </header>
-            </form>
+                   </xpath>
             </field>
         </record>
     </data>
