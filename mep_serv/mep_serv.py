@@ -9,7 +9,25 @@ from openerp.models import Model
 #les taxes
 
 
-class mep_serv(Model):
+class sale_o(Model):
+
+    _name = "sale.order"
+    _inherit = "sale.order"
+
+    def create_mep(self):
+        mep = self.env['sale.mep_serv']
+        mep_dic = {
+                'name': self.name,
+                'partner_id': self.partner_id.id,
+                'date_order': self.date_order
+                }
+        return mep.create(mep_dic)
+
+
+class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
-    _inherit = "sale.order"
+
+    name = fields.Many2One('sale.order')
+    partner_id = fields.Many2One('res.partner')
+    date_order = fields.Datetime('Date')

@@ -33,7 +33,6 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
      	    <field name="view_id" ref="mep_serv_tree"/>
-            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Cliquez pour créer une mise en place.
@@ -42,5 +41,15 @@
         </record>
 
 	<menuitem name="MEP, Service" parent="base.menu_sales" id="menu_mep_serv" action="mep_serv_action" sequence="2"/>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+            <form string="Sales Order">
+                <header>
+                    <button name="create_mep" states="confirmed" string="Create MEP" groups="base.group_user"/>
+                </header>
+            </form>
+        </record>
     </data>
 </openerp>
