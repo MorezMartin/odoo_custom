@@ -14,14 +14,15 @@ class sale_o(Model):
     _name = "sale.order"
     _inherit = "sale.order"
 
+    @api.multi
     def create_mep(self):
-        mep = env['sale.mep_serv']
+        mep = self.env['sale.mep_serv']
         mep_dic = {}
         for order in self:
             mep_dic = {
                 'name': order.name,
                 'partner_id': order.partner_id,
-                'date_order': order.date_order
+                'date_order': order.date_order,
                 }
         res = mep.create(mep_dic)
         return res
