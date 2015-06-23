@@ -50,6 +50,7 @@
                     <button name="create_mep" states="confirmed" string="Create MEP" groups="base.group_user"/>
                 </header>
             </form>
+            </field>
         </record>
     </data>
 </openerp>
