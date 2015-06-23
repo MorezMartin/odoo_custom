@@ -14,10 +14,8 @@ class sale_o(Model):
     _name = "sale.order"
     _inherit = "sale.order"
 
-    @api.v8
     @api.model
     @api.multi
-    @api.depends('partner_id', 'partner_id', 'date_order')
     def create_mep(self):
         mep = self.env['sale.mep_serv']
         mep_dic = {
