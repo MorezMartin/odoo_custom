@@ -48,7 +48,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                    <xpath expr="//button[@name='invoice_corrected']" position="after">
-                    <button name="create_mep" type="object" string="Create MEP" groups="base.group_user"/>
+                    <button name="create_mep" states='manual,progress' type="object" string="Create MEP" groups="base.group_user"/>
                    </xpath>
             </field>
         </record>
