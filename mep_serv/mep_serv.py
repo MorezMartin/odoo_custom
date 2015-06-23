@@ -15,6 +15,7 @@ class sale_o(Model):
     _inherit = "sale.order"
 
     @api.model
+    @api.multi
     def create_mep(self):
         mep = self.env['sale.mep_serv']
         mep_dic = {
@@ -22,7 +23,8 @@ class sale_o(Model):
                 'partner_id': self.partner_id.id,
                 'date_order': self.date_order
                 }
-        return mep.create(mep_dic)
+        res = mep.create(mep_dic)
+        return res
 
 
 class sale_mep_serv(Model):
