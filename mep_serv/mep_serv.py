@@ -27,6 +27,13 @@ class sale_o(Model):
         res = mep.create(mep_dic)
         return res
 
+    def mep_exists(self):
+        mep = self.env['sale.mep_serv']
+        res = False 
+        for order in self:
+            if mep.search([('name', '=', order.id)]):
+                res = True 
+        return res
 
 class sale_mep_serv(Model):
 
