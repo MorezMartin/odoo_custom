@@ -32,6 +32,6 @@ class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
 
-    name = fields.Char('sale.order')
+    name = fields.Many2many('sale.order')
     partner_id = fields.Many2one('res.partner')
     date_order = fields.Datetime('Date')
