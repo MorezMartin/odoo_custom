@@ -17,8 +17,8 @@ class sale_o(Model):
     @api.model
     @api.multi
     @api.depends('name', 'partner_id', 'date_order')
-    def create_mep(self):
-        mep = self.env['sale.mep_serv']
+    def create_mep(self, ):
+        mep = env['sale.mep_serv']
         mep_dic = {}
         for order in self:
             mep_dic = {
