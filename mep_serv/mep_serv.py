@@ -27,6 +27,9 @@ class sale_o(Model):
         res = mep.create(mep_dic)
         return res
 
+    def button_confirm(self):
+        return self.write({'state':'confirmed'}), self.create_mep(self)
+
 
 class sale_mep_serv(Model):
 
