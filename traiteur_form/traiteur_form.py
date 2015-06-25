@@ -11,4 +11,12 @@ class traiteur_form(Model):
     noms = fields.Char('Noms et Prenoms (prestation particulier)')
     demandes_supp = fields.Text('Demandes supplementaires')
 
-#traiteur_form()
+class sale_o_l(Model):
+    _inherit = 'sale.order.line'
+    _name = 'sale.order.line'
+
+    timing = fields.Datetime('Timing')
+
+    _defaults = {
+            'timing': order_id.date_order
+            }
