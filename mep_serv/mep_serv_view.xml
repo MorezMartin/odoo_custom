@@ -10,7 +10,6 @@
                     <field name="date_order"/>
                     <field name="partner_shipping_id"/>
                     <field name="partner_id"/>
-                    <field name="type_presta"/>
                     <field name="name"/>
                 </tree>
             </field>
