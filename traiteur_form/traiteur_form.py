@@ -20,3 +20,5 @@ class sale_o_l(Model):
     _defaults = {
             'timing': order_id.date_order
             }
+    def _get_date_order(self):
+        return self.order_id.date_order
