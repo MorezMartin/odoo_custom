@@ -22,7 +22,6 @@
      	    <field name="res_model">sale.order</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="domain">[('state', 'in', ('manual', 'progress'))]</field>
      	    <field name="view_id" ref="view_mep_tree"/>
             <field name="help" type="html">
