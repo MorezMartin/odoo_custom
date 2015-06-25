@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
+        <record id="view_mep_tree" model="ir.ui.view">
+            <field name="name">sale.mep_serv.tree</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <tree string="MEP Service">
+                    <field name="date_order"/>
+                    <field name="partner_shipping_id"/>
+                    <field name="partner_id"/>
+                    <field name="type_presta"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
         <record id="mep_serv_action" model="ir.actions.act_window">
             <field name="name">MEP, Service</field>
             <field name="type">ir.actions.act_window</field>
@@ -9,7 +24,7 @@
             <field name="view_mode">tree,form,calendar</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="domain">[('state', 'in', ('manual', 'progress'))]</field>
-     	    <field name="view_id" ref="sale.view_order_tree"/>
+     	    <field name="view_id" ref="view_mep_tree"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Cliquez pour créer une mise en place.
