@@ -51,7 +51,6 @@
 			<field name="name"/>
 			<field name="partner_id"/>
 			<field name="date_order"/>
-		    </group>
 		</form>
 	    </field>
 	</record>
