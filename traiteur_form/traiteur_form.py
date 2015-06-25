@@ -15,7 +15,7 @@ class sale_o_l(Model):
     _inherit = 'sale.order.line'
     _name = 'sale.order.line'
 
-    timing = fields.Datetime('Timing' default=_get_date_order)
+    timing = fields.Datetime('Timing', default=_get_date_order)
 
     @api.multi
     def _get_date_order(self):
