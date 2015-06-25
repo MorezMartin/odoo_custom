@@ -17,9 +17,10 @@ class sale_o_l(Model):
 
     timing = fields.Datetime('Timing')
 
-    @api.one
+    @api.multi
     def _get_date_order(self):
-        return self.order_id.date_order
+        res = self.order_id.date_order
+        return res
 
     _defaults = {
             'timing': _get_date_order
