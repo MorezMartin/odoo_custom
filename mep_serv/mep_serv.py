@@ -38,7 +38,7 @@ class sale_o(Model):
         self.state = 'reserved'
         return True
 
-    self.state = fields.Selection([
+    state = fields.Selection([
             ('draft', 'Draft Quotation'),
             ('sent', 'Quotation Sent'),
             ('cancel', 'Cancelled'),
