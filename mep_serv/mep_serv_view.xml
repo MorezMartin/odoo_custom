@@ -5,6 +5,7 @@
         <record id="view_mep_tree" model="ir.ui.view">
             <field name="name">sale.mep_serv.tree</field>
             <field name="model">sale.order</field>
+            <field name="domain">[('state', 'in', ('manual', 'progress'))]</field>
             <field name="arch" type="xml">
                 <tree string="MEP Service">
                     <field name="date_order"/>
