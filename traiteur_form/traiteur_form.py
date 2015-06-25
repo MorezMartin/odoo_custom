@@ -18,7 +18,7 @@ class sale_o_l(Model):
     timing = fields.Datetime('Timing')
 
     _defaults = {
-            'timing': _get_date_order
+            'timing': _get_date_order()
             }
     def _get_date_order(self):
         return self.order_id.date_order
