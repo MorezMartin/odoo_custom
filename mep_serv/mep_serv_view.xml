@@ -9,7 +9,7 @@
             <field name="view_mode">tree,form,calendar</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="domain">[('state', 'in', ('manual', 'progress'))]</field>
-     	    <field name="view_id" ref="mep_serv_tree"/>
+     	    <field name="view_id" ref="sale.view_order_tree"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Cliquez pour créer une mise en place.
