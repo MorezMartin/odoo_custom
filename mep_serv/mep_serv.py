@@ -28,8 +28,11 @@ class sale_o(Model):
         return res
 
     @api.multi
-    def button_confirm(self):
-        return self.write({'state':'confirmed'}), self.create_mep(self)
+    def action_button_confirm(self):
+        assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+        self.signal_workflow(cr, uid, ids, 'order_confirm')
+        self.create_mep()
+        return True
 
 
 class sale_mep_serv(Model):
