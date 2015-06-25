@@ -1,4 +1,4 @@
-from openerp import fields
+from openerp import fields api
 from openerp.models import Model
 
 class traiteur_form(Model):
