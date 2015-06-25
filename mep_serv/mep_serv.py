@@ -29,7 +29,7 @@ class sale_o(Model):
 
     @api.multi
     def action_button_confirm(self):
-        assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+        assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
         self.signal_workflow(cr, uid, ids, 'order_confirm')
         self.create_mep()
         return True
