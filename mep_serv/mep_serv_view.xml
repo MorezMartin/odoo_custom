@@ -86,7 +86,7 @@
                     <xpath expr="//button[@name='action_button_confirm']" position="replace">
                         <button name="action_button_confirm" states="reserved" string="Confirm Menus" class="oe_highlight" type="object" groups="base.group_user"/>
                     </xpath>
-                <data>
+                </data>
             </field>
         </record>
     </data>
