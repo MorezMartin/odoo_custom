@@ -42,6 +42,20 @@
 
 	    <menuitem name="MEP, Service" parent="base.menu_sales" id="menu_mep_serv" action="mep_serv_action" sequence="2"/>
 
+
+	<record id="reserv_form" model="ir.ui.view">
+	    <field name="name">sale.reserv.form</field>
+	    <field name="model">sale.order</field>
+	    <field name="arch" type="xml">
+		<form string="Reservations">
+			<field name="name"/>
+			<field name="partner_id"/>
+			<field name="date_order"/>
+		    </group>
+		</form>
+	    </field>
+	</record>
+
         <record id="reserv_tree" model="ir.ui.view">
             <field name="name">sale.reserv.tree</field>
             <field name="model">sale.order</field>
