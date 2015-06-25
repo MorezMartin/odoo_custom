@@ -79,7 +79,6 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//button[@name='invoice_corrected']" position="after">
-                        <button name="action_button_reserv" string="Reserve" type="object" states="draft,sent" groups="base.group_user"/>
                         <button name="action_button_reserv" string="Reserve" type="object" states="draft,sent" class="oe_highlight" groups="base.group_user"/>
 
                     </xpath>
