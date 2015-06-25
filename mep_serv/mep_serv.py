@@ -51,6 +51,7 @@ class sale_o(Model):
         self.create_mep()
         return True
 
+    @api.multi
     def action_button_reserv(self):
         self.state = 'reserved'
         return True
