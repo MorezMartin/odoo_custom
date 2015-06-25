@@ -4,6 +4,7 @@
 	<record id="mep_serv_form" model="ir.ui.view">
 	    <field name="name">sale.mep_serv.form</field>
 	    <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
 	    <field name="arch" type="xml">
 		<form string="MEP, Service">
 	 	    <group col="4">
@@ -17,6 +18,7 @@
         <record id="mep_serv_tree" model="ir.ui.view">
 	    <field name="name">sale.mep_serv.tree</field>
 	    <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
 	    <field name="arch" type="xml">
 	        <tree string="MEP, Service">
 		    <field name="name"/>
