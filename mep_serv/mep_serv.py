@@ -14,6 +14,7 @@ class sale_o(Model):
     _name = "sale.order"
     _inherit = "sale.order"
 
+    type_presta = fields.Char("Type Prestation")
     state = fields.Selection([
             ('draft', 'Draft Quotation'),
             ('sent', 'Quotation Sent'),
