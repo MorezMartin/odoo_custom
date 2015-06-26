@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="sale.view_order_tree"/>
             <field name="domain">[('state', 'in', ('manual', 'progress'))]</field>
             <field name="arch" type="xml">
-                <tree string="MEP Service">
+                <tree string="Sales Orders" position="replace">
                     <field name="date_order"/>
                     <field name="partner_shipping_id"/>
                     <field name="partner_id"/>
