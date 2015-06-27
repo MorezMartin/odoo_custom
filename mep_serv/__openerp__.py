@@ -35,7 +35,7 @@ Ajout champs formulaire ventes.
     'images' : [],
     'depends' : ["sale"],
     'data':
-    ['mep_serv_view.xml'],
+    ['mep_serv_view.xml', 'report.xml', 'views/report_mep.xml'],
     'demo': [],
     'test' :[],
     'installable': True,

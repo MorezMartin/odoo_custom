@@ -22,8 +22,9 @@
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
             <field name="arch" type="xml">
-                <form string="Sales Orders">
+                <form string="MEP, Service">
                     <header>
+                        <button name="print_mep" string="Print" type="object" states="progress,manual" groups="base.group_user"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>
                     </header>
                     <sheet>
@@ -94,6 +95,7 @@
                                         groups="base.group_user"
                                         on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
                                     <field name="name"/>
+                                    <field name="timing"/>
                                 </tree>
                             </field>
                             <div class="oe_clear"/>
