@@ -58,9 +58,9 @@ class sale_o(Model):
         return True
 
     @api.multi
-    def print_mep(self):
+    def print_mep(self, context=None):
         assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
-        return self.env['report'].get_action('mep_serv.report_mep')
+        return self.env['report'].get_action('mep_serv.report_mep', context=context)
 
 
 class sale_mep_serv(Model):
