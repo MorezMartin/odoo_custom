@@ -3,8 +3,6 @@
     <data>
 
 <template id="report_mep_document">
-    <t t-call="report.html_container">
-        <t t-foreach="docs" t-as="o">
             <t t-call="report.external_layout">
         <div class="page">
             <div class="oe_structure"/>
@@ -126,8 +124,6 @@
             </p>
             <div class="oe_structure"/>
         </div>
-            </t>
-        </t>
     </t>
 </template>
 <template id="report_saleorder">
