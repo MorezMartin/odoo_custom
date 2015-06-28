@@ -39,5 +39,5 @@ Ajout champs formulaire ventes.
     'demo': [],
     'test' :[],
     'installable': True,
-    'auto_install':False,
+    'auto_install': False,
 }
