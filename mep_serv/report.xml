@@ -6,8 +6,8 @@
             string="MEP, Service"
             model="sale.order" 
             report_type="qweb-pdf"
-            file="sale.mep_serv.report_mep" 
-            name="sale.mep_serv.report_mep" 
+            file="mep_serv.report_mep" 
+            name="sale.report_mep" 
         />
     </data>
 </openerp>
