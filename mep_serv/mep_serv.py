@@ -8,6 +8,11 @@ from openerp.models import Model
 #sale.order surchargee : comme on pourrait appeler compute_all pour
 #les taxes
 
+class sale_o_l(Model):
+    _name = "sale.order.line"
+    _inherit = "sale.order.line"
+
+    timing = fields.Datetime("Timing")
 
 class sale_o(Model):
 
