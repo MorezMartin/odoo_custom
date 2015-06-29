@@ -173,7 +173,7 @@
             string="MEP, Service"
             model="sale.order" 
             report_type="qweb-pdf"
-            file="sale.report_mep" 
+            file="mep_serv.report_mep" 
             name="mep_serv.report_mep" 
         />
     </data>
