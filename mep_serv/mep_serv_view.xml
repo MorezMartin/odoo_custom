@@ -174,7 +174,7 @@
             model="sale.order" 
             report_type="qweb-pdf"
             file="mep_serv.report_mep" 
-            name="mep_serv.report_mep" 
+            name="sale.report_mep" 
         />
     </data>
 </openerp>
