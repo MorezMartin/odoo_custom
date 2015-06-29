@@ -24,7 +24,7 @@
             <field name="arch" type="xml">
                 <form string="MEP, Service">
                     <header>
-                        <button name="print_mep" string="Print" type="object" states="progress,manual" groups="base.group_user"/>
+                        <button name="print_mep" string="Print" type="object" groups="base.group_user"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>
                     </header>
                     <sheet>
