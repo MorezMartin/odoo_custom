@@ -26,6 +26,7 @@
                     <field name="date_order"/>
                     <field name="partner_shipping_id"/>
                 </form>
+            </field>
        </record>
 
         <record id="mep_serv_action" model="ir.actions.act_window">
