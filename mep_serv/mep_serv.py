@@ -19,6 +19,7 @@ class sale_o(Model):
     _name = "sale.order"
     _inherit = "sale.order"
 
+    type_presta = fields.Char("Type Presta")
     state = fields.Selection([
             ('draft', 'Draft Quotation'),
             ('sent', 'Quotation Sent'),
@@ -75,4 +76,25 @@ class sale_o(Model):
 class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
-    _inherit = "sale.order"
+
+
+    name = fields.Many2one('sale.order')
+    partner_id = fields.Many2one('res.partner')
+    state = fields.Selection([
+            ('draft', 'Draft Quotation'),
+            ('sent', 'Quotation Sent'),
+            ('cancel', 'Cancelled'),
+            ('waiting_date', 'Waiting Schedule'),
+            ('reserved', 'Reserved'),
+            ('progress', 'Sales Order'),
+            ('manual', 'Sale to Invoice'),
+            ('shipping_except', 'Shipping Exception'),
+            ('invoice_except', 'Invoice Exception'),
+            ('done', 'Done'),
+            ], 'Status', readonly=True, copy=False, help="Gives the status of the quotation or sales order.\
+              \nThe exception status is automatically set when a cancel operation occurs \
+              in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
+               but waiting for the scheduler to run on the order date.", select=True)
+   date_order = fields.Datetime("Date")
+   type_presta = fields.Char("Type Presta")
+   order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True)
