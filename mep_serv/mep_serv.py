@@ -77,3 +77,12 @@ class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
     _inherit = "sale.order"
+
+
+    type_presta = fields.Char("Type Prestation")
+    state = fields.Selection([
+            ('draft', 'Draft Quotation'),
+            ('sent', 'Quotation Sent'),
+            ('cancel', 'Cancelled'),
+            ('waiting_date', 'Waiting Schedule'),
+            ('reserved', 'Reserved'),
