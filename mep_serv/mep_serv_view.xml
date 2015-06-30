@@ -22,10 +22,10 @@
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
             <field name="arch" type="xml">
-                <tree form="MEP, Service">
+                <form string="MEP, Service">
                     <field name="date_order"/>
-                    <field name="partner_shipping_id">
-                </tree>
+                    <field name="partner_shipping_id"/>
+                <form>
        </record>
 
         <record id="mep_serv_action" model="ir.actions.act_window">
