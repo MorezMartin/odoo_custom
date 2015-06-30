@@ -8,7 +8,8 @@
             <field name="arch" type="xml">
                 <form string="Sales Order">
                     <header>
-                        <button name="print_mep" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+                        <button name="print_mep" string="Print" type="object" states="manual,progress" class="oe_highlight" groups="base.group_user"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>
                 </header>
                 <sheet>
                     <h1>
