@@ -33,7 +33,7 @@
         <record id="mep_serv_action" model="ir.actions.act_window">
             <field name="name">MEP, Service</field>
             <field name="type">ir.actions.act_window</field>
-     	    <field name="res_model">sale.mep_serv</field>
+     	    <field name="res_model">sale.order</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
             <field name="domain">[('state', 'in', ('manual', 'progress'))]</field>
