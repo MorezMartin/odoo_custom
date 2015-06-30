@@ -5,9 +5,8 @@
         <record id="view_mep_form" model="ir.ui.view">
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <form string="Sales Order">
+                <form string="MEP, Service">
                     <field name="date_order"/>
                     <field name="partner_shipping_id"/>
                     <field name="state" invisible="1"/>
@@ -41,6 +40,7 @@
             <field name="view_mode">tree,form,calendar</field>
             <field name="domain">[('state', 'in', ('manual', 'progress'))]</field>
      	    <field name="view_id" ref="view_mep_tree"/>
+            <field name="view_id" ref="view_mep_form"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Cliquez pour créer une mise en place.
