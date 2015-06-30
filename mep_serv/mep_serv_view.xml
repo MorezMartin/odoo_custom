@@ -24,7 +24,7 @@
             <field name="arch" type="xml">
                 <form string="MEP, Service">
                     <header>
-                        <button name="print_mep" string="Print" type="object" groups="base.group_user"/>
+                        <button name="print_mep" string="Print MEP" type="object" groups="base.group_user"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>
                     </header>
                     <sheet>
@@ -173,7 +173,7 @@
             string="MEP, Service"
             model="sale.order" 
             report_type="qweb-pdf"
-            file="mep_serv.report_mep" 
+            file="report_mep" 
             name="mep_serv.report_mep" 
         />
     </data>
