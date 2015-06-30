@@ -70,13 +70,5 @@
                 </data>
             </field>
         </record>
-        <report 
-            id="report_mep"
-            string="MEP, Service"
-            model="sale.order" 
-            report_type="qweb-pdf"
-            file="report_mep" 
-            name="mep_serv.report_mep" 
-        />
     </data>
 </openerp>
