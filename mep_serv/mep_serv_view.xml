@@ -6,6 +6,9 @@
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.mep_serv</field>
             <field name="arch" type="xml">
+                <form string="MEP, Service">
+                    <field name="date_order"/>
+                </form>
             </field>
        </record>
 
