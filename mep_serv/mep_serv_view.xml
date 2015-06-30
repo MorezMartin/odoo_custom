@@ -103,10 +103,10 @@
 
 
         
-        <record id="view_order_line_tree" model="ir.ui.view">
+        <record id="view_mep_serv_line_tree" model="ir.ui.view">
             <field name="name">sale.mep_serv.line.tree</field>
             <field name="model">sale.order.line</field>
-            <field name="inherit" ref="view_order_line_tree"/>
+            <field name="inherit" ref="sale.view_order_line_tree"/>
             <field name="arch" type="xml">
                 <tree string="MEP, Service Lines" create="false">
                     <field name="product_id" invisible="1"/>
@@ -122,10 +122,10 @@
                 </tree>
             </field>
         </record>
-        <record id="view_order_line_form2" model="ir.ui.view">
+        <record id="view_mep_serv_line_form2" model="ir.ui.view">
             <field name="name">sale.mep_serv.line.form</field>
             <field name="model">sale.order.line</field>
-            <field name="inherit" ref="view_order_line_form2"/>
+            <field name="inherit" ref="sale.view_order_line_form2"/>
             <field name="arch" type="xml">
                 <form string="MEP, Service Lines" create="false">
                     <header>
