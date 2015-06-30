@@ -72,7 +72,4 @@ class sale_o(Model):
 class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
-
-    name = fields.Many2one('sale.order', string='Reference')
-    partner_id = fields.Many2one('res.partner')
-    date_order = fields.Datetime('Date')
+    _inherit = "sale.order"
