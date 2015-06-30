@@ -4,7 +4,7 @@
 
         <record id="view_mep_form" model="ir.ui.view">
             <field name="name">sale.mep_serv.form</field>
-            <field name="model">sale.order</field>
+            <field name="model">sale.mep_serv</field>
             <field name="arch" type="xml">
                 <form string="MEP, Service">
                     <field name="date_order"/>
