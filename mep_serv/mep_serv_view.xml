@@ -22,113 +22,11 @@
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
             <field name="arch" type="xml">
-                <form string="MEP, Service">
-                    <header>
-                        <button name="print_mep" string="Print MEP" type="object" groups="base.group_user"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>
-                    </header>
-                    <sheet>
-                        <h1>
-                            <label string="MEP, Serice"/>
-                            <field name="name" class="oe_inline" readonly="1"/>
-                        </h1>
-                        <group>
-                            <group>
-                                <field name="partner_id" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
-                                <field name="partner_shipping_id" on_change="onchange_delivery_id(company_id, partner_id, partner_shipping_id, fiscal_position)" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}"/>
-                            </group>
-                            <group>
-                            <field name="date_order"/>
-                            <field name="client_order_ref"/>
-                            <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)" invisible="1"/>
-                            <field name="currency_id" invisible="1"/>
-                            </group>
-                        </group>
-                    <notebook>
-                        <page string="Order Lines">
-                            <field name="order_line">
-                                <form string="Sales Order Lines">
-                                    <header groups="base.group_user">
-                                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" statusbar_colors='{"exception":"red","cancel":"red"}'/>
-                                    </header>
-                                    <group>
-                                        <group>
-                                            <label for="product_uom_qty"/>
-                                            <div>
-                                                <field
-                                                    context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                                    name="product_uom_qty" class="oe_inline"
-                                                    on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
-                                                <field name="product_uom" groups="product.group_uom" class="oe_inline oe_no_button"
-
-                                                    on_change="product_uom_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, context)"/>
-                                            </div>
-                                            <label for="product_uos_qty" groups="product.group_uos"/>
-                                            <div groups="product.group_uos">
-                                                <field name="product_uos_qty" class="oe_inline"/>
-                                                <field name="product_uos" options='{"no_open": True}' class="oe_inline"/>
-                                            </div>
-
-                                            <field name="product_id"
-                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                                groups="base.group_user"
-                                                on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
-                                        </group>
-                                    </group>
-                                    <label for="name"/>
-                                    <field name="name"/>
-                                </form>
-                                <tree string="Sales Order Lines" editable="bottom">
-                                    <field name="sequence" widget="handle"/>
-                                    <field name="state" invisible="1"/>
-                                    <field name="th_weight" invisible="1"/>
-                                    <field name="product_uom_qty"
-                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                        on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
-                                    <field name="product_uom"
-                                        on_change="product_uom_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, context)"
-                                        groups="product.group_uom" options='{"no_open": True}'/>
-                                    <field name="product_uos_qty" groups="product.group_uos" invisible="1"/>
-                                    <field name="product_uos" string="UoS" groups="product.group_uos" invisible="1"/>
-                                    <field name="product_id"
-                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                        groups="base.group_user"
-                                        on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
-                                    <field name="name"/>
-                                    <field name="timing"/>
-                                </tree>
-                            </field>
-                            <div class="oe_clear"/>
-                            <field name="note" class="oe_inline" placeholder="Terms and conditions..."/>
-                        </page>
-                        <page string="Other Information" groups="base.group_user">
-                            <group>
-                                <group name="sales_person" groups="base.group_user">
-                                    <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'account.group_account_invoice', 'base.group_sale_salesman_all_leads']}"/>
-                                    <field name="section_id" options="{'no_create': True}" groups="base.group_multi_salesteams"/>
-                                    <field groups="base.group_no_one" name="origin"/>
-                                </group>
-                                <group name="sale_pay">
-                                    <field name="payment_term" options="{'no_create': True}"/>
-                                    <field name="fiscal_position" options="{'no_create': True}"
-                                        on_change="onchange_fiscal_position(fiscal_position, order_line, context)"/>
-                                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
-                                </group>
-                                <group>
-                                    <field name="invoiced"/>
-                                    <field name="invoice_exists" invisible="1"/>
-                                </group>
-                            </group>
-                        </page>
-                    </notebook>
-                </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                    <field name="message_ids" widget="mail_thread"/>
-                </div>
-                </form>
-            </field>
-        </record>
+                <tree form="MEP, Service">
+                    <field name="date_order"/>
+                    <field name="partner_shipping_id">
+                </tree>
+       </record>
 
         <record id="mep_serv_action" model="ir.actions.act_window">
             <field name="name">MEP, Service</field>
