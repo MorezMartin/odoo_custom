@@ -71,7 +71,6 @@ class sale_o(Model):
 class sale_mep_serv(Model):
 
     _name = "sale.mep_serv"
-    _inherit = "sale.order"
 
 
     name = fields.Many2one('sale.order')
@@ -100,8 +99,3 @@ class sale_mep_serv(Model):
         assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
         res = self.env['report'].get_action(self, 'mep_serv.report_mep')
         return res
-
-
-class sale_mep_serv_line(Model):
-    _name = "sale.mep_serv.line"
-    _inherit = "sale.order.line"
