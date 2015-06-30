@@ -79,6 +79,10 @@ class sale_mep_serv(Model):
 
 
     name = fields.Many2one('sale.order')
+    date_order = fields.Datetime("Date")
+    type_presta = fields.Char("Type Presta")
+    order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True)
+    partner_shipping_id = fields.Many2one('res.partner')
     partner_id = fields.Many2one('res.partner')
     state = fields.Selection([
             ('draft', 'Draft Quotation'),
@@ -95,7 +99,4 @@ class sale_mep_serv(Model):
               \nThe exception status is automatically set when a cancel operation occurs \
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
                but waiting for the scheduler to run on the order date.", select=True)
-    date_order = fields.Datetime("Date")
-    type_presta = fields.Char("Type Presta")
-    order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True)
-    partner_shipping_id = fields.Many2one('res.partner')
+
