@@ -37,6 +37,7 @@ class sale_o(Model):
                but waiting for the scheduler to run on the order date.", select=True)
 
 
+#TODO : mettre a jour mep_dic et que confirm cree les mep
     @api.multi
     def create_mep(self):
         mep = self.env['sale.mep_serv']
@@ -46,6 +47,9 @@ class sale_o(Model):
                 'name': order.id,
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
+                'state': order.state,
+                'order_line': order.order_line,
+                'partner_shipping_id': order.partner_shipping_id.id
                 }
         res = mep.create(mep_dic)
         return res
