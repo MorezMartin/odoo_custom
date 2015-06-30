@@ -96,5 +96,5 @@ class sale_mep_serv(Model):
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
                but waiting for the scheduler to run on the order date.", select=True)
     date_order = fields.Datetime("Date")
-   type_presta = fields.Char("Type Presta")
-   order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True)
+    type_presta = fields.Char("Type Presta")
+    order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True)
