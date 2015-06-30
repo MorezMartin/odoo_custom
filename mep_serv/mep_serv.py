@@ -66,11 +66,6 @@ class sale_o(Model):
         self.state = 'reserved'
         return True
 
-    @api.multi
-    def print_mep(self):
-        assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
-        res = self.env['report'].get_action(self, 'mep_serv.report_mep')
-        return res
 
 
 class sale_mep_serv(Model):
@@ -99,4 +94,8 @@ class sale_mep_serv(Model):
               \nThe exception status is automatically set when a cancel operation occurs \
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
                but waiting for the scheduler to run on the order date.", select=True)
-
+    @api.multi
+    def print_mep(self):
+        assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
+        res = self.env['report'].get_action(self, 'mep_serv.report_mep')
+        return res
