@@ -122,12 +122,12 @@
                 </tree>
             </field>
         </record>
-        <record id="view_mep_serv_line_form2" model="ir.ui.view">
-            <field name="name">sale.mep_serv.line.form</field>
+
+        <record id="view_order_line_form2" model="ir.ui.view">
+            <field name="name">sale.order.line.form2</field>
             <field name="model">sale.order.line</field>
-            <field name="inherit" ref="sale.view_order_line_form2"/>
             <field name="arch" type="xml">
-                <form string="MEP, Service Lines" create="false">
+                <form string="Sales Order Lines" create="false">
                     <header>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" statusbar_colors='{"exception":"red","cancel":"red"}'/>
                     </header>
@@ -138,12 +138,15 @@
                     <h2><field name="order_partner_id"/></h2>
                     <group>
                         <group>
+                            <field name="product_id"/>
                             <label for="product_uom_qty"/>
                             <div>
                                 <field name="product_uom_qty" readonly="1" class="oe_inline"/>
                                 <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
                             </div>
-                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                         </group>
                     </group>
                     <label for="name"/>
@@ -152,7 +155,6 @@
                 </form>
             </field>
         </record>
-
 
 
         <record id="mep_serv_action" model="ir.actions.act_window">
