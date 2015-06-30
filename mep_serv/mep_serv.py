@@ -98,3 +98,4 @@ class sale_mep_serv(Model):
     date_order = fields.Datetime("Date")
     type_presta = fields.Char("Type Presta")
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True)
+    partner_shipping_id = fields.Many2One('res.partner')
