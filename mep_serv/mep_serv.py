@@ -61,6 +61,7 @@ class sale_o(Model):
     def create_mep_lines(self):
         mep_l = self.env['sale.mep_serv.line']
         lines = []
+        create_lines = []
         for line in self.order_line:
             lines.append(line)
         for line in lines:
@@ -68,7 +69,9 @@ class sale_o(Model):
                     'name': line.order_id,
                     'product_id': line.product_id.id,
                     }
-            mep_l.create(mep_l_dic)
+            create_lines.append(mep_l.create(mep_l_dic))
+        return create_lines
+
 
 
     @api.multi
