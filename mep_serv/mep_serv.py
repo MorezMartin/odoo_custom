@@ -49,12 +49,21 @@ class sale_o(Model):
                 'name': order.id,
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
-                'mep_line': order.order_line,
                 'state': order.state,
                 'partner_shipping_id': order.partner_shipping_id.id
                 }
         res = mep.create(mep_dic)
-        return res
+        order_line = self.env['sale.order.line'].browse()
+        mep_l_dic = {}
+            for line in order_line:
+                mep_l_dic = {
+                        'order_id': self.name.id,
+                        'name': line.name,
+                        'product_id': line.product_id,
+                        }
+
+        mep_l = self.env['sale.mep_serv.line'].create(mep_l_dic)
+        return res, mep_l
 
     @api.multi
     def create_mep_lines(self, order_id):
