@@ -73,7 +73,7 @@ class sale_o(Model):
         self.state = 'reserved'
         return True
 
-class = sale_mep_l(Model):
+class sale_mep_l(Model):
     _name="sale.mep_serv.line"
     _inherit="sale.order.line"
 
