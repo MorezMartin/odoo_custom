@@ -44,6 +44,7 @@ class sale_o(Model):
     def create_mep(self):
         mep = self.env['sale.mep_serv']
         mep_dic = {}
+        mep_l_dic = {}
         for order in self:
             mep_dic = {
                 'name': order.id,
@@ -52,9 +53,7 @@ class sale_o(Model):
                 'state': order.state,
                 'partner_shipping_id': order.partner_shipping_id.id
                 }
-        res = mep.create(mep_dic)
-        order_line = self.env['sale.order.line'].browse()
-        mep_l_dic = {}
+            order_line = self.env['sale.order.line'].browse()
             for line in order_line:
                 mep_l_dic = {
                         'order_id': self.name.id,
@@ -62,6 +61,7 @@ class sale_o(Model):
                         'product_id': line.product_id,
                         }
 
+        res = mep.create(mep_dic)
         mep_l = self.env['sale.mep_serv.line'].create(mep_l_dic)
         return res, mep_l
 
