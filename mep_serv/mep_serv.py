@@ -8,10 +8,6 @@ from openerp.models import Model
 #sale.order surchargee : comme on pourrait appeler compute_all pour
 #les taxes
 
-class mep_l(Model):
-    _name="sale.mep_serv.line"
-    _inherit="sale.order.line"
-
 
 class sale_o_l(Model):
     _name = "sale.order.line"
@@ -108,7 +104,7 @@ class sale_mep_serv(Model):
     @api.multi
     def _compute_line(self):
         res = self.env['sale.order'].create_mep_lines(self.name.id)
-        return res
+        return res[0]
 
     @api.multi
     def print_mep(self):
