@@ -106,7 +106,7 @@ class sale_mep_serv(Model):
                but waiting for the scheduler to run on the order date.", select=True)
 
     def create_mep_line(self):
-        for line in self.order_line:
+        for line in self.mep_line:
             mep_l_dic = {
                     'mep_id': line.order_id,
                     'name': line.name,
