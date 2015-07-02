@@ -65,7 +65,7 @@ class sale_o(Model):
         for line in lines:
             mep_l_dic = {
                     'name': line.order_id,
-                    'product_id': line.product_id,
+                    'product_id': line.product_id.id,
                     }
             mep_l.create(mep_l_dic)
 
