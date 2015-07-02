@@ -52,27 +52,9 @@ class sale_o(Model):
                 'date_order': order.date_order,
                 'state': order.state,
                 'partner_shipping_id': order.partner_shipping_id.id,
-                'mep_line': order.order_line
                 }
         res = mep.create(mep_dic)
-        return res, self.create_mep_lines()
-
-    @api.multi
-    def create_mep_lines(self):
-        mep_l = self.env['sale.mep_serv.line']
-        lines = []
-        create_lines = []
-        for line in self.order_line:
-            lines.append(line)
-        for line in lines:
-            mep_l_dic = {
-                    'name': line.order_id,
-                    'product_id': line.product_id.id,
-                    }
-            create_lines.append(mep_l.create(mep_l_dic))
-        return create_lines
-
-
+        return res
 
     @api.multi
     def action_button_confirm(self):
@@ -120,11 +102,6 @@ class sale_mep_serv(Model):
               \nThe exception status is automatically set when a cancel operation occurs \
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
                but waiting for the scheduler to run on the order date.", select=True)
-    @api.multi
-    def _compute_line(self):
-        res = self.env['sale.order'].create_mep_lines()
-        return res
-
     @api.multi
     def print_mep(self):
         assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
