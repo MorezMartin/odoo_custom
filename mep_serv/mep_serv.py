@@ -56,7 +56,7 @@ class sale_o(Model):
             order_line = self.env['sale.order.line'].search([('order_id','=',self.name)])
             for line in order_line:
                 mep_l_dic = {
-                        'order_id': line.order_id,
+                        'order_id': line.order_id.id,
                         'name': "test",
                         'product_id': line.product_id.id,
                         }
