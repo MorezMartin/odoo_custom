@@ -67,9 +67,15 @@ class sale_o(Model):
 
     @api.multi
     def create_mep_lines(self, order_id):
-        mep_lines = self.env['sale.order.line'].search([('order_id','=',order_id)])
-        return mep_lines
-
+        order_line = self.env['sale.order.line'].search([('order_id','=',order_id)])
+        mep_l_dic = {}
+        for line in order_line:
+            mep_l_dic = {
+                    'order_id': line.order_id.id,
+                    'name': "test",
+                    'product_id': line.product_id.id,
+                    }
+        return self.env['sale.mep_serv.line'].create(mep_l_dic)
 
     @api.multi
     def action_button_confirm(self):
@@ -99,7 +105,7 @@ class sale_mep_serv(Model):
     name = fields.Many2one('sale.order')
     date_order = fields.Datetime("Date")
     type_presta = fields.Char("Type Presta")
-    mep_line = fields.One2many('sale.mep_serv.line', 'name')
+    mep_line = fields.One2many('sale.mep_serv.line', 'name', _compute='_compute_line')
     partner_shipping_id = fields.Many2one('res.partner')
     partner_id = fields.Many2one('res.partner')
     state = fields.Selection([
@@ -120,7 +126,7 @@ class sale_mep_serv(Model):
     @api.multi
     def _compute_line(self):
         res = self.env['sale.order'].create_mep_lines(self.name.id)
-        return res[0]
+        return res
 
     @api.multi
     def print_mep(self):
