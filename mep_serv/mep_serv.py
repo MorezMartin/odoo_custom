@@ -13,15 +13,24 @@ class sale_o_l(Model):
     _name = "sale.order.line"
     _inherit = "sale.order.line"
 
-    timing = fields.Datetime("Timing")
+    @api.multi
+    def _get_date_order(self):
+        res = self.order_id.date_order
+        return res
 
+    timing = fields.Datetime('Timing', default=_get_date_order)
 
 class sale_o(Model):
 
     _name = "sale.order"
     _inherit = "sale.order"
 
-    type_presta = fields.Char("Type Presta")
+
+    horaire_fin = fields.Datetime('Horaire de fin', required=True)
+    type_presta = fields.Char('Type de prestation', required=True)
+    couleur_deco = fields.Char('Couleur Decoration')
+    noms = fields.Char('Noms et Prenoms (prestation particulier)')
+    demandes_supp = fields.Text('Demandes supplementaires')
     state = fields.Selection([
             ('draft', 'Draft Quotation'),
             ('sent', 'Quotation Sent'),
