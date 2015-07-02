@@ -53,29 +53,17 @@ class sale_o(Model):
                 'state': order.state,
                 'partner_shipping_id': order.partner_shipping_id.id
                 }
-            order_line = self.env['sale.order.line'].search([('order_id','=',self.name)])
-            for line in order_line:
-                mep_l_dic = {
-                        'order_id': line.order_id.id,
-                        'name': "test",
-                        'product_id': line.product_id.id,
-                        }
-
         res = mep.create(mep_dic)
-        mep_l = self.env['sale.mep_serv.line'].create(mep_l_dic)
-        return res, mep_l
+        return res
 
     @api.multi
     def create_mep_lines(self, order_id):
-        order_line = self.env['sale.order.line'].search([('order_id','=',order_id)])
-        mep_l_dic = {}
-        for line in order_line:
-            mep_l_dic = {
-                    'order_id': line.order_id.id,
-                    'name': "test",
-                    'product_id': line.product_id.id,
-                    }
-        return self.env['sale.mep_serv.line'].create(mep_l_dic)
+        order = self.env['sale.order'].search('order_id','=',order_id)
+        lines = []
+        mep_l = self.env['sale.mep_serv.line']
+        for line in order.order_line:
+            lines.append(line.id)
+        res = mep_l.create(lines)
 
     @api.multi
     def action_button_confirm(self):
@@ -105,7 +93,7 @@ class sale_mep_serv(Model):
     name = fields.Many2one('sale.order')
     date_order = fields.Datetime("Date")
     type_presta = fields.Char("Type Presta")
-    mep_line = fields.One2many('sale.mep_serv.line', 'order_id')
+    mep_line = fields.One2many('sale.mep_serv.line', 'order_id', compute='_compute_lines')
     partner_shipping_id = fields.Many2one('res.partner')
     partner_id = fields.Many2one('res.partner')
     state = fields.Selection([
@@ -125,7 +113,7 @@ class sale_mep_serv(Model):
                but waiting for the scheduler to run on the order date.", select=True)
     @api.multi
     def _compute_line(self):
-        res = self.env['sale.order'].create_mep_lines(self.name.id)
+        res = self.env['sale.order'].create_mep_lines(self.name)
         return res
 
     @api.multi
