@@ -4,11 +4,10 @@
         <record id="view_mep_for" model="ir.ui.view">
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
-            <field name="domain">[('state','=','mep_serv')]</field>
             <field name="arch" type="xml">
-                <form string="Dossier">
-                    <field name="state"/>
+                <form string="Dossiers" attrs="{'invisible': [('state','not in',('draft','sent','manual',progress,reserved))]}">
                     <field name="name"/>
+                    <field name="state"/>
                 </form>
 
 
