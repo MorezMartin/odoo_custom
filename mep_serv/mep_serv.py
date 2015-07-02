@@ -88,7 +88,7 @@ class sale_mep_l(Model):
 
     order_id = fields.Many2one('sale.order', 'Order Reference')
     name = fields.Text('Description')
-    product_id = fields.Many2One('product.product', 'Product')
+    product_id = fields.Many2one('product.product', 'Product')
 
 
 class sale_mep_serv(Model):
