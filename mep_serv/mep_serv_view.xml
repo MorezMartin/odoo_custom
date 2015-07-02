@@ -153,9 +153,7 @@
                             </group>
                             <div class="oe_clear" invisible="1"/>
                             <field name="note" class="oe_inline" placeholder="Terms and conditions..." invisible="1"/>
-                        </page>
 
-                        <page string="Order Lines">
                             <field name="order_line" states='draft,sent,reserved,progress,manual'>
                                 <form string="Sales Order Lines">
                                     <header groups="base.group_user">
