@@ -73,7 +73,9 @@ class sale_o(Model):
         self.state = 'reserved'
         return True
 
-
+class = sale_mep_l(Model):
+    _name="sale.mep_serv.line"
+    _inherit="sale.order.line"
 
 class sale_mep_serv(Model):
 
@@ -83,7 +85,7 @@ class sale_mep_serv(Model):
     name = fields.Many2one('sale.order')
     date_order = fields.Datetime("Date")
     type_presta = fields.Char("Type Presta")
-    mep_line = fields.One2many('sale.mep_serv.line' "MEP, Service Lines", compute="_compute_line")
+    mep_line = fields.One2many('sale.mep_serv.line', "MEP, Service Lines", compute="_compute_line", store=True)
     partner_shipping_id = fields.Many2one('res.partner')
     partner_id = fields.Many2one('res.partner')
     state = fields.Selection([
