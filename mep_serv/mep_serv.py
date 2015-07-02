@@ -58,7 +58,7 @@ class sale_o(Model):
                 mep_l_dic = {
                         'order_id': self.name,
                         'name': "test",
-                        'product_id': line.product_id,
+                        'product_id': line.product_id.id,
                         }
 
         res = mep.create(mep_dic)
