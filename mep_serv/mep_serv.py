@@ -113,7 +113,7 @@ class sale_mep_serv(Model):
                but waiting for the scheduler to run on the order date.", select=True)
     @api.multi
     def _compute_line(self):
-        res = self.env['sale.order'].create_mep_lines(self.name)
+        res = self.env['sale.order'].create_mep_lines()
         return res
 
     @api.multi
