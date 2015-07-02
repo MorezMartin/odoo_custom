@@ -11,7 +11,7 @@
                         <field name="partner_id"/>
                         <field name="name"/>
                         <field name="type_presta"/>
-                        <field name="state" invisible="1"/>
+                        <field name="state"/>
                     </tree>
             </field>
         </record>
@@ -31,7 +31,7 @@
             </field>
         </record>
 
-	    <menuitem name="Dossiers" parent="base.menu_sales" id="menu_mep_serv" action="mep_serv_action"/>
+	    <menuitem name="Dossiers" parent="base.menu_sales" id="menu_mep_serv" action="mep_serv_action" sequence="6"/>
 
             <record id="view_order_form" model="ir.ui.view">
             <field name="name">sale.order.form</field>
@@ -53,6 +53,9 @@
                         <button name="action_quotation_send" string="Send by Email" type="object" states="reserved" groups="base.group_user"/>
                         <button name="print_quotation" string="Print" type="object" states="reserved" groups="base.group_user"/>
                         <button name="cancel" states="reserved" string="Cancel Reservation" groups="base.group_user"/>
+                    </xpath>
+                    <xpath expr="//menuitem[@action='action_orders']" position="replace">
+                        <menuitem action="action_orders" id="menu_sale_order" parent="base.menu_sales" sequence="7" groups="base.group_sale_salesman,base.group_sale_manager"/>
                     </xpath>
                 </data>
             </field>
