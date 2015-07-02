@@ -51,9 +51,11 @@ class sale_o(Model):
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
                 'state': order.state,
+                'mep_line': order.order_line,
                 'partner_shipping_id': order.partner_shipping_id.id,
                 }
-        res = mep.create(mep_dic)
+        res1 = mep.create(mep_dic)
+        res2 = mep.create_mep_line()
         return res
 
     @api.multi
@@ -102,6 +104,17 @@ class sale_mep_serv(Model):
               \nThe exception status is automatically set when a cancel operation occurs \
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
                but waiting for the scheduler to run on the order date.", select=True)
+
+    def create_mep_line(self):
+        for line in self.order_line:
+            mep_l_dic = {
+                    'mep_id': line.order_id,
+                    'name': line.name,
+                    'product_id': line.product_id
+                    }
+            self.env['sale.mep_serv.line'].create(mep_l_dic)
+        return True
+
     @api.multi
     def print_mep(self):
         assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
