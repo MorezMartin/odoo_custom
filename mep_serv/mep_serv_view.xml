@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_order_form" model="ir.ui.view">
-            <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <data>
-                    <xpath expr="//button[@name='invoice_corrected']" position="after">
-
-                    </xpath>
-                    <xpath expr="//button[@name='invoice_corrected']" position="after">
-                    </xpath>
-                    <xpath expr="//button[@name='action_button_confirm']" position="replace">
-                    </xpath>
-                    <xpath expr="//button[@name='invoice_corrected']" position="after">
-                    </xpath>
-                </data>
-            </field>
-        </record>
-
         <record id="view_mep_for" model="ir.ui.view">
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
@@ -48,7 +29,7 @@
                         <button name="invoice_cancel" states="invoice_except" string="Cancel Order" groups="base.group_user"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,sent,progress,done" statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>
                 </header>
-                <sheet states="draft,sent,reserved,progress,manual">
+                <sheet>
                     <h1>
                         <label string="Quotation " attrs="{'invisible': [('state','not in',('draft','sent'))]}"/>
                         <label string="Sales Order " attrs="{'invisible': [('state','in',('draft','sent'))]}"/>
