@@ -49,6 +49,7 @@ class sale_o(Model):
                 'name': order.id,
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
+                'mep_line': order.order_line,
                 'state': order.state,
                 'partner_shipping_id': order.partner_shipping_id.id
                 }
