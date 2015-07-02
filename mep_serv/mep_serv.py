@@ -61,8 +61,9 @@ class sale_o(Model):
         lines = []
         mep_l = self.env['sale.mep_serv.line']
         for line in self.order_line:
-            lines.append(line.id)
+            lines.append(line)
         res = mep_l.create(lines)
+        return res
 
     @api.multi
     def action_button_confirm(self):
