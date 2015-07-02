@@ -56,7 +56,7 @@ class sale_o(Model):
                 }
         res1 = mep.create(mep_dic)
         res2 = mep.create_mep_line()
-        return res
+        return res1, res2
 
     @api.multi
     def action_button_confirm(self):
