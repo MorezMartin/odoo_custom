@@ -33,7 +33,7 @@ Ajout champs formulaire ventes.
     'website' :
     'http://www.mh-receptions.com',
     'images' : [],
-    'depends' : ["sale", "report"],
+    'depends' : ["sale", "report", "product"],
     'data':
     ['mep_serv_view.xml', "report_mep.xml", "reportmep.xml"],
     'demo': [],
