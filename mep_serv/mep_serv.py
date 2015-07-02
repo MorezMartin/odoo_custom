@@ -51,7 +51,8 @@ class sale_o(Model):
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
                 'state': order.state,
-                'partner_shipping_id': order.partner_shipping_id.id
+                'partner_shipping_id': order.partner_shipping_id.id,
+                'mep_line': order.order_line
                 }
         res = mep.create(mep_dic)
         return res, self.create_mep_lines()
