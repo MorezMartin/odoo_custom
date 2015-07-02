@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_order_line_tree" model="ir.ui.view">
+        <record id="view_mep_serv_line_tree" model="ir.ui.view">
             <field name="name">sale.mep_serv.line.tree</field>
             <field name="model">sale.mep_serv.line</field>
             <field name="arch" type="xml">
@@ -13,7 +13,7 @@
             </field>
         </record>
 
-        <record id="view_order_line_form2" model="ir.ui.view">
+        <record id="view_mep_serv_line_form2" model="ir.ui.view">
             <field name="name">sale.mep_serv.line.form2</field>
             <field name="model">sale.mep_serv.line</field>
             <field name="arch" type="xml">
@@ -59,7 +59,7 @@
                     </group>
                     <notebook>
                          <page string="Order Lines">
-                            <field name="order_line">
+                            <field name="mep_line">
                                 <form string="Sales Order Lines">
                                     <group>
                                         <group>
