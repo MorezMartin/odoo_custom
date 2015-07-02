@@ -46,7 +46,7 @@
                     </xpath>
                     <xpath expr="//button[@name='invoice_corrected']" position="after">
                         <button name="action_button_mep_serv" string="Confirm Menus" type="object" states="draft,sent,reserved" class="oe_highlight" groups="base.group_user"/>
-                    <xpath/>
+                    </xpath>
                     <xpath expr="//button[@name='action_button_confirm']" position="replace">
                         <button name="action_button_confirm" states="mep_serv" string="Confirm Conso" class="oe_highlight" type="object" groups="base.group_user"/>
                     </xpath>
