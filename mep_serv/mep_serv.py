@@ -28,7 +28,7 @@ class sale_o(Model):
             ('cancel', 'Cancelled'),
             ('waiting_date', 'Waiting Schedule'),
             ('reserved', 'Reserved'),
-            ('mep_serv', 'Noter Consomations'),
+            ('mep_serv', 'Pret'),
             ('progress', 'Sales Order'),
             ('manual', 'Sale to Invoice'),
             ('shipping_except', 'Shipping Exception'),
