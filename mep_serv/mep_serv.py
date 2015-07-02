@@ -14,6 +14,10 @@ class sale_o_l(Model):
 
     timing = fields.Datetime("Timing")
 
+    @api.multi
+    def create_mep_line(self):
+        mep_l = self.env['sale.mep_serv.order_line']
+
 class sale_o(Model):
 
     _name = "sale.order"
@@ -48,11 +52,16 @@ class sale_o(Model):
                 'partner_id': order.partner_id.id,
                 'date_order': order.date_order,
                 'state': order.state,
-                'order_line': order.order_line,
                 'partner_shipping_id': order.partner_shipping_id.id
                 }
         res = mep.create(mep_dic)
         return res
+
+    @api.multi
+    def create_mep_lines(self, order_id):
+        mep_lines = self.env['sale.order.line'].search('order_id','=',order_id)
+        return mep_lines
+
 
     @api.multi
     def action_button_confirm(self):
@@ -76,7 +85,7 @@ class sale_mep_serv(Model):
     name = fields.Many2one('sale.order')
     date_order = fields.Datetime("Date")
     type_presta = fields.Char("Type Presta")
-    order_line = fields.One2many('sale.order.line', 'name', 'Order Lines')
+    order_line = fields.One2many('sale.order.line', 'name', 'Order Lines', compute="_compute_line")
     partner_shipping_id = fields.Many2one('res.partner')
     partner_id = fields.Many2one('res.partner')
     state = fields.Selection([
@@ -94,6 +103,11 @@ class sale_mep_serv(Model):
               \nThe exception status is automatically set when a cancel operation occurs \
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
                but waiting for the scheduler to run on the order date.", select=True)
+    @api.multi
+    def _compute_line(self):
+        res = self.env['sale.order'].create_mep_lines(name.id)
+        return res
+
     @api.multi
     def print_mep(self):
         assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
