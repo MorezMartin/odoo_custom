@@ -58,7 +58,7 @@ class sale_o(Model):
 
     @api.multi
     def create_mep_lines(self, order_id):
-        order = self.env['sale.order'].search([('order_id','=',order_id]))
+        order = self.env['sale.order'].search([('order_id','=',order_id)])
         lines = []
         mep_l = self.env['sale.mep_serv.line']
         for line in order.order_line:
