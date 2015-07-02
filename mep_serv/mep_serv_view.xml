@@ -54,11 +54,12 @@
                         <button name="print_quotation" string="Print" type="object" states="reserved" groups="base.group_user"/>
                         <button name="cancel" states="reserved" string="Cancel Reservation" groups="base.group_user"/>
                     </xpath>
-                    <xpath expr="//menuitem[@action='action_orders']" position="replace">
-                        <menuitem action="action_orders" id="menu_sale_order" parent="base.menu_sales" sequence="7" groups="base.group_sale_salesman,base.group_sale_manager"/>
-                    </xpath>
                 </data>
             </field>
         </record>
+                    <xpath expr="//menuitem[@action='action_orders']" position="replace">
+                        <menuitem action="action_orders" id="menu_sale_order" parent="base.menu_sales" sequence="7" groups="base.group_sale_salesman,base.group_sale_manager"/>
+                    </xpath>
+
     </data>
 </openerp>
