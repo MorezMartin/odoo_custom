@@ -106,14 +106,15 @@ class sale_mep_serv(Model):
                but waiting for the scheduler to run on the order date.", select=True)
 
     def create_mep_line(self):
+        res = []
         for line in self.mep_line:
             mep_l_dic = {
                     'mep_id': line.order_id,
                     'name': line.name,
                     'product_id': line.product_id
                     }
-            self.env['sale.mep_serv.line'].create(mep_l_dic)
-        return True
+            res.append(self.env['sale.mep_serv.line'].create(mep_l_dic))
+        return res
 
     @api.multi
     def print_mep(self):
