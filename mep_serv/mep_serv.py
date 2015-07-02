@@ -53,7 +53,7 @@ class sale_o(Model):
                 'state': order.state,
                 'partner_shipping_id': order.partner_shipping_id.id
                 }
-            order_line = self.env['sale.order.line'].browse()
+            order_line = self.env['sale.order.line'].search([('order_id','=',self.name.id)])
             for line in order_line:
                 mep_l_dic = {
                         'order_id': self.name.id,
