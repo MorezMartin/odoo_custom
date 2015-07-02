@@ -59,7 +59,7 @@ class sale_o(Model):
 
     @api.multi
     def create_mep_lines(self, order_id):
-        mep_lines = self.env['sale.order.line'].search('order_id','=',order_id)
+        mep_lines = self.env['sale.order.line'].search([('order_id','=',order_id)])
         return mep_lines
 
 
