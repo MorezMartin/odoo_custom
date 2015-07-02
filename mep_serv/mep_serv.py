@@ -28,6 +28,7 @@ class sale_o(Model):
             ('cancel', 'Cancelled'),
             ('waiting_date', 'Waiting Schedule'),
             ('reserved', 'Reserved'),
+            ('mep_serv', 'Note Conso'),
             ('progress', 'Sales Order'),
             ('manual', 'Sale to Invoice'),
             ('shipping_except', 'Shipping Exception'),
@@ -41,28 +42,14 @@ class sale_o(Model):
 
 #TODO : mettre a jour mep_dic et que confirm cree les mep
     @api.multi
-    def create_mep(self):
-        mep = self.env['sale.mep_serv']
-        mep_dic = {}
-        mep_l_dic = {}
-        for order in self:
-            mep_dic = {
-                'name': order.id,
-                'partner_id': order.partner_id.id,
-                'date_order': order.date_order,
-                'state': order.state,
-                'mep_line': order.order_line,
-                'partner_shipping_id': order.partner_shipping_id.id,
-                }
-        res1 = mep.create(mep_dic)
-        res2 = mep.create_mep_line()
-        return res1, res2
+    def action_button_mep_serv(self):
+        self.state = 'mep_serv'
+        return True
 
     @api.multi
     def action_button_confirm(self):
         assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
         self.signal_workflow('order_confirm')
-        self.create_mep()
         return True
 
     @api.multi
@@ -70,54 +57,4 @@ class sale_o(Model):
         self.state = 'reserved'
         return True
 
-class sale_mep_l(Model):
-    _name="sale.mep_serv.line"
 
-    mep_id = fields.Many2one('sale.mep_serv', 'Order Reference')
-    name = fields.Text('Description')
-    product_id = fields.Many2one('product.product', 'Product')
-
-
-class sale_mep_serv(Model):
-
-    _name = "sale.mep_serv"
-
-
-    name = fields.Many2one('sale.order')
-    date_order = fields.Datetime("Date")
-    type_presta = fields.Char("Type Presta")
-    mep_line = fields.One2many('sale.mep_serv.line', 'mep_id')
-    partner_shipping_id = fields.Many2one('res.partner')
-    partner_id = fields.Many2one('res.partner')
-    state = fields.Selection([
-            ('draft', 'Draft Quotation'),
-            ('sent', 'Quotation Sent'),
-            ('cancel', 'Cancelled'),
-            ('waiting_date', 'Waiting Schedule'),
-            ('reserved', 'Reserved'),
-            ('progress', 'Sales Order'),
-            ('manual', 'Sale to Invoice'),
-            ('shipping_except', 'Shipping Exception'),
-            ('invoice_except', 'Invoice Exception'),
-            ('done', 'Done'),
-            ], 'Status', readonly=True, copy=False, help="Gives the status of the quotation or sales order.\
-              \nThe exception status is automatically set when a cancel operation occurs \
-              in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
-               but waiting for the scheduler to run on the order date.", select=True)
-
-    def create_mep_line(self):
-        res = []
-        for line in self.mep_line:
-            mep_l_dic = {
-                    'mep_id': line.order_id,
-                    'name': line.name,
-                    'product_id': line.product_id
-                    }
-            res.append(self.env['sale.mep_serv.line'].create(mep_l_dic))
-        return res
-
-    @api.multi
-    def print_mep(self):
-        assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
-        res = self.env['report'].get_action(self, 'mep_serv.report_mep')
-        return res
