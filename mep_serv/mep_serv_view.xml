@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//button[@name='invoice_corrected']" position="after">
+                        <button name="action_button_reserv" string="Reserve" type="object" states="draft,sent" class="oe_highlight" groups="base.group_user"/>
+
+                    </xpath>
+                    <xpath expr="//button[@name='invoice_corrected']" position="after">
+                        <button name="action_button_mep_serv" string="Confirm Menus" type="object" states="draft,sent,reserved" class="oe_highlight" groups="base.group_user"/>
+                    </xpath>
+                    <xpath expr="//button[@name='action_button_confirm']" position="replace">
+                        <button name="action_button_confirm" states="mep_serv" string="Confirm Conso" class="oe_highlight" type="object" groups="base.group_user"/>
+                    </xpath>
+                    <xpath expr="//button[@name='invoice_corrected']" position="after">
+                        <button name="action_quotation_send" string="Send by Email" type="object" states="reserved" groups="base.group_user"/>
+                        <button name="print_quotation" string="Print" type="object" states="reserved" groups="base.group_user"/>
+                        <button name="cancel" states="reserved" string="Cancel Reservation" groups="base.group_user"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
         <record id="view_mep_for" model="ir.ui.view">
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
@@ -34,14 +59,14 @@
                     <group>
                         <group>
                             <field name="partner_id" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
-                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" states="draft,sent,reserved,confirmed"/>
+                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" states="draft,sent,reserved,manual,progress"/>
                             <field name="partner_shipping_id" on_change="onchange_delivery_id(company_id, partner_id, partner_shipping_id, fiscal_position)" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}"/>
                             <field name="project_id" context="{'partner_id':partner_invoice_id, 'manager_id': user_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['view','normal','contract'])]"/>
                         </group>
                         <group>
                             <field name="date_order"/>
                             <field name="client_order_ref"/>
-                            <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)"/>
+                            <field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)" states="draft,sent,reserved,manual,progress"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
                     </group>
@@ -74,7 +99,7 @@
                                                 <field name="product_uos_qty" class="oe_inline"/>
                                                 <field name="product_uos" options='{"no_open": True}' class="oe_inline"/>
                                             </div>
-                                            <field name="price_unit"/>
+                                            <field name="price_unit" states="draft,sent,reserved,manual,progress"/>
                                             <label for="discount" groups="sale.group_discount_per_so_line"/>
                                             <div name="discount" groups="sale.group_discount_per_so_line">
                                                 <field name="discount" class="oe_inline"/> %%
@@ -192,29 +217,6 @@
 
 	    <menuitem name="Dossiers" parent="base.menu_sales" id="menu_mep_serv" action="mep_serv_action" sequence="6"/>
 
-            <record id="view_order_form" model="ir.ui.view">
-            <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <data>
-                    <xpath expr="//button[@name='invoice_corrected']" position="after">
-                        <button name="action_button_reserv" string="Reserve" type="object" states="draft,sent" class="oe_highlight" groups="base.group_user"/>
-
-                    </xpath>
-                    <xpath expr="//button[@name='invoice_corrected']" position="after">
-                        <button name="action_button_mep_serv" string="Confirm Menus" type="object" states="draft,sent,reserved" class="oe_highlight" groups="base.group_user"/>
-                    </xpath>
-                    <xpath expr="//button[@name='action_button_confirm']" position="replace">
-                        <button name="action_button_confirm" states="mep_serv" string="Confirm Conso" class="oe_highlight" type="object" groups="base.group_user"/>
-                    </xpath>
-                    <xpath expr="//button[@name='invoice_corrected']" position="after">
-                        <button name="action_quotation_send" string="Send by Email" type="object" states="reserved" groups="base.group_user"/>
-                        <button name="print_quotation" string="Print" type="object" states="reserved" groups="base.group_user"/>
-                        <button name="cancel" states="reserved" string="Cancel Reservation" groups="base.group_user"/>
-                    </xpath>
-                </data>
-            </field>
-        </record>
+            
     </data>
 </openerp>
