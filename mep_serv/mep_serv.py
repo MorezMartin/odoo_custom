@@ -93,7 +93,7 @@ class sale_mep_serv(Model):
     name = fields.Many2one('sale.order')
     date_order = fields.Datetime("Date")
     type_presta = fields.Char("Type Presta")
-    mep_line = fields.One2many('sale.mep_serv.line', 'order_id', compute='_compute_lines')
+    mep_line = fields.One2many('sale.mep_serv.line', 'order_id', compute='_compute_line')
     partner_shipping_id = fields.Many2one('res.partner')
     partner_id = fields.Many2one('res.partner')
     state = fields.Selection([
