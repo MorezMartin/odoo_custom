@@ -85,7 +85,11 @@ class sale_o(Model):
 
 class sale_mep_l(Model):
     _name="sale.mep_serv.line"
-    _inherit="sale.order.line"
+
+    order_id = fields.Many2one('sale.order', 'Order Reference')
+    name = fields.Text('Description')
+    product_id = fields.Many2One('product.product', 'Product')
+
 
 class sale_mep_serv(Model):
 
