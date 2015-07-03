@@ -52,7 +52,7 @@
                     </group>
                     <notebook>
                         <page string="Order Lines">
-                            <field name="order_line" attrs="{'invisible': [('state','not in','mep_serv'))]}" >
+                            <field name="order_line" attrs="{'invisible': [('state','not in','mep_serv')]}" >
                                 <form string="Sales Order Lines">
                                     <header groups="base.group_user">
                                         <button name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed" string="Invoice" type="action" icon="terp-document-new"/>
