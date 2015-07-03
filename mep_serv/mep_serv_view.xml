@@ -79,14 +79,8 @@
                                                 context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
                                                 groups="base.group_user"
                                                 on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
-                                            <field name="price_unit" invisible="1"/>
-                                            <label for="discount" groups="sale.group_discount_per_so_line"/>
-                                            <div name="discount" groups="sale.group_discount_per_so_line">
-                                                <field name="discount" class="oe_inline" invisble="1"/> %%
-                                            </div>
                                         </group>
                                         <group>
-                                            <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" invisible="1"/>
                                             <field name="th_weight" invisible="1"/>
                                             <!-- we should put a config wizard for these two fields -->
                                             <field name="address_allotment_id" invisible="1"/>
@@ -94,10 +88,6 @@
                                     </group>
                                     <label for="name"/>
                                     <field name="name"/>
-                                    <div groups="base.group_no_one">
-                                        <label for="invoice_lines"/>
-                                        <field name="invoice_lines" invisible="1"/>
-                                    </div>
                                 </form>
                                 <tree string="Sales Order Lines" editable="bottom">
                                     <field name="sequence" widget="handle"/>
@@ -116,10 +106,6 @@
                                         groups="base.group_user"
                                         on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
                                     <field name="name"/>
-                                    <field name="price_unit" invisible="1"/>
-                                    <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" invisible="1"/>
-                                    <field name="discount" groups="sale.group_discount_per_so_line" invisible="1"/>
-                                    <field name="price_subtotal" invisible="1"/>
                                 </tree>
                             </field>
                             <field name="order_line" states='draft,sent,reserved,progress,manual'>
@@ -149,7 +135,7 @@
                                                 <field name="product_uos_qty" class="oe_inline"/>
                                                 <field name="product_uos" options='{"no_open": True}' class="oe_inline"/>
                                             </div>
-                                            <field name="price_unit" states="draft,sent,reserved,manual,progress"/>
+                                            <field name="price_unit"/>
                                             <label for="discount" groups="sale.group_discount_per_so_line"/>
                                             <div name="discount" groups="sale.group_discount_per_so_line">
                                                 <field name="discount" class="oe_inline"/> %%
@@ -193,14 +179,14 @@
                                 </tree>
                             </field>
                             <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                                <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}" state="draft,sent,reserved,manual,progress"/>
-                                <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}" state="draft,sent,reserved,manual,progress"/>
+                                <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}" states="draft,sent,reserved,manual,progress"/>
+                                <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}" states="draft,sent,reserved,manual,progress"/>
                                 <div class="oe_subtotal_footer_separator oe_inline">
                                     <label for="amount_total" />
                                     <button name="button_dummy"
                                         states="draft,sent" string="(update)" type="object" class="oe_edit_only oe_link"/>
                                 </div>
-                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}" state="draft,sent,reserved,manual,progress"/>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}" states="draft,sent,reserved,manual,progress"/>
                             </group>
                             <div class="oe_clear"/>
                             <field name="note" class="oe_inline" placeholder="Terms and conditions..."/>
@@ -213,13 +199,13 @@
                                     <field groups="base.group_no_one" name="origin"/>
                                 </group>
                                 <group name="sale_pay">
-                                    <field name="payment_term" options="{'no_create': True}" state="draft,sent,reserved,manual,progress"/>
-                                    <field name="fiscal_position" options="{'no_create': True}" state="draft,sent,reserved,manual,progress"
+                                    <field name="payment_term" options="{'no_create': True}" states="draft,sent,reserved,manual,progress"/>
+                                    <field name="fiscal_position" options="{'no_create': True}" states="draft,sent,reserved,manual,progress"
                                         on_change="onchange_fiscal_position(fiscal_position, order_line, context)"/>
                                     <field name="company_id" widget="selection" groups="base.group_multi_company"/>
                                 </group>
                                 <group>
-                                    <field name="invoiced" state="draft,sent,reserved,manual,progress"/>
+                                    <field name="invoiced" states="draft,sent,reserved,manual,progress"/>
                                     <field name="invoice_exists" invisible="1"/>
                                 </group>
                             </group>
