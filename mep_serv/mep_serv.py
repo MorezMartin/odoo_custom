@@ -67,4 +67,9 @@ class sale_o(Model):
         self.state = 'reserved'
         return True
 
+    @api.multi
+    def print_mep(self):
+        assert len(ids) == 1,
+        return self.env['report'].get_action('sale.report_mep_serv')
+
 
