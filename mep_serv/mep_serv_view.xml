@@ -81,8 +81,8 @@
                                                 on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
                                         </group>
                                     </group>
-                                </page>
-                            </field>
+                                </field>
+                            </page>
 
                         <page string="Order Lines">
                             <field name="order_line"  states="draft,sent,reserved,manual,progress">
