@@ -32,7 +32,7 @@
                 <sheet>
                     <h1>
                         <label string="Quotation " attrs="{'invisible': [('state','not in',('draft','sent'))]}"/>
-                        <label string="Sales Order " attrs="{'invisible': [('state','in',('draft','sent'))]}"/>
+                        <label string="Sales Order " attrs="{'invisible': [('state','not in',('manual','progress'))]}"/>
                         <label string="Reservation " attrs="{'invisible': [('state','!=','reserved')]}"/>
                         <field name="name" class="oe_inline" readonly="1"/>
                     </h1>
@@ -52,63 +52,7 @@
                     </group>
                     <notebook>
                         <page string="Order Lines">
-                            <field name="order_line" states='mep_serv'>
-                                <form string="Sales Order Lines">
-                                    <header groups="base.group_user">
-                                        <button name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed" string="Invoice" type="action" icon="terp-document-new"/>
-                                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" statusbar_colors='{"exception":"red","cancel":"red"}'/>
-                                    </header>
-                                    <group>
-                                        <group>
-                                            <label for="product_uom_qty"/>
-                                            <div>
-                                                <field
-                                                    context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                                    name="product_uom_qty" class="oe_inline"
-                                                    on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
-                                                <field name="product_uom" groups="product.group_uom" class="oe_inline oe_no_button"
-
-                                                    on_change="product_uom_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, context)"/>
-                                            </div>
-                                            <label for="product_uos_qty" groups="product.group_uos"/>
-                                            <div groups="product.group_uos">
-                                                <field name="product_uos_qty" class="oe_inline"/>
-                                                <field name="product_uos" options='{"no_open": True}' class="oe_inline"/>
-                                            </div>
-                                            <field name="product_id"
-                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                                groups="base.group_user"
-                                                on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
-                                        </group>
-                                        <group>
-                                            <field name="th_weight" invisible="1"/>
-                                            <!-- we should put a config wizard for these two fields -->
-                                            <field name="address_allotment_id" invisible="1"/>
-                                        </group>
-                                    </group>
-                                    <label for="name"/>
-                                    <field name="name"/>
-                                </form>
-                                <tree string="Sales Order Lines" editable="bottom">
-                                    <field name="sequence" widget="handle"/>
-                                    <field name="state" invisible="1"/>
-                                    <field name="th_weight" invisible="1"/>
-                                    <field name="product_uom_qty"
-                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                        on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
-                                    <field name="product_uom"
-                                        on_change="product_uom_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, context)"
-                                        groups="product.group_uom" options='{"no_open": True}'/>
-                                    <field name="product_uos_qty" groups="product.group_uos" invisible="1"/>
-                                    <field name="product_uos" string="UoS" groups="product.group_uos" invisible="1"/>
-                                    <field name="product_id"
-                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
-                                        groups="base.group_user"
-                                        on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
-                                    <field name="name"/>
-                                </tree>
-                            </field>
-                            <field name="order_line" states='draft,sent,reserved,progress,manual'>
+                            <field name="order_line" attrs="{'invisible': [('state','not in','mep_serv'))]}" >
                                 <form string="Sales Order Lines">
                                     <header groups="base.group_user">
                                         <button name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed" string="Invoice" type="action" icon="terp-document-new"/>
