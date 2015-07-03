@@ -53,11 +53,6 @@
                     <notebook>
                         <page string="Lignes MEP, Service">
                             <field name="order_line">
-
-                        </page>
-                        <page string="Order Lines">
-
-                            <field name="order_line"  states="draft,sent,reserved,manual,progress">
                                             <field name="product_id"
                                                 context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom}"
                                                 groups="base.group_user"
@@ -78,6 +73,10 @@
                                                 <field name="product_uos" options='{"no_open": True}' class="oe_inline"/>
                                             </div>
                                         </field>
+                        </page>
+
+                        <page string="Order Lines">
+                            <field name="order_line"  states="draft,sent,reserved,manual,progress">
                                 <form string="Sales Order Lines">
                                     <header groups="base.group_user">
                                         <button name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed" string="Invoice" type="action" icon="terp-document-new"/>
