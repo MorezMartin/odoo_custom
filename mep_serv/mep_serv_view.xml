@@ -15,7 +15,7 @@
                 <xpath expr="//button[@name='action_button_confirm']" position="replace"> 
                             <button name="action_button_confirm" states="draft,sent,reserved" string="Confirm Menus" class="oe_highlight" type="object" groups="base.group_user"/>
                             <button name="action_button_mep_serv" string="Confirm Consos" type="object" states="mep_serv" class="oe_highlight" groups="base.group_user"/>
-                            <button name="print_mep" states="mep_serv" type="object" string="Imprimer MEP, Servicec"/>
+                            <button name="print_mep" states="mep_serv" type="object" string="Imprimer MEP, Service"/>
                 </xpath>
             </field>
         </record>
