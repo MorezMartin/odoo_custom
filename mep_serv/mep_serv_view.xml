@@ -4,8 +4,8 @@
         <record id="view_mep_form" model="ir.ui.view">
             <field name="name">sale.mep_serv.form</field>
             <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <field name="inherit_id" ref="sale.view_order_form"/>
                 <form string="Sales Order">
                     <header>
                         <button name="invoice_recreate" states="invoice_except" string="Recreate Invoice" groups="base.group_user"/>
