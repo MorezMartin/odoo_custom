@@ -52,13 +52,14 @@ class sale_o(Model):
 #TODO : mettre a jour mep_dic et que confirm cree les mep
     @api.multi
     def action_button_mep_serv(self):
-        self.state = 'mep_serv'
+        self.state = 'manual'
         return True
 
     @api.multi
     def action_button_confirm(self):
         assert len(self.ids) == 1, 'This option should only be used for a single id at a time.'
         self.signal_workflow('order_confirm')
+        self.state = 'mep_serv'
         return True
 
     @api.multi

@@ -10,7 +10,7 @@
                         <button name="invoice_recreate" states="invoice_except" string="Recreate Invoice" groups="base.group_user"/>
                         <button name="invoice_corrected" states="invoice_except" string="Ignore Exception" groups="base.group_user"/>
                         <button name="action_button_reserv" string="Reserve" type="object" states="draft,sent" class="oe_highlight" groups="base.group_user"/>
-                        <button name="action_button_mep_serv" string="Confirm Menus" type="object" states="draft,sent,reserved" class="oe_highlight" groups="base.group_user"/>
+                        <button name="action_button_mep_serv" string="Confirm Consos" type="object" states="mep_serv" class="oe_highlight" groups="base.group_user"/>
                         <button name="action_quotation_send" string="Send by Email" type="object" states="reserved" groups="base.group_user"/>
                         <button name="print_quotation" string="Print" type="object" states="reserved" groups="base.group_user"/>
                         <button name="cancel" states="reserved" string="Cancel Reservation" groups="base.group_user"/>
@@ -18,7 +18,7 @@
                         <button name="action_quotation_send" string="Send by Email" type="object" states="sent,progress,manual" groups="base.group_user"/>
                         <button name="print_quotation" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
                         <button name="print_quotation" string="Print" type="object" states="sent,progress,manual" groups="base.group_user"/>
-                        <button name="action_button_confirm" states="mep_serv" string="Confirm Conso" class="oe_highlight" type="object" groups="base.group_user"/>
+                        <button name="action_button_confirm" states="draft,sent,reserved" string="Confirm Menus" class="oe_highlight" type="object" groups="base.group_user"/>
                         <button name="action_view_invoice" string="View Invoice" type="object" class="oe_highlight"
                             attrs="{'invisible': [('invoice_exists', '=', False)]}" groups="base.group_user"/>
                         <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
@@ -52,7 +52,10 @@
                     </group>
                     <notebook>
                         <page string="Order Lines">
-                            <field name="order_line"  >
+                            <field name="order_line" states="mep_serv"/>
+                        </page>
+                        <page string="Order Lines">
+                            <field name="order_line"  states="draft,sent,reserved,manual,progress">
                                 <form string="Sales Order Lines">
                                     <header groups="base.group_user">
                                         <button name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed" string="Invoice" type="action" icon="terp-document-new"/>
@@ -79,7 +82,7 @@
                                                 <field name="product_uos_qty" class="oe_inline"/>
                                                 <field name="product_uos" options='{"no_open": True}' class="oe_inline"/>
                                             </div>
-                                            <field name="price_unit" states="mep_serv"/>
+                                            <field name="price_unit"/>
                                             <label for="discount" groups="sale.group_discount_per_so_line"/>
                                             <div name="discount" groups="sale.group_discount_per_so_line">
                                                 <field name="discount" class="oe_inline"/> %%
