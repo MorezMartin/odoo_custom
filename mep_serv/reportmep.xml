@@ -7,7 +7,7 @@
             model="sale.order" 
             report_type="qweb-pdf"
             file="report_mep" 
-            name="report_mep" 
+            name="mep_serv.report_mep" 
         />
     </data>
 </openerp>
