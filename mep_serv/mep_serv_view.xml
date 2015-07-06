@@ -17,7 +17,7 @@
                             <button name="action_button_mep_serv" string="Confirm Consos" type="object" states="mep_serv" class="oe_highlight" groups="base.group_user"/>
                             <button name="print_mep" states="mep_serv" type="object" string="Imprimer MEP, Service"/>
                 </xpath>
-                <xpath expr="//tree[@name='Sales Order Lines']" position="replace">
+                <xpath expr="//tree[@string='Sales Order Lines']" position="replace">
                     <tree string="Sales Order Lines" editable="bottom" states="draft,sent,reserved,mep_serv">
                         <field name="sequence" widget="handle"/>
                         <field name="state" invisible="1"/>
