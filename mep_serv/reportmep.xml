@@ -2,12 +2,12 @@
 <openerp>
     <data>
         <report 
-            id="report_mep"
+            id="report_mepserv"
             string="MEP, Service"
             model="sale.order" 
             report_type="qweb-pdf"
             file="report_mep" 
-            name="mep_serv.report_mep_serv" 
+            name="report_mep" 
         />
     </data>
 </openerp>

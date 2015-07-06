@@ -125,7 +125,7 @@
     </t>
 </template>
 
-<template id="report_mep_serv">
+<template id="report_mep">
     <t t-call="report.html_container">
         <t t-foreach="doc_ids" t-as="doc_id">
             <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'mep_serv.report_mep_document')"/>
