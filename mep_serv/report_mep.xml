@@ -27,7 +27,7 @@
                 <span t-if="o.state in ['draft','sent']">Quotation N° </span>
                 <span t-field="o.name"/>
                 <span t-if="o.noms"/>
-                <br>
+                <br/>
                 <span t-field="o.noms"/>
             </h2>
 
