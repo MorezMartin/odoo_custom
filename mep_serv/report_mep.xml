@@ -2,6 +2,7 @@
     <data>
  <template id="report_mep">
     <t t-call="report.external_layout">
+                <t t-foreach="docs" t-as="o">
         <div class="page">
             <div class="oe_structure"/>
             <div class="row">
@@ -87,6 +88,7 @@
                 </tbody>
             </table>
         </div>
+    </t>
     </t>
 </template>
 </data>
