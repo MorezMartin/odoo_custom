@@ -27,6 +27,7 @@
                 </xpath>
                 <xpath expr="//tree['@string='Sales Order Lines']//field[@name='price_unit']" position="after">
                     <field name="timing"/>
+                </xpath>
             </field>
         </record>
     </data>
