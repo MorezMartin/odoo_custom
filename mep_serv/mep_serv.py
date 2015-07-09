@@ -1,5 +1,6 @@
 from openerp import fields, api
 from openerp.models import Model
+import openerp.addons.decimal_precision as dp
 
 #TODO heriter une classe de sale.order et surcharger par une fonction
 #qui remplacera les lignes (arguments) de mep_serv
@@ -19,6 +20,7 @@ class sale_o_l(Model):
         return res
 
     timing = fields.Datetime('Timing', default=_get_date_order)
+    product_uom_qty = fields.Float('Quantity (UoS)' , digits_compute=dp.get_precision('Product UoS'), readonly=False)
 
 class sale_o(Model):
 
