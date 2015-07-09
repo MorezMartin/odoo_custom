@@ -22,14 +22,10 @@
                     <field name="horaire_fin"/>
                     <field name="type_presta"/>
                 </xpath>
-            </field>
-        </record>
-        <record id="view_mep_form" model="ir.ui.view">
-            <field name="name">sale.mep_serv.line.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_line_form2"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='price_unit']" position="before">
+                <xpath expr="//form/field[@name='price_unit']" position="before">
+                    <field name="timing"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='price_unit']" position="before">
                     <field name="timing"/>
                 </xpath>
             </field>
