@@ -28,7 +28,7 @@
                 <span t-field="o.name"/>
                 <span t-if="o.noms"/>
                 <br/>
-                <span t-field="o.noms"/>
+                <span t-esc="o.noms"/>
             </h2>
 
             <div class="row mt32 mb32" id="informations">
@@ -40,7 +40,7 @@
                     <strong t-if="o.state not in ['draft','sent']">Date Ordered:</strong>
                     <strong t-if="o.state in ['draft','sent']">Quotation Date:</strong>
                     <p t-field="o.date_order"/>
-                    <p t-field="o.horaire_fin"/>
+                    <p t-esc="o.horaire_fin"/>
                 </div>
                 <div t-if="o.user_id.name" class="col-xs-3">
                     <strong>Salesperson:</strong>
@@ -52,8 +52,8 @@
                 </div>
                 <div t-if="o.couleur_deco or o.demandes_supp" class="col-xs-3">
                     <strong>Details:</strong>
-                    <p t-field="o.couleur_deco"/>
-                    <p t-field="o.demandes_supp"/>
+                    <p t-esc="o.couleur_deco"/>
+                    <p t-esc="o.demandes_supp"/>
                 </div>
 
             </div>
@@ -77,7 +77,7 @@
                            <span t-field="l.name"/>
                         </td>
                         <td>
-                           <span t-field="l.timing"/>
+                           <span t-esc="l.timing"/>
                         </td>
                         <td>
                         </td>
