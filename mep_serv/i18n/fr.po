@@ -101,6 +101,11 @@ msgid "Reserv"
 msgstr "Réserver"
 
 #. module: mep_serv
+#: view:sale.order:mep_serv.view_mep_form
+msgid "Print MEP, Service"
+msgstr "Imprimer MEP, Service"
+
+#. module: mep_serv
 #: model:ir.model,name:mep_serv.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
