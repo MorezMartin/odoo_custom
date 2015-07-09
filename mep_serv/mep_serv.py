@@ -20,7 +20,11 @@ class sale_o_l(Model):
         return res
 
     timing = fields.Datetime('Timing', default=_get_date_order)
-    product_uom_qty = fields.Float('Quantity (UoS)' , digits_compute=dp.get_precision('Product UoS'), readonly=False)
+    name = fields.Text('Description', required=True, readonly=False, states={'draft': [('readonly', False)]})   
+    product_id = fields.Many2one('product.product', 'Product', domain=[('sale_ok', '=', True)], change_default=True, readonly=False, states={'draft': [('readonly', False)]}, ondelete='restrict')
+
+    price_unit = fields.Float('Unit Price', required=True, digits_compute=dp.get_precision('Product Price'), readonly=False, states={'draft': [('readonly', False)]})
+    product_uom_qty = fields.Float('Quantity', digits_compute=dp.get_precision('Product UoS'), required=True, readonly=False, states={'draft': [('readonly', False)]})
 
 class sale_o(Model):
 
