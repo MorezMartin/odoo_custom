@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mep_serv
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-09 11:10+0000\n"
+"PO-Revision-Date: 2015-07-09 11:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mep_serv
+#: view:sale.order:mep_serv.view_mep_form
+msgid "Confirm Menus"
+msgstr "Confirmer Menus"
+
+#. module: mep_serv
+#: field:sale.order,couleur_deco:0
+msgid "Couleur Decoration"
+msgstr "Couleur Décoration"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Date Ordered:"
+msgstr "Date de commande :"
+
+#. module: mep_serv
+#: field:sale.order,demandes_supp:0
+msgid "Demandes supplementaires"
+msgstr "Demandes supplementaires"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Description"
+msgstr "Description"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Details:"
+msgstr "Details:"
+
+#. module: mep_serv
+#: field:sale.order,horaire_fin:0
+msgid "Horaire de fin"
+msgstr "Horaire de fin"
+
+#. module: mep_serv
+#: model:ir.actions.report.xml,name:mep_serv.report_mepserv
+msgid "MEP, Service"
+msgstr "MEP, Service"
+
+#. module: mep_serv
+#: field:sale.order,noms:0
+msgid "Noms et Prenoms (prestation particulier)"
+msgstr "Noms et Prénoms (prestation particulier)"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Order N°"
+msgstr "N° de commande"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Payment Term:"
+msgstr "Conditions de règlement:"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Quantité"
+msgstr "Quantité"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Quantité consommée"
+msgstr "Quantité consommée"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Quantité préparée"
+msgstr "Quantité préparée"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Quotation Date:"
+msgstr "Date du devis:"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Quotation N°"
+msgstr "Devis N°"
+
+#. module: mep_serv
+#: view:sale.order:mep_serv.view_mep_form
+msgid "Reserv"
+msgstr "Réserver"
+
+#. module: mep_serv
+#: model:ir.model,name:mep_serv.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: mep_serv
+#: model:ir.model,name:mep_serv.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Salesperson:"
+msgstr "Vendeur :"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Shipping address:"
+msgstr "Adresse de livraison :"
+
+#. module: mep_serv
+#: field:sale.order.line,timing:0
+#: view:website:mep_serv.report_mep_document
+msgid "Timing"
+msgstr "Timing"
+
+#. module: mep_serv
+#: field:sale.order,type_presta:0
+msgid "Type de prestation"
+msgstr "Type de prestation"
+
+#. module: mep_serv
+#: view:website:mep_serv.report_mep_document
+msgid "Your Reference:"
+msgstr "Votre Référence:"
+
