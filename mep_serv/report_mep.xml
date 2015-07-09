@@ -1,8 +1,7 @@
 <openerp>
     <data>
- <template id="report_mep">
+ <template id="report_mep_document">
     <t t-call="report.external_layout">
-                <t t-foreach="docs" t-as="o">
         <div class="page">
             <div class="oe_structure"/>
             <div class="row">
@@ -89,6 +88,12 @@
             </table>
         </div>
     </t>
+</template>
+<template id="report_mep">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'report_mep_document')"/>
+        </t>
     </t>
 </template>
 </data>
