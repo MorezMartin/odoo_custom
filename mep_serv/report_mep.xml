@@ -7,17 +7,17 @@
             <div class="row">
                 <div class="col-xs-6">
                     <strong t-if="o.partner_shipping_id == o.partner_invoice_id">Shipping address:</strong>
-                    <div t-field="o.partner_invoice_id" 
-                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                    <div t-esc="o.partner_invoice_id" 
+                        t-esc-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
                     <div t-if="o.partner_shipping_id != o.partner_invoice_id" class="mt8">
                         <strong>Shipping address:</strong>
-                        <div t-field="o.partner_shipping_id" 
-                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                        <div t-esc="o.partner_shipping_id" 
+                            t-esc-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
                     </div>                        
                 </div>
                 <div class="col-xs-5 col-xs-offset-1">
-                    <div t-field="o.partner_id"
-                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                    <div t-esc="o.partner_id"
+                        t-esc-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
                 <span t-esc="type_presta"/>
                 <span t-if="o.state not in ['draft','sent']">Order N° </span>
                 <span t-if="o.state in ['draft','sent']">Quotation N° </span>
-                <span t-field="o.name"/>
+                <span t-esc="o.name"/>
                 <span t-if="o.noms"/>
                 <br/>
                 <span t-esc="o.noms"/>
@@ -34,21 +34,21 @@
             <div class="row mt32 mb32" id="informations">
                 <div t-if="o.client_order_ref" class="col-xs-3">
                     <strong>Your Reference:</strong>
-                    <p t-field="o.client_order_ref"/>
+                    <p t-esc="o.client_order_ref"/>
                 </div>
                 <div t-if="o.date_order" class="col-xs-3">
                     <strong t-if="o.state not in ['draft','sent']">Date Ordered:</strong>
                     <strong t-if="o.state in ['draft','sent']">Quotation Date:</strong>
-                    <p t-field="o.date_order"/>
+                    <p t-esc="o.date_order"/>
                     <p t-esc="o.horaire_fin"/>
                 </div>
                 <div t-if="o.user_id.name" class="col-xs-3">
                     <strong>Salesperson:</strong>
-                    <p t-field="o.user_id.name"/>
+                    <p t-esc="o.user_id.name"/>
                 </div>
                 <div t-if="o.payment_term" class="col-xs-3">
                     <strong>Payment Term:</strong>
-                    <p t-field="o.payment_term"/>
+                    <p t-esc="o.payment_term"/>
                 </div>
                 <div t-if="o.couleur_deco or o.demandes_supp" class="col-xs-3">
                     <strong>Details:</strong>
@@ -70,11 +70,11 @@
                <tbody class="sale_tbody">
                     <tr t-foreach="o.order_line" t-as="l">
                         <td>
-                            <span t-field="l.product_uom_qty"/>
-                            <span groups="product.group_uom" t-field="l.product_uom"/>
+                            <span t-esc="l.product_uom_qty"/>
+                            <span groups="product.group_uom" t-esc="l.product_uom"/>
                         </td>
                         <td>
-                           <span t-field="l.name"/>
+                           <span t-esc="l.name"/>
                         </td>
                         <td>
                            <span t-esc="l.timing"/>
