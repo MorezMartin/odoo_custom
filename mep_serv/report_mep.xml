@@ -86,6 +86,32 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Heure d'arrivée</th>
+                        <th>Heure de départ</th>
+                        <th>Signature</th>
+                    </tr>
+               </thead>
+               <tbody class="horaire">
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
     </t>
 </template>
