@@ -24,8 +24,8 @@
             <h2>
                 <span t-if="o.state not in ['draft','sent']">Order N° </span>
                 <span t-if="o.state in ['draft','sent']">Quotation N° </span>
-                <span t-esc="o.type_presta"/>
                 <span t-esc="o.name"/>
+                <span t-esc="o.type_presta"/>
                 <span t-if="o.noms"/>
                 <br/>
                 <span t-esc="o.noms"/>
