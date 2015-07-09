@@ -22,10 +22,7 @@
                     <field name="horaire_fin"/>
                     <field name="type_presta"/>
                 </xpath>
-                <xpath expr="//form/field[@name='price_unit']" position="before">
-                    <field name="timing"/>
-                </xpath>
-                <xpath expr="//tree/field[@name='price_unit']" position="before">
+                <xpath expr="//field[@name='price_unit']" position="before">
                     <field name="timing"/>
                 </xpath>
             </field>
