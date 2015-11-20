@@ -7,9 +7,11 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_button_confirm']" position="replace">
-                    <button name="action_button_confirm" states="draft,sent" string="Confirm Menus" type="object" groups="base.group_user"/>
-                    <button name="action_button_confirm" states="sent" string="Confirm Menus" class="oe_highlight" type="object" groups="base.group_user"/>
+                    <button name="action_button_confirm" states="draft" string="Confirm Menus" type="object" groups="base.group_user"/>
                     <button name="action_button_confirm" states="reserved" class="oe_highlight" string="Confirm Menus" type="object" groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm']" position="replace">
+                    <button name="action_button_confirm" states="sent" string="Confirm Menus" type="object" groups="base.group_user"/>
                 </xpath>
                 <xpath expr="//button[@name='invoice_recreate']" position="after">
                     <button name="action_button_reserv" states="draft,sent" class="oe_highlight" string="Reserv" type="object" groups="base.group_user"/>
