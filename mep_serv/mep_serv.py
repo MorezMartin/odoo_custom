@@ -33,7 +33,7 @@ class sale_o(Model):
 
 
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'reserved': [('readonly', False)], 'sent': [('readonly', False)]}, copy=True)
-    horaire_fin = fields.Datetime('Horaire de fin', required=True)
+    horaire_fin = fields.Datetime('Horaire de fin', required=True, default=fields.Datetime.now)
     type_presta = fields.Selection([
         ('mar', 'Mariage'),
         ('cock', 'Cocktail'),
