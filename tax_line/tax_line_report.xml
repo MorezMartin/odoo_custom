@@ -12,6 +12,7 @@
                         <th>Quantity</th>
                         <th>Description</th>
                         <th class="text-right">Unit Price</th>
+                        <th class="text-right">Type de taxe</th>
                         <th class="text-right">Taxes</th>
                         <th class="text-right">Taxed Unit Price</th>
                         <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
@@ -34,10 +35,11 @@
                                 t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
                         </td>
                         <td class="text-right">
+                            <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
+                        </td>
+                        <td class="text-right">
                             <span t-field="l.tax_price"
                                 t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
-                            <br/> 
-                            <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
                         </td>
                         <td class="text-right">
                             <span t-field="l.taxed_price"
