@@ -38,13 +38,13 @@ class sale_o(Model):
         ('mar', 'Mariage'),
         ('cock', 'Cocktail'),
         ('vh', 'Vin d\'honneur'),
-        ('sem', 'S\éminaire'),
+        ('sem', 'Seminaire'),
         ('rent', 'Repas d\'entreprise'),
         ('rasso', 'Repas associatif'),
-        ('cdent', 'Cocktail d\éjeunatoire d\'entreprise'),
-        ('cdassoc', 'Cocktail d\éjeunatoire associatif'),
-        ('cdfam', 'Cocktail d\éjeunatoire de famille'),
-        ('cong', 'Congr\ès'),
+        ('cdent', 'Cocktail dejeunatoire d\'entreprise'),
+        ('cdassoc', 'Cocktail dejeunatoire associatif'),
+        ('cdfam', 'Cocktail dejeunatoire de famille'),
+        ('cong', 'Congres'),
         ('autre', 'Autre')
         ], required=True, select=True, default='mar')
     couleur_deco = fields.Char('Couleur Decoration')
