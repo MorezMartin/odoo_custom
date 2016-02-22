@@ -34,7 +34,19 @@ class sale_o(Model):
 
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'reserved': [('readonly', False)], 'sent': [('readonly', False)]}, copy=True)
     horaire_fin = fields.Datetime('Horaire de fin', required=True)
-    type_presta = fields.Char('Type de prestation', required=True)
+    type_presta = fields.Selection([
+        ('mar', 'Mariage'),
+        ('cock', 'Cocktail'),
+        ('vh', 'Vin d\'honneur'),
+        ('sem', 'S\éminaire'),
+        ('rent', 'Repas d\'entreprise'),
+        ('rasso', 'Repas associatif'),
+        ('cdent', 'Cocktail d\éjeunatoire d\'entreprise'),
+        ('cdassoc', 'Cocktail d\éjeunatoire associatif'),
+        ('cdfam', 'Cocktail d\éjeunatoire de famille'),
+        ('cong', 'Congr\ès'),
+        ('autre', 'Autre')
+        ], required=True, select=True, default='mar')
     couleur_deco = fields.Char('Couleur Decoration')
     noms = fields.Char('Noms et Prenoms (prestation particulier)')
     demandes_supp = fields.Text('Demandes supplementaires')
