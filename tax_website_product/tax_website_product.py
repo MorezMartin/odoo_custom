@@ -10,12 +10,12 @@ class tax_website_product(Model):
 
     @api.v8
     @api.multi
-    @api.depends("product_id", "taxes_id", "price")
+    @api.depends("taxes_id", "price")
     @api.model
     def _compute(self):
         for product in self:
             cur_obj = self.env["res.currency"]
             tax_obj = self.env["account.tax"]
-            product.tax_price = product.taxes_id._unit_compute(product.price, product.product_id)['amount']
+            product.tax_price = product.taxes_id._unit_compute(product.price, product.id)['amount']
 #            for taxes in tax_obj:
 #                product.tax_price = product.order_id.pricelist_id.currency_id.round(taxes['amount'] / product.product_uom_qty)
