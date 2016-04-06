@@ -17,6 +17,6 @@ class tax_website_product(Model):
             cur_obj = self.env["res.currency"]
             tax_obj = self.env["account.tax"]
             tax_obj = product.taxes_id._unit_compute(product.taxes_id, product.price, product.id)
-            product.tax_price = tax_obj.data['amount']
+            product.tax_price = tax_obj[0]
 #            for taxes in tax_obj:
 #                product.tax_price = product.order_id.pricelist_id.currency_id.round(taxes['amount'] / product.product_uom_qty)
