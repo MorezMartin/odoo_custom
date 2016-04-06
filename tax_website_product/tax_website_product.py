@@ -6,7 +6,7 @@ class tax_website_product(Model):
     _inherit = 'product.template'
     _name = 'product.template'
 
-    tax_price = fields.Float(compute='_compute')
+    taxed_price = fields.Float(compute='_compute')
 
     @api.v8
     @api.multi
@@ -17,6 +17,7 @@ class tax_website_product(Model):
             cur_obj = self.env["res.currency"]
             tax_obj = self.env["account.tax"]
             tax_obj = product.taxes_id._unit_compute(product.taxes_id, product.price, product.id)
-            product.tax_price = tax_obj[0]['amount']
+            tax_price = tax_obj[0]['amount']
+            product.taxed_price = product.id.round(product.price + taxed_price)
 #            for taxes in tax_obj:
 #                product.tax_price = product.order_id.pricelist_id.currency_id.round(taxes['amount'] / product.product_uom_qty)
