@@ -38,6 +38,7 @@ class sale_o(Model):
         ('mar', 'Mariage Complet'),
         ('vh', 'Vin d\'honneur'),
         ('marr', 'Repas Mariage'),
+        ('cock', 'Cocktail'),
         ('cockplat', 'Cocktail et plat au buffet'),
         ('rent', 'Repas d\'entreprise soiree festive'),
         ('anniv', 'Anniversaire'),
