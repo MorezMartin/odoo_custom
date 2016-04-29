@@ -37,7 +37,6 @@ class sale_o(Model):
     type_presta = fields.Selection([
         ('mar', 'Mariage Complet'),
         ('vh', 'Vin d\'honneur'),
-        ('vh', 'Vin d\'honneur'),
         ('marr', 'Repas Mariage'),
         ('cockplat', 'Cocktail et plat au buffet'),
         ('rent', 'Repas d\'entreprise soiree festive'),
