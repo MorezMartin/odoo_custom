@@ -35,16 +35,19 @@ class sale_o(Model):
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'reserved': [('readonly', False)], 'sent': [('readonly', False)]}, copy=True)
     horaire_fin = fields.Datetime('Horaire de fin', required=True, default=fields.Datetime.now)
     type_presta = fields.Selection([
-        ('mar', 'Mariage'),
-        ('cock', 'Cocktail'),
+        ('mar', 'Mariage Complet'),
         ('vh', 'Vin d\'honneur'),
+        ('vh', 'Vin d\'honneur'),
+        ('marr', 'Repas Mariage'),
+        ('cockplat', 'Cocktail et plat au buffet'),
+        ('rent', 'Repas d\'entreprise soiree festive'),
+        ('anniv', 'Anniversaire'),
+        ('com', 'Communion'),
+        ('bapt', 'Bapteme'),
+        ('annivm', 'Anniversaire de mariage'),
         ('sem', 'Seminaire'),
-        ('rent', 'Repas d\'entreprise'),
-        ('rasso', 'Repas associatif'),
-        ('cdent', 'Cocktail dejeunatoire d\'entreprise'),
-        ('cdassoc', 'Cocktail dejeunatoire associatif'),
-        ('cdfam', 'Cocktail dejeunatoire de famille'),
         ('cong', 'Congres'),
+        ('rasso', 'Repas associatif'),
         ('autre', 'Autre')
         ], required=True, select=True, default='mar')
     couleur_deco = fields.Char('Couleur Decoration')
