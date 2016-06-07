@@ -68,7 +68,16 @@ class sale_o(Model):
               \nThe exception status is automatically set when a cancel operation occurs \
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
                but waiting for the scheduler to run on the order date.", select=True)
+    fst_advance = fields.Float('Premier acompte')
+    scd_advance = fields.Float('Deuxieme acompte')
+    trd_advance = fields.Float('Troisieme acompte')
+    to_pay = fields.Float(compute='_to_pay')
 
+
+    @api.multi
+    def _to_pay(self):
+        total = self.amount_total
+        self.to_pay = self.amount_total - self.fst_advance - self.scd_advance - self.trd_advance
 
     @api.multi
     def action_button_confirm(self):
