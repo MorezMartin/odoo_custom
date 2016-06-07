@@ -34,6 +34,12 @@
                 <xpath expr="//tree[@string='Sales Order Lines']//field[@name='price_unit']" position="before">
                     <field name="timing"/>
                 </xpath>
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="fst_account"/>
+                    <field name="scd_account"/>
+                    <field name="trd_account"/>
+                    <field name="to_pay"/>
+                </xpath>
             </field>
         </record>
     </data>
