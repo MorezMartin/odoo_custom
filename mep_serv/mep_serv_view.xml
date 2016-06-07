@@ -35,9 +35,9 @@
                     <field name="timing"/>
                 </xpath>
                 <xpath expr="//field[@name='amount_total']" position="after">
-                    <field name="fst_account"/>
-                    <field name="scd_account"/>
-                    <field name="trd_account"/>
+                    <field name="fst_advance"/>
+                    <field name="scd_advance"/>
+                    <field name="trd_advance"/>
                     <field name="to_pay"/>
                 </xpath>
             </field>
