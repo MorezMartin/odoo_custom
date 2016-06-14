@@ -25,6 +25,5 @@ class tax_line(Model):
             for taxes in tax_obj:
                 line.tax_price = line.order_id.pricelist_id.currency_id.round(taxes['amount'] / line.product_uom_qty)
                 line.taxed_price = line.order_id.pricelist_id.currency_id.round((taxes['amount'] / line.product_uom_qty) + price)
-                line.tax_line = line.order_id.pricelist_id.currency_id.round(taxes['amount'])
-                line.taxed_line= line.order_id.pricelist_id.currency_id.round((line.price_subtotal + line.tax_line))
-#taxes['amount']
+                line.taxed_line = line.order_id.pricelist_id.currency_id.round((line.product_uom_qty * line.taxed_price))
+                line.tax_line = line.order_id.pricelist_id.currency_id.round(line.taxed_price - line.price_subtotal)
