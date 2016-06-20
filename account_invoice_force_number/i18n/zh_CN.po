@@ -1,0 +1,46 @@
+# Chinese (Simplified) translation for account-invoicing
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the account-invoicing package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: account-invoicing\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-11-16 16:44+0000\n"
+"PO-Revision-Date: 2015-09-01 11:51+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-09-02 05:39+0000\n"
+"X-Generator: Launchpad (build 17706)\n"
+
+#. module: account_invoice_force_number
+#: view:account.invoice:0
+msgid "Force Number"
+msgstr ""
+
+#. module: account_invoice_force_number
+#: model:ir.module.module,description:account_invoice_force_number.module_meta_information
+msgid ""
+"\n"
+"    This module allows to force the invoice numbering.\n"
+"    It displays the internal_number field. If user fills that field, the "
+"typed value will be used as invoice (and move) number. Otherwise, the next "
+"sequence sequence number will be retrieved and saved.\n"
+"    So, the new field has to be used when user doesn't want to use the "
+"default invoice numbering for a specific invoice.\n"
+"    "
+msgstr ""
+
+#. module: account_invoice_force_number
+#: model:ir.module.module,shortdesc:account_invoice_force_number.module_meta_information
+msgid "Force Invoice Number"
+msgstr ""
+
+#. module: account_invoice_force_number
+#: model:ir.model,name:account_invoice_force_number.model_account_invoice
+msgid "Invoice"
+msgstr "发票"
