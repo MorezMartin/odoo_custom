@@ -28,7 +28,7 @@ class sale_o(Model):
 
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'reserved': [('readonly', False)], 'sent': [('readonly', False)]}, copy=True)
     horaire_fin = fields.Datetime('Horaire de fin', required=True, default=fields.Datetime.now)
-    date_order = fields.Datetime('Date', required=True, readonly=True, select=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, copy=False),
+    date_order = fields.Datetime('Date', required=True, readonly=True, select=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'reserved': [('readonly', False)],}, copy=True),
     type_presta = fields.Selection([
         ('mar', 'Mariage Complet'),
         ('vh', 'Vin d\'honneur'),
