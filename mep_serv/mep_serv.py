@@ -1,6 +1,3 @@
-#TEST
-#TEST
-#TEST
 from openerp import fields, api
 from openerp.models import Model
 import openerp.addons.decimal_precision as dp
