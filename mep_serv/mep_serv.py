@@ -6,7 +6,7 @@ class sale_o_config(Model):
     _name = "sale.order.config_s"
 
 #    sale_order_id = fields.Many2one("sale.order", "Order Reference")
-    sale_order_id = fields.One2many("sale.order", "config_s", "Config Salle")
+    sale_order_id = fields.Many2many("sale.order", "name", "config_s")
     name = fields.Char("Nom", required=True)
     config_salle = fields.Text("Description", required=True)
 
@@ -33,7 +33,7 @@ class sale_o(Model):
 
 
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'reserved': [('readonly', False)], 'sent': [('readonly', False)]}, copy=True)
-    config_s = fields.Many2one('sale.order.config_s', 'Configuration de salle')
+    config_s = fields.Many2many('sale.order.config_s', 'name', 'config_salle')
 #    config_s = fields.One2many('sale.order.config_s', 'sale_order_id', 'Configuration de salle')
     horaire_fin = fields.Datetime('Horaire de fin', required=True, default=fields.Datetime.now)
     date_order = fields.Datetime('Date', required=True, readonly=True, select=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'reserved': [('readonly', False)],}, copy=True)
