@@ -27,7 +27,7 @@
                 <xpath expr="//field[@name='date_order']" position="after">
                     <field name="horaire_fin"/>
                     <field name="type_presta"/>
-                    <field name="config_s"/>
+                    <field name="config_s" widget="many2many_tags"/>
                 </xpath>
                 <xpath expr="//field[@name='price_unit']" position="before">
                     <field name="timing"/>
