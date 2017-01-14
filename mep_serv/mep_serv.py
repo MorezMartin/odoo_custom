@@ -7,7 +7,7 @@ class sale_o_config(Model):
 
     name = fields.Char("Nom", required=True)
     config_salle = fields.Text("Description", required=True)
-#    sale_order = fields.Many2one("sale.order", "Sale Order")
+    sale_order = fields.Many2one("sale.order", "Sale Order")
 
 class sale_o_l(Model):
     _name = "sale.order.line"
