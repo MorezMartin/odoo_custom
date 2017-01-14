@@ -2,7 +2,11 @@ from openerp import fields, api
 from openerp.models import Model
 import openerp.addons.decimal_precision as dp
 
+class sale_o_config(Model):
+    _name = "sale.order.config"
 
+    name = fields.Char("Nom", required=True)
+    config_salle = fields.Text("Description", required=True)
 
 class sale_o_l(Model):
     _name = "sale.order.line"
@@ -27,6 +31,7 @@ class sale_o(Model):
 
 
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'reserved': [('readonly', False)], 'sent': [('readonly', False)]}, copy=True)
+    config_s = fields.One2many('sale.order.config', 'config_salle', 'Configuration de salle')
     horaire_fin = fields.Datetime('Horaire de fin', required=True, default=fields.Datetime.now)
     date_order = fields.Datetime('Date', required=True, readonly=True, select=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'reserved': [('readonly', False)],}, copy=True)
     type_presta = fields.Selection([
