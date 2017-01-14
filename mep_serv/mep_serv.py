@@ -5,9 +5,9 @@ import openerp.addons.decimal_precision as dp
 class sale_o_config(Model):
     _name = "sale.order.config_s"
 
+    sale_order_id = fields.Many2one("sale.order", "Order Reference")
     name = fields.Char("Nom", required=True)
     config_salle = fields.Text("Description", required=True)
-    sale_order_id = fields.Many2one("sale.order", "Order Reference")
 
 class sale_o_l(Model):
     _name = "sale.order.line"
