@@ -10,7 +10,6 @@
                          <field name="config_salle"/>
                      </tree>
 		</field>
-            </field>
         </record>
         <record model="ir.ui.view" id="config_salle_form">
             <field name="name">sale.order.config_salle.form</field>
@@ -21,7 +20,6 @@
                          <field name="config_salle"/>
                      </form>
 		</field>
-            </field>
         </record>
         <record model="ir.actions.act_window" id="config_salle_list">
             <field name="name">sale.order.config_salle</field>
