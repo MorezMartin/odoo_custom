@@ -21,6 +21,7 @@
                      </form>
 		</field>
         </record>
+        <menuitem id="config_salle_config" name="Configuration Salle" parent="base.menu_config" action="config_salle_list"/>
         <record model="ir.actions.act_window" id="config_salle_list">
             <field name="name">sale.order.config_salle</field>
             <field name="res_model">sale.order.config_s</field>
