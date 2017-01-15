@@ -5,7 +5,7 @@
             <field name="name">sale.order.config_salle.tree</field>
             <field name="model">sale.order.config_s</field>
 		<field name="arch" type="xml">
-                     <tree create="true" delete="true">
+                     <tree create="true" delete="true" editable="bottom">
                          <field name="name"/>
                          <field name="config_salle"/>
                      </tree>
