@@ -6,6 +6,7 @@
             <field name="model">sale.order.config_s</field>
 		<field name="arch" type="xml">
                      <tree create="true" delete="true" editable="bottom">
+                         <field name="sale_order_id" invisible="1"/>
                          <field name="name"/>
                          <field name="config_salle"/>
                      </tree>
@@ -16,6 +17,7 @@
             <field name="model">sale.order.config_s</field>
 		<field name="arch" type="xml">
                      <form create="true" delete="true">
+                         <field name="sale_order_id" invisible="1"/>
                          <field name="name"/>
                          <field name="config_salle"/>
                      </form>
