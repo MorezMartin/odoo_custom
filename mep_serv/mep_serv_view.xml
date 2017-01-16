@@ -25,7 +25,7 @@
             <field name="name">Configuration de salle</field>
             <field name="res_model">sale.order.config_s</field>
             <field name="view_type">tree</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">Creer premiere config salle
                 </p>
