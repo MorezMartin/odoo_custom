@@ -22,7 +22,7 @@
 		</field>
         </record>
         <record model="ir.actions.act_window" id="config_salle_list">
-            <field name="name">sale.order.config_salle</field>
+            <field name="name">Configuration de salle</field>
             <field name="res_model">sale.order.config_s</field>
             <field name="view_type">tree</field>
             <field name="view_mode">tree,form</field>
