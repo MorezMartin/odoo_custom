@@ -38,16 +38,16 @@ class sale_o(Model):
     horaire_fin = fields.Datetime('Horaire de fin', required=True, default=fields.Datetime.now)
     date_order = fields.Datetime('Date', required=True, readonly=True, select=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'reserved': [('readonly', False)],}, copy=True)
     type_presta = fields.Selection([
-        ('mar', 'Mariage Complet'),
-        ('vh', 'Vin d\'honneur'),
-        ('marr', 'Repas Mariage'),
-        ('cock', 'Cocktail'),
-        ('cockplat', 'Cocktail et plat au buffet'),
-        ('rent', 'Repas d\'entreprise soiree festive'),
-        ('anniv', 'Anniversaire'),
-        ('com', 'Communion'),
-        ('bapt', 'Bapteme'),
-        ('annivm', 'Anniversaire de mariage'),
+        ('mar', 'Mariage Complet'),#OK
+        ('vh', 'Vin d\'honneur'),#OK
+        ('marr', 'Repas Mariage'),#OK
+        ('cock', 'Cocktail'),#OK
+        ('cockplat', 'Cocktail et plat au buffet'),#OK
+        ('rent', 'Repas d\'entreprise soiree festive'),#OK
+        ('anniv', 'Anniversaire'),#OK
+        ('com', 'Communion'),#OK
+        ('bapt', 'Bapteme'),#OK
+        ('annivm', 'Anniversaire de mariage'),#OK
         ('sem', 'Seminaire'),
         ('cong', 'Congres'),
         ('rasso', 'Repas associatif'),
