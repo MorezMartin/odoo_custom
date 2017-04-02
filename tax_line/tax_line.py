@@ -25,6 +25,6 @@ class tax_line(Model):
             for taxes in tax_obj:
                 line.taxed_price = taxes['amount'] + price
                 line.tax_price = taxes['amount']
-                line.tax_line = line.tax_price * line.product_uom_qty
-                line.taxed_line= line.price_subtotal + line.tax_line
+                line.taxed_line= line.taxed_price * line.product_uom_qty
+                line.tax_line = line.taxed_line - line.price_subtotal
 #taxes['amount']
