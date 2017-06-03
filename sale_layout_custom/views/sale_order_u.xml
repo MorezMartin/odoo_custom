@@ -2,7 +2,6 @@
 <openerp>
 <data>
         <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
-<?xml version="1.0"?>
 <t t-name="sale.report_saleorder_document">
 <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="o">
