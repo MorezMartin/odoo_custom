@@ -109,7 +109,7 @@ class SaleOrderLine(osv.Model):
                                               string='Section'),
         'categ_sequence': fields.related('sale_layout_cat_id',
                                          'sequence', type='integer',
-                                         string='Layout Sequence')
+                                         string='Layout Sequence', store=True)
         #  Store is intentionally set in order to keep the "historic" order.
     }
 
