@@ -5,7 +5,7 @@
             <xpath expr="//table/tbody[@class='sale_tbody']" position="replace">
                 <t t-foreach="o.sale_layout_lines(order_id = o.id)" t-as="p">
                     <!-- Name of the category -->
-                    <t t-call="sale_layout.category_template" />
+                    <t t-call="sale_layout_custom.category_template" />
 
                     <!-- Lines associated -->
                     <t t-foreach="p['lines']" t-as="l">
@@ -34,10 +34,10 @@
                     </t>
 
                     <!-- Subtotal -->
-                    <t t-call="sale_layout.subtotal_template" />
+                    <t t-call="sale_layout_custom.subtotal_template" />
 
                     <!-- Separator -->
-                    <t t-call="sale_layout.separator_template" />
+                    <t t-call="sale_layout_custom.separator_template" />
 
                     <!-- Pagebreak -->
                     <t t-if="'pagebreak' in p['category'] and p['category'].pagebreak is True">

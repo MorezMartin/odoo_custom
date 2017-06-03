@@ -39,7 +39,7 @@ def grouplines(self, ordered_lines, sortkey):
 
 
 class SaleLayoutCategory(osv.Model):
-    _name = 'sale_layout.category'
+    _name = 'sale_layout_custom.category'
     _order = 'sequence, id'
     _columns = {
         'name': fields.char('Name', required=True),
@@ -81,7 +81,7 @@ class AccountInvoiceLine(osv.Model):
     _inherit = 'account.invoice.line'
 #    _order = 'invoice_id, categ_sequence, sequence, id'
 
-    sale_layout_cat_id = openerp.fields.Many2one('sale_layout.category', string='Section')
+    sale_layout_cat_id = openerp.fields.Many2one('sale_layout_custom.category', string='Section')
     categ_sequence = openerp.fields.Integer(related='sale_layout_cat_id.sequence',
                                             string='Layout Sequence')
 
@@ -105,7 +105,7 @@ class SaleOrder(osv.Model):
 class SaleOrderLine(osv.Model):
     _inherit = 'sale.order.line'
     _columns = {
-        'sale_layout_cat_id': fields.many2one('sale_layout.category',
+        'sale_layout_cat_id': fields.many2one('sale_layout_custom.category',
                                               string='Section'),
         'categ_sequence': fields.related('sale_layout_cat_id',
                                          'sequence', type='integer',

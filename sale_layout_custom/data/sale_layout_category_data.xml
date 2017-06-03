@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="1">
-        <record id="sale_layout_cat_1" model="sale_layout.category">
+        <record id="sale_layout_cat_1" model="sale_layout_custom.category">
             <field name="name">Services</field>
             <field name="subtotal" eval="True"></field>
             <field name="separator" eval="True"></field>
@@ -9,7 +9,7 @@
             <field name="sequence">1</field>
         </record>
 
-        <record id="sale_layout_cat_2" model="sale_layout.category">
+        <record id="sale_layout_cat_2" model="sale_layout_custom.category">
             <field name="name">Material</field>
             <field name="subtotal" eval="True"></field>
             <field name="separator" eval="True"></field>
