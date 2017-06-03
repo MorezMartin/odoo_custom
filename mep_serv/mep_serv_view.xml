@@ -63,9 +63,11 @@
                     <field name="config_s" widget="many2many_tags" string="Configuration de salle"/>
                 </xpath>
                 <xpath expr="//field[@name='price_unit']" position="before">
+                    <field name="precisions"/>
                     <field name="timing"/>
                 </xpath>
                 <xpath expr="//tree[@string='Sales Order Lines']//field[@name='price_unit']" position="before">
+                    <field name="precisions"/>
                     <field name="timing"/>
                 </xpath>
                 <xpath expr="//field[@name='amount_total']" position="after">

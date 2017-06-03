@@ -25,6 +25,7 @@ class sale_o_l(Model):
 
     price_unit = fields.Float('Unit Price', required=True, digits_compute=dp.get_precision('Product Price'), readonly=False, states={'draft': [('readonly', False)]})
     product_uom_qty = fields.Float('Quantity', digits_compute=dp.get_precision('Product UoS'), required=True, readonly=False, states={'draft': [('readonly', False)]})
+    precisions = fields.Text('Precisions', required=False, readonly=False, states={'draft':[('readonly',False)]})
 
 class sale_o(Model):
 
