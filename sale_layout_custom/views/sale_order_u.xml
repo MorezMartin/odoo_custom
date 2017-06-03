@@ -2,7 +2,6 @@
 <openerp>
 <data>
         <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
-<t t-name="sale.report_saleorder_document">
 <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="o">
     <div class="header" style="background-color:#939393;color:white">
@@ -226,7 +225,6 @@ Lors d'une prestation dans nos locaux nous vous demanderons de ne pas utiliser d
     <t t-call="report.external_layout_footer"/>
                  </t>
     </t>
-</t>
 	</template>
 </data>
 </openerp>
