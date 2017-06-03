@@ -117,7 +117,7 @@ class SaleOrderLine(osv.Model):
 
     def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):
         """Save the layout when converting to an invoice line."""
-        invoice_vals = super(SaleOrderLine, self)._prepare_order_line_invoice_line(cr, uid, line, account_id=account_id, context=context)
+        invoice_vals = super(SaleOrderLine, self)._prepare_order_line_invoice_line(cr, uid, line)
         if line.sale_layout_cat_id:
             invoice_vals['sale_layout_cat_id'] = line.sale_layout_cat_id.id
         if line.categ_sequence:
