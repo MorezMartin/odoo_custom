@@ -113,7 +113,7 @@ class SaleOrderLine(osv.Model):
         #  Store is intentionally set in order to keep the "historic" order.
     }
 
-    _order = 'order_id, sale_layout_cat_id, categ_sequence, id, sequence'
+#    _order = 'order_id, sale_layout_cat_id, categ_sequence, id, sequence'
 
     def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):
         """Save the layout when converting to an invoice line."""
