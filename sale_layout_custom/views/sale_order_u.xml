@@ -1,0 +1,436 @@
+<t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+    <div class="header" style="background-color:#939393;color:white">
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"/>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"/>
+    </t>
+        <div class="row">
+            <div class="col-xs-4">
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+            </div>
+            <div class="col-xs-4" align="center"><h3 t-if="o.type_presta!='autre'"><span t-field="o.type_presta"/></h3><h3 t-if="o.type_presta=='autre'"><span>Prestation</span></h3>
+                      <span t-field="o.partner_id"/><br/>
+                      <span t-field="o.date_order" t-field-options='{"format":"dd/MM/yyyy"}'/><br/>
+                      <span t-field="o.partner_shipping_id"/>
+            </div>
+            <div class="col-xs-4"><h3 align="right">
+                <span t-field="o.name"/></h3>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+        <div class="page">
+            <div class="oe_structure"/>
+            <div class="row">
+                <h3 align="center" style="color:#939393">Vos informations</h3><hr/>
+                <h4 style="color:#939393">Coordonnées</h4>
+              <div class="col-xs-4">
+                  <strong style="color:#939393">Nom</strong><br/>
+                  <span t-field="o.partner_id"/>
+              </div>
+              <div class="col-xs-4">
+                  <strong style="color:#939393">Mail</strong><br/>
+                  <span t-field="o.partner_id.email"/>
+              </div>
+              <div class="col-xs-4">
+                  <strong style="color:#939393">Téléphone</strong><br/>
+                  <span t-field="o.partner_id.phone"/>
+                  <span t-field="o.partner_id.mobile"/>
+              </div>
+          </div>
+          <br/>
+          <div class="row">
+
+                <div class="col-xs-4">
+                    <strong style="color:#939393" t-if="o.partner_invoice_id">Adresse de facturation</strong>
+                    <div t-field="o.partner_invoice_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;fax&quot;], &quot;no_marker&quot;: true}"/>
+                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                </div>
+
+             </div>
+             <hr/>
+            <div class="row"  style="page-break-inside:avoid">
+                <h4 style="color:#939393">Prestation</h4>
+                <div t-if="o.client_order_ref" class="col-xs-2">
+                    <strong style="color:#939393">Votre Réference</strong>
+                    <p t-field="o.client_order_ref"/>
+                </div>
+                <div t-if="o.name" class="col-xs-2">
+                    <strong style="color:#939393">N° de dossier</strong>
+                    <p t-field="o.name"/>
+                </div>
+                <div t-if="o.date_order" class="col-xs-2">
+                    <strong style="color:#939393">Date de prestation</strong>
+                    <p t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                </div>
+                <div t-if="o.couleur_deco" class="col-xs-2">
+                    <strong style="color:#939393">Couleur(s)</strong>
+                    <p t-field="o.couleur_deco"/>
+                </div>
+
+<div class="clearfix visible-xs-block"></div>
+              <div class="col-xs-4">
+                    <div t-if="o.partner_shipping_id">
+                        <strong style="color:#939393">Adresse de livraison</strong>
+                        <div t-field="o.partner_shipping_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;fax&quot;], &quot;no_marker&quot;: true}"/>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    </div>
+                </div>
+
+                <div class="col-xs-4" t-if="o.config_s">
+                <strong style="color:#939393">Configuration de salle</strong>
+                <div t-foreach="o.config_s" t-as="c">
+                    <p t-field="c.name" style="display:inline"/>: <span t-field="c.config_salle" style="display:inline"/>
+                </div>
+                </div>
+                <div t-if="o.demandes_supp" class="col-xs-4">
+                    <strong style="color:#939393">Demandes complémentaires</strong>
+                    <p t-field="o.demandes_supp"/>
+                </div>
+                <div class="col-xs-4">
+                <strong style="color:#939393">Timing</strong>
+                <div>
+                    <strong style="color:#939393">Heure de début </strong>
+                    <span t-field="o.date_order" t-field-options='{"format": "HH:mm"}'/>
+                    <div t-if="o.date_order" t-foreach="o.order_line" t-as="l"><div t-if="l.timing">
+                           <span t-field="l.product_id.display_name"/>
+                           <t t-if="not l.product_id"><span t-field="l.name"/></t>
+                         - <span t-field="l.timing" style="display:inline" t-field-options='{"format": "HH:mm"}'/>
+                    </div></div>
+                    <strong style="color:#939393">Heure de fin* </strong>
+                    <span t-field="o.horaire_fin" t-field-options='{"format": "HH:mm"}'/>
+                </div>
+                </div>
+
+                <div t-if="o.payment_term" class="col-xs-4">
+                    <strong style="color:#939393">Payment Term:</strong>
+                    <p t-field="o.payment_term"/>
+                </div>
+<div class="clearfix visible-xs-block"></div><br/>
+                <div t-if="o.user_id.name" class="col-xs-12" style="font-size:12px;color:#939393">
+                    Dossier créé le <span t-if="o.create_date" t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy"}' style="color:black"/> et suivi par <span t-if="o.user_id.name" t-field="o.user_id.name" style="color:black"/>
+                </div>
+                <div t-if="o.horaire_fin" class="col-xs-12" style="font-size:12px;color:#939393">
+                   <strong>*</strong> au-delà l'heure supplémentaire sera facturée 30€ TTC par serveur restant sur place jusqu'au débarrassage complet de l'espace de réception
+                </div>
+
+
+    <div t-foreach="o.sale_layout_lines(order_id = o.id)" t-as="p"
+style="page-break-before:always">
+    <!-- Name of the category -->
+        <h3 align="center" style="color:#939393"><t t-call="sale_layout_custom.category_template"/></h3><hr/>
+
+    <!-- Lines associated -->
+        <div class="row" t-foreach="p['lines']" t-as="l" style="page-break-inside:avoid">
+            <div class="col-xs-2">
+                <span t-field="l.product_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+            </div>
+            <div class="col-xs-10">
+                <div class="row">
+                <div  class="col-xs-6">
+                    <h4 style="color:#939393;display:inline">
+                        <span t-field="l.product_id.display_name"/>
+                        <t t-if="not l.product_id"><span t-field="l.name"/></t>
+                    </h4>
+                </div>
+                    <div t-if="l.price_unit &gt; 0" align="right" class="col-xs-6 pull-right">
+                        HT <span style="display:inline" t-field="l.price_unit" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                        TVA <span style="display:inline" t-field="l.tax_price" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                        TTC <span style="display:inline" t-field="l.taxed_price" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                    </div>
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div t-if="l.product_uom_qty &gt; 0" class="col-xs-6">
+                            <span t-field="l.product_uom_qty"/>
+                            <span groups="product.group_uom" t-field="l.product_uom"/>
+                        </div>
+                        <div t-if="l.price_subtotal &gt; 0" align="right" class="col-xs-6 pull-right">
+                        HT <span style="display:inline" t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                        TVA <span style="display:inline" t-field="l.tax_line" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                        TTC <span style="display:inline" t-field="l.taxed_line" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" style="border-top: 1px solid transparent;border-bottom: 1px solid transparent">
+                    <span t-esc="l.product_id.description_sale"/>
+                    <t t-if="l.product_id">
+                        <t t-if="l.product_id.description_sale">
+                            <div t-if="not l.product_id.description_sale in l.name and not l.product_id.name in l.name"><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
+                        </t>
+                        <t t-if="not l.product_id.description_sale">
+                            <div t-if="l.product_id.display_name != l.name"><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
+                        </t>
+                    </t>
+                    <div t-if="l.timing"><strong style="color:#939393">Timing</strong> <span t-field="l.timing" t-field-options='{"format": "HH:mm"}'/></div>
+                </div>
+            </div>
+         </div>
+         <div class="col-xs-12">
+            <div class="row">
+            <br/>
+                <div class="col-xs-6">
+                    <strong style="color:#939393" t-if="l.product_id.alternative_product_ids">Possibilité(s)</strong>
+                    <t t-if="l.product_id"><div class="row" t-if="l.product_id.alternative_product_ids" t-foreach="l.product_id.alternative_product_ids" t-as="w">
+                        <div class="col-xs-10">
+                            <span t-field="w.name"/>
+                        </div>
+                        <div class="col-xs-2 pull-right" align="right">
+                            <span t-field="w.lst_price" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                        </div>
+                    </div></t>
+                </div>
+                <div class="col-xs-6">
+                    <strong style="color:#939393" t-if="l.product_id.accessory_product_ids">Option(s)</strong>
+                    <t t-if="l.product_id"><div class="row" t-if="l.product_id.accessory_product_ids" t-foreach="l.product_id.accessory_product_ids" t-as="w">
+                        <div class="col-xs-10">
+                            <span t-field="w.name"/>
+                        </div>
+                        <div class="col-xs-2 pull-right" align="right">
+                            <span t-field="w.lst_price" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                        </div>
+                    </div></t>
+                </div>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+        <div style="page-break-before:always">
+            <h3 align="center" style="color:#939393">Récapitulatif</h3><hr/>
+            <table class="table table-condensed">
+                <thead style="background-color:#939393;color:white">
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Description</th>
+                        <th class="text-right">Unit Price</th>
+                        <th class="text-right">Type de taxe</th>
+                        <th class="text-right">Taxes</th>
+                        <th class="text-right">Taxed Unit Price</th>
+                        <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                        <th class="text-right">Subtotal</th>
+                        <th class="text-right">Taxes Subtotal</th>
+                        <th class="text-right">Taxed Subtotal</th>
+                    </tr>
+               </thead>
+               <tbody class="sale_tbody">
+                    <tr t-foreach="o.order_line" t-as="l">
+                        <td>
+                            <div t-if="l.product_uom_qty &gt; 0">
+                                <span t-field="l.product_uom_qty"/>
+                                <span groups="product.group_uom" t-field="l.product_uom"/>
+                            </div>
+                        </td>
+                        <td>
+                            <t t-if="l.product_id"><span t-field="l.product_id.display_name"/></t>
+                            <t t-if="not l.product_id"><span t-field="l.name"/></t>
+                        </td>
+                        <td class="text-right">
+                            <div t-if="l.price_unit &gt; 0">
+                                <span t-field="l.price_unit" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div t-if="l.price_unit &gt; 0">
+                                <span t-esc="', '.join(map(lambda x: x.name, l.tax_id))"/>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div t-if="l.tax_price &gt; 0">
+                                <span t-field="l.tax_price" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div t-if="l.taxed_price &gt; 0">
+                                <span t-field="l.taxed_price" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </div>
+                        </td>
+                        <td groups="sale.group_discount_per_so_line">
+                            <span t-field="l.discount"/>
+                        </td>
+                        <td class="text-right">
+                            <div t-if="l.price_subtotal &gt; 0">
+                                <span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div t-if="l.tax_line &gt; 0">
+                                <span t-field="l.tax_line" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div t-if="l.taxed_line &gt; 0">
+                                <span t-field="l.taxed_line" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+<div class="row" style="page-break-inside:avoid">
+                <h3 align="center" style="color:#939393">Total</h3><hr/>
+                <div class="col-xs-6">
+                    <table class="table table-condensed">
+                        <th style="background-color:#939393;color:white;border-bottom:1px solid black">
+                            <strong>Signature*</strong>
+                        </th>
+                    </table>
+                    <br/><br/><br/><br/><br/>
+                </div>
+                <div class="col-xs-6 pull-right">
+                    <table class="table table-condensed">
+                        <tr>
+                            <td style="background-color:#939393;color:white;border-right:1px solid black;width:50%"><strong>Total Without Taxes</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#939393;color:white;border-right:1px solid black;width:50%">Taxes</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#939393;color:white;border-right:1px solid black;width:50%"><strong>Total</strong></td>
+                            <td class="text-right">
+                                 <strong><span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-xs-6 pull-right">
+                    <table class="table table-condensed">
+
+                        <tr t-if="o.fst_advance and o.fst_advance &gt; 0">
+                            <td style="background-color:#939393;color:white;border-right:1px solid black;width:50%"><strong>Premier Acompte</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.fst_advance" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="o.scd_advance and o.fst_advance &gt; 0">
+                            <td style="background-color:#939393;color:white;border-right:1px solid black;width:50%">Deuxième Acompte</td>
+                            <td class="text-right">
+                                <span t-field="o.scd_advance" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.trd_advance and o.fst_advance &gt; 0">
+                            <td style="background-color:#939393;color:white;border-right:1px solid black;width:50%"><strong>Troisième acompte</strong></td>
+                            <td class="text-right">
+                                 <span t-field="o.trd_advance" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#939393;color:white;border-right:1px solid black;width:50%"><strong>Reste à régler</strong></td>
+                            <td class="text-right">
+                                 <strong><span t-field="o.to_pay" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                   <div class="col-xs-12" style="font-size:12px;color:#939393"><strong>*</strong> vaut pour acceptation du présent devis ainsi que des Conditions Générales de Vente sub-mentionnées</div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong style="color:#939393">Total Without Taxes</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong style="color:#939393">Total</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <p t-field="o.note"/>
+            <p t-if="o.payment_term.note">
+                <strong style="color:#939393">Payment Term:</strong>
+                <span t-field="o.payment_term.note"/>
+            </p>
+               <div  style="page-break-before: always">
+                    <h3 align="center" style="color:#939393">Conditions générales de vente</h3><hr/>
+                        <h4 style="color:#939393">Réservation et acomptes</h4>
+                        <p>La réservation se fait à réception du premier acompte et du devis signé et vaut pour acceptation des présentes conditions générales de vente. Le premier acompte est égal à <strong style="color:#939393">15% du total de la prestation OU l'équivalent de la location de salle</strong>, le deuxième acompte <strong style="color:#939393">30% du montant global de la prestation 3 mois avant prestation</strong>, le troisième acompte <strong style="color:#939393">30% du montant global de la prestation 1 mois avant prestation.</strong></p>
+                       <h4 style="color:#939393">Confirmation des menus et du nombre de personnes</h4>
+                        <p>Le nombre définitif et les mets sélectionnés pour être servis doivent nous être ocmmuniqués au plus tard <strong style="color:#939393">7 jours avant prestation</strong> et servira de base à la facturation. Au-delà, aucune modification ne sera envisageable.</p>
+                       <h4 style="color:#939393">Droits de SACEM</h4>
+                        <p>cf. art. L 122-5-1° du Code de la propriété intellectuelle. La SACEM est une redevance à la charge de
+l'organisateur de la prestation. Vous êtes un <strong style="color:#939393">particulier</strong> : la
+redevance à la SACEM <strong style="color:#939393">ne s'applique pas</strong> dans le cadre d'une prestation familiale. Vous êtes une <strong style="color:#939393">entreprise</strong> : la redevance à la SACEM <strong style="color:#939393">s'applique</strong> pour vous dans le cas où vous êtes l'organisateur de l'événement, dans le cas où nous sommes les organisateurs de l'événement (comprenant sa partie musicale)<strong style="color:#939393">nous verserons</strong> la redevance à la SACEM et cette ligne apparaîtra systématiquement au niveau de votre devis (dans le cas où vous n'avez pas de ligne Droits de SACEM, à vous de faire les démarches). Vous êtes une <strong style="color:#939393">association</strong> : vous êtes redevables à la SACEM, nous vous conseillons de prendre cette partie en charge (et donc l'organisation musicale) car la SACEM accorde parfois des ristournes lorsqu'il s'agit d'associations. Dans le cas où la ligne Droits de SACEM n'apparaît pas dans votre devis ou bon de commande, nous déclinons toute responsabilité en cas de contrôle</p>
+                       <h4 style="color:#939393">Prestataires</h4>
+                        <p>Tout prestataire intervenant pendant une prestation doit être <strong style="color:#939393">déclaré</strong> auprès des autorités compétentes, il ne peut en aucun cas être considéré comme l'un de nos prestataires ou l'un de nos salariés, dans le cas où un prestataire est nécessaire, une ligne apparaîtra toujours au niveau de votre devis ou bon de commande dans le cas où nous prenons en charge sa prestation de la même façon qu'apparaîtra toute personne prévue pour le service ou la cuisine.</p>
+                       <h4 style="color:#939393">Paiement</h4>
+                        <p>La réglementation dans le secteur de
+l'alimentation et des produits périssables ramène le délai de paiement à
+<strong style="color:#939393">20 jours date de facture</strong>, nous rappelons qu'en vertu de l'article L442-6 du code
+du commerce, tout contrevenant s'expose à une amende de <strong style="color:#939393">15 000€</strong> pour les
+personnes physiques et <strong style="color:#939393">75 000€</strong> pour les personnes morales.</p>
+                       <h4 style="color:#939393">Pertes et vols</h4>
+                        <p>Aucune perte, dégradation, ou vol de vos effets que ce soit dans nos locaux (et parkings) ou pour une prestation extérieure ne saura nous être incombée, nous ne fournissons aucune garantie pour le matériel ou les boissons éventuellement déposé(e)(s).</p>
+                       <h4 style="color:#939393">Respect</h4>
+                        <p>Nous vous demanderons un respect strict du personnel présent et oeuvrant au bon déroulement de votre prestation. Aucun <strong style="color:#939393">harcèlement</strong> de votre part ou celle de vos convives ne sera toléré et nous nous réservons le droit d'intervenir le cas échéant et de prendre les mesures conséquentes.
+Lors d'une prestation dans nos locaux nous vous demanderons de ne pas utiliser de <strong style="color:#939393">confettis</strong> ou autres <strong style="color:#939393">bombes à jeu.</strong></p>
+                </div>
+            <div class="oe_structure"/>
+        </div>
+    <div class="footer">
+        <div class="text-center" style="color:white;background-color:#939393">
+            <ul t-if="not company.custom_footer" class="list-inline">
+                <li t-if="company.phone">Téléphone: <span t-field="company.phone"/></li>
+
+                <li t-if="company.fax and company.phone">&amp;bull;</li>
+                <li t-if="company.fax">Fax: <span t-field="company.fax"/></li>
+
+                <li t-if="company.email">&amp;bull;</li>
+                <li t-if="company.email"><span t-field="company.email"/></li>
+
+                <li t-if="company.website">&amp;bull;</li>
+                <li t-if="company.website"><span t-field="company.website"/></li>
+
+                <li t-if="company.siret">SIRET: <span t-field="company.siret"/></li>
+                <li t-if="company.vat">&amp;bull;</li>
+                <li t-if="company.vat">Numéro intra-com: <span t-field="company.vat"/></li>
+                <li t-if="company.company_registry">&amp;bull;</li>
+                <li t-if="company.company_registry">Registre: <span t-field="company.company_registry"/></li>
+
+                <li>SARL Le Middel Houck, SARL au capital de 7622,45€</li>
+
+                <li>Siège social: 9 Route de Dunkerque, 59630 Brouckerque</li>
+                <li t-if="company.bank_ids"><span t-field="company.bank_ids.bank_name"/> IBAN: <span t-field="company.bank_ids.acc_number"/> BIC: <span t-field="company.bank_ids.bank_bic"/></li>
+            </ul>
+
+            <t t-if="company.custom_footer">
+                <span t-raw="company.rml_footer"/>
+            </t>
+
+            <ul class="list-inline">
+                <li>Page:</li>
+                <li><span class="page"/></li>
+                <li>/</li>
+                <li><span class="topage"/></li>
+            </ul>
+        </div>
+    </div>
+    </t>
