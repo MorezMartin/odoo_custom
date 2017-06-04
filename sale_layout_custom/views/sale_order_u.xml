@@ -169,7 +169,7 @@ style="page-break-before:always">
                 <div class="col-xs-12" style="border-top: 1px solid transparent;border-bottom: 1px solid transparent">
 		    <t t-if="l.product_id"><span t-esc="l.name"/></t>
                     <t t-if="l.precisions">
-                            <div><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
+                            <div><strong style="color:#939393">Précision(s) </strong><span t-field="l.precisions"/></div>
                     </t>
                     <div t-if="l.timing"><strong style="color:#939393">Timing</strong> <span t-field="l.timing" t-field-options='{"format": "HH:mm"}'/></div>
                 </div>
