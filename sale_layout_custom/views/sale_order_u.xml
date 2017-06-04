@@ -167,14 +167,10 @@ style="page-break-before:always">
                     </div>
                 </div>
                 <div class="col-xs-12" style="border-top: 1px solid transparent;border-bottom: 1px solid transparent">
-                    <span t-esc="l.product_id.description_sale"/>
-                    <t t-if="l.product_id">
-                        <t t-if="l.product_id.description_sale">
-                            <div t-if="not l.product_id.description_sale in l.name and not l.product_id.name in l.name"><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
-                        </t>
-                        <t t-if="not l.product_id.description_sale">
-                            <div t-if="l.product_id.display_name != l.name"><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
-                        </t>
+		    <t t-if="l.product_id"><span t-esc="l.name"/></t>
+                    <t t-if="l.precisions">
+                            <div><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
+                    </t>
                     </t>
                     <div t-if="l.timing"><strong style="color:#939393">Timing</strong> <span t-field="l.timing" t-field-options='{"format": "HH:mm"}'/></div>
                 </div>
