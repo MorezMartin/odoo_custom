@@ -171,7 +171,7 @@ style="page-break-before:always">
                     <t t-if="l.precisions">
                             <div><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
                     </t>
-                    </t>
+                </div>
                     <div t-if="l.timing"><strong style="color:#939393">Timing</strong> <span t-field="l.timing" t-field-options='{"format": "HH:mm"}'/></div>
                 </div>
             </div>
