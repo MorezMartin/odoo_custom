@@ -38,7 +38,7 @@ You can see Taxes and Subtotals on Sale Order Lines.
     'website' : 'http://www.mh-receptions.com',
     'images' : [],
     'depends' : ['sale', 'account_voucher', 'account', 'report'], # TODO : Add report
-    'data': ['tax_line_report.xml'],
+#    'data': ['tax_line_report.xml'],
     'demo': [],
     'test' : [],
     'installable' : True,
