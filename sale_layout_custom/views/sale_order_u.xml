@@ -133,7 +133,7 @@
     <div t-foreach="o.sale_layout_lines(order_id = o.id)" t-as="p"
 style="page-break-before:always">
     <!-- Name of the category -->
-        <h3 align="center" style="color:#939393"><t t-call="sale_layout.category_template"/></h3><hr/>
+        <h3 align="center" style="color:#939393"><t t-call="sale_layout_custom.category_template"/></h3><hr/>
 
     <!-- Lines associated -->
         <div class="row" t-foreach="p['lines']" t-as="l" style="page-break-inside:avoid">
