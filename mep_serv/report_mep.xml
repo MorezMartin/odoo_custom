@@ -1,36 +1,49 @@
 <openerp>
     <data>
  <template id="report_mep_document">
-    <t t-call="report.external_layout">
-        <div class="page">
-            <div class="oe_structure"/>
-            <div class="row">
-                <div class="col-xs-6">
-                    <strong t-if="o.partner_shipping_id == o.partner_invoice_id">Shipping address:</strong>
-                    <div t-field="o.partner_invoice_id" 
-                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
-                    <div t-if="o.partner_shipping_id != o.partner_invoice_id" class="mt8">
-                        <strong>Shipping address:</strong>
-                        <div t-field="o.partner_shipping_id" 
-                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
-                    </div>                        
-                </div>
-                <div class="col-xs-5 col-xs-offset-1">
-                    <div t-field="o.partner_id"
-                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
-                </div>
+<t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+    <div class="header">
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"/>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"/>
+    </t>
+        <div class="row">
+            <div class="col-xs-3">
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
             </div>
-
-            <h2>
+            <div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1"/>
+        </div>
+        <div class="row zero_min_height">
+            <div class="col-xs-12">
+                <div style="border-bottom: 1px solid black;"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <div t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}" style="border-bottom: 1px solid black;"/>
+            </div>
+            <h3 align="right">
                 <span t-if="o.state not in ['draft','sent']">Order N° </span>
                 <span t-if="o.state in ['draft','sent']">Quotation N° </span>
                 <span t-field="o.name"/>
                 <span t-field="o.type_presta"/>
-                <span t-if="o.noms"/>
-                <br/>
-                <span t-field="o.noms"/>
-            </h2>
-
+                <span t-if="o.noms"><br/><span t-field="o.noms"/></span>
+            </h3>
+            <div  align="right"><strong><span t-field="o.partner_id"/></strong></div>
+        </div>
+     </div>
+        <div class="page">
+                <div class="col-xs-6">
+                    <strong t-if="o.partner_shipping_id == o.partner_invoice_id">Shipping address:</strong>
+                    <div t-field="o.partner_invoice_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;fax&quot;], &quot;no_marker&quot;: true}"/>
+                    <div t-if="o.partner_shipping_id != o.partner_invoice_id" class="mt8">
+                        <strong>Shipping address:</strong>
+                        <div t-field="o.partner_shipping_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;fax&quot;], &quot;no_marker&quot;: true}"/>
+                    </div>                        
+                </div>
             <div class="row mt32 mb32" id="informations">
                 <div t-if="o.client_order_ref" class="col-xs-3">
                     <strong>Your Reference:</strong>
@@ -50,15 +63,32 @@
                     <strong>Payment Term:</strong>
                     <p t-field="o.payment_term"/>
                 </div>
-                <div t-if="o.couleur_deco or o.demandes_supp" class="col-xs-3">
-                    <strong>Details:</strong>
+                <div t-if="o.couleur_deco" class="col-xs-3">
+                    <strong>Couleur deco:</strong>
                     <p t-field="o.couleur_deco"/>
+                </div>
+                <div t-if="o.demandes_supp" class="col-xs-3">
+                    <strong>Détails:</strong>
                     <p t-field="o.demandes_supp"/>
                 </div>
-
+                <div class="col-xs-3">
+                    <table t-if="o.config_s" cellspacing="0" cellpadding="0" class="table table-condensed" style="border:none">
+    		        <thead>
+                            <tr style="border:none;border-style:hidden">
+                                <th style="border:none;border-style:hidden">Configuration de salle :</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.config_s" t-as="c">
+                                <td style="border:none;border-style:hidden">
+                                    <span t-field="c.name" style="display:inline"/>: <span t-field="c.config_salle" style="display:inline"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+               </div>
             </div>
-
-            <table class="table table-condensed">
+            <table class="table table-striped table-condensed">
                 <thead>
                     <tr>
                         <th>Quantité</th>
@@ -74,10 +104,21 @@
                             <span t-field="l.product_uom_qty"/>
                         </td>
                         <td>
-                           <span t-field="l.name"/>
+                    <t t-if="l.product_id">
+                    <div style="display:inline">
+                        <span t-field="l.product_id.display_name"/>
+                        <t t-if="not l.product_id"><span t-field="l.name"/></t>
+                    </div>
+                        <t t-if="l.product_id.description_sale">
+                            <div t-if="not l.product_id.description_sale in l.name and not l.product_id.name in l.name"><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
+                        </t>
+                        <t t-if="not l.product_id.description_sale">
+                            <div t-if="l.product_id.display_name != l.name"><strong style="color:#939393">Précision(s) </strong><span t-field="l.name"/></div>
+                        </t>
+                    </t>
                         </td>
                         <td>
-                           <span t-field="l.timing"/>
+                           <span t-field="l.timing" t-field-options='{"format": "HH:mm"}'/>
                         </td>
                         <td>
                         </td>
@@ -86,61 +127,270 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-condensed">
+<p style="page-break-inside:avoid">
+CONTRAT DE TRAVAIL - CONTRAT D'EXTRA <br/>
+Les champs ici en <strong>gras</strong> seront complétés dans dans le FORMULAIRE EXTRAS, page suivante. Les champs ici <span style="text-decoration:underline;display:inline">soulignés</span> pourront être retrouvés à notre siège social mentionné ci-dessous.<br/>
+Entre les soussignés, SARL LE MIDDELHOUCK Siège : 9 route de Dunkerque <br/>
+59630 BROUCKERQUE CODE NAF 5621Z <br/>
+REPRESENTEE PAR : Mr JM MOREZ, L’Entreprise <br/>
+Et <strong>Le salarié Mr Mme</strong><br/>
+<span style="text-decoration:underline;display:inline">Demeurant</span><br/>
+<span style="text-decoration:underline;display:inline">Né(e) le à</span><br/>
+<span style="text-decoration:underline;display:inline">N° SS</span><br/>
+Il est convenu ce qui suit : <br/>
+1/ Engagement et durée du contrat <br/>
+Nous vous confirmons votre engagement, sous contrat à durée déterminée afin d’occuper le poste EXTRA <br/>
+Le contrat est conclu conformément aux dispositions légales en vigueur, notamment aux articles L1242- 2 3 et D 1242-1 du CODE du travail relatifs aux emplois pour lesquels il est d’usage constant de ne pas recourir au contrat de travail à durée indéterminée en raison de la nature de l’activité exercée et du caractère temporaire de cet emploi. Le présent contrat est conclu à compter du <span t-field="o.date_order" t-field-options='{"format": "d MMMM y"}' style="display:inline"/> au <span t-field="o.horaire_fin" t-field-options='{"format": "d MMMM y"}' style="display:inline"/><br/>
+Le contrat de travail est régi par les lois et règlements en vigueur ainsi que par les dispositions de la Convention Collective Nationale des HCR du 30 avril 1997 et ses avenants ou toute autre convention ou accord collectif auquel l’entreprise pourrait être ultérieurement assujettie, dont Le salarié déclare avoir pris connaissance. <br/>
+2/ REMUNERATION: Le salarié bénéficiera d’un salaire fixé à Euros / Heure plus les avantages nourriture au taux légal <br/>
+3/ CONGES PAYES: Au terme du présent contrat, Le salarié percevra une indemnité de congés payés conformément à la législation en vigueur. <br/>
+4/ Les cotisation sociales de Sécurité Sociale sont versées à l’organisme suivant : URSSAF DU NORD sous le numéro 317000001001569912 <br/>
+5/ L’Entreprise est affiliée à la caisse de retraite complémentaire : MALAKOFF <br/>
+45 RUE DES ACACIAS 75855 PARIS CEDEX 17 <br/>
+6/ Organisme destinataire de la déclaration préalable à l’embauche : URSSAF DU NORD<br/>
+Fait le <span t-field="o.date_order" t-field-options='{"format": "d MMMM y"}' style="display:inline"/><br/>
+À Brouckerque<br/>
+<strong>Signature</strong><br/>
+</p>
+<div style="page-break-inside:avoid">
+<strong>FORMULAIRE EXTRAS</strong> Le <span t-field="o.date_order" t-field-options='{"format": "d MMMM y"}' style="display:inline"/>. Ce formulaire vient en complément du document <strong>CONTRAT DE TRAVAIL - CONTRAT D'EXTRA</strong> sus-mentionné. Par la présente signature vous attestez avoir lu et approuvé le contrat <strong>CONTRAT DE TRAVAIL - CONTRAT D'EXTRA</strong> ainsi que le <strong>PLAN DE PREVENTION</strong> disponible pour tous à notre siège social ainsi que dans nos établissements physiques.<br/><br/>
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Heure d'arrivée</th>
                         <th>Heure de départ</th>
+                        <th>Total heures</th>
+                        <th>Repas</th>
                         <th>Signature</th>
                     </tr>
                </thead>
                <tbody class="horaire">
-                    <tr>
-                        <td>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr class="blank_row">
+    <td style="line-height:14px"><br/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
                 </tbody>
             </table>
-
-<p>
-CONTRAT DE TRAVAIL 
-<br/>
-CONTRAT D EXTRA <br/>
-Entre les soussignés, SARL LE MIDDELHOUCK Siège : 9 route de Dunkerque <br/>
-59630 BROUCKERQUE CODE NAF 5621Z <br/>
-REPRESENTEE PAR : Mr JM MOREZ, L’Entreprise <br/>
-Et Le salarié Mr Mme <br/>
-Demeurant : <br/>
-Né(e) le à <br/>
-N° SS <br/>
-Il est convenu ce qui suit : <br/>
-1/ Engagement et durée du contrat <br/>
-Nous vous confirmons votre engagement, sous contrat à durée déterminée afin d’occuper le poste EXTRA <br/>
-Le contrat est conclu conformément aux dispositions légales en vigueur, notamment aux articles L1242- 2 3 et D 1242-1 du CODE du travail relatifs aux emplois pour lesquels il est d’usage constant de ne pas recourir au contrat de travail à durée indéterminée en raison de la nature de l’activité exercée et du caractère temporaire de cet emploi. <br/>
-Le présent contrat est conclu pour une vacation de jour(s), à compter du à <br/>
-Le contrat de travail est régi par les lois et règlements en vigueur ainsi que par les dispositions de la Convention Collective Nationale des HCR du 30 avril 1997 et ses avenants ou toute autre convention ou accord collectif auquel l’entreprise pourrait être ultérieurement assujettie, dont Le salarié déclare avoir pris connaissance. <br/>
-2/Rémunération : <br/>
-Le salarié bénéficiera d’un salaire fixé à Euros / Heure plus les avantages nourriture au taux légal <br/>
-3/ CONGES PAYES <br/>
-Au terme du présent contrat, Le salarié percevra une indemnité de congés payés conformément à la législation en vigueur. <br/>
-4/ Les cotisation sociales de Sécurité Sociale sont versées à l’organisme suivant : URSSAF DU NORD sous le numéro 317000001001569912 <br/>
-5/ L’Entreprise est affiliée à la caisse de retraite complémentaire : MALAKOFF <br/>
-45 RUE DES ACACIAS 75855 PARIS CEDEX 17 <br/>
-6/ Organisme destinataire de la déclaration préalable à l’embauche : URSSAF DU NORD <br/>
-</p>
+</div>
 
         </div>
+    <t t-call="report.external_layout_footer"/>
+                 </t>
     </t>
 </template>
 <template id="report_mep">
