@@ -342,30 +342,6 @@ style="page-break-before:always">
                    <div class="col-xs-12" style="font-size:12px;color:#939393"><strong>*</strong> vaut pour acceptation du présent devis ainsi que des Conditions Générales de Vente sub-mentionnées</div>
             </div>
 
-            <div class="row">
-                <div class="col-xs-4 pull-right">
-                    <table class="table table-condensed">
-                        <tr class="border-black">
-                            <td><strong style="color:#939393">Total Without Taxes</strong></td>
-                            <td class="text-right">
-                                <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Taxes</td>
-                            <td class="text-right">
-                                <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
-                            </td>
-                        </tr>
-                        <tr class="border-black">
-                            <td><strong style="color:#939393">Total</strong></td>
-                            <td class="text-right">
-                                <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.pricelist_id.currency_id&quot;}"/>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
 
             <p t-field="o.note"/>
             <p t-if="o.payment_term.note">
