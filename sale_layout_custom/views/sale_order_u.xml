@@ -137,8 +137,9 @@ style="page-break-before:always">
 
     <!-- Lines associated -->
         <div class="row" t-foreach="p['lines']" t-as="l" style="page-break-inside:avoid">
-            <div class="col-xs-2">
-                <span t-field="l.product_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+            <div class="col-xs-2" align="center">
+                <t t-if="l.product_id.image_medium"><span t-field="l.product_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/></t>
+                <t t-if="not l.product_id.image_medium"><span style="color:#939393">Image bientôt disponible</span></t>
             </div>
             <div class="col-xs-10">
                 <div class="row">
