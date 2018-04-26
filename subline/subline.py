@@ -2,22 +2,6 @@ from openerp import fields, api
 from openerp.models import Model
 import openerp.addons.decimal_precision as dp
 
-def possibilities(Model):
-    _name = 'sale.order.line.possibility'
-
-    line_idd = fields.Many2one('sale.order.subline', readonly=True)
-    product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True)
-    price = fields.Float(compute='_compute_price')
-
-    @api.v8
-    @api.multi
-#    @api.depends("product_id")
-    @api.model
-    def _compute_price(self):
-        for poss in self:
-            poss.price = 1.0
-
-
 class subline(Model):
     _inherit = 'sale.order.line'
     _name = 'sale.order.subline'
@@ -32,5 +16,21 @@ class subline(Model):
     def _computeo2m(self):
         for poss, product in self.possibility, self.product_id.alternative_product_ids:
             poss.product_id = product
+
+
+def possibilities(Model):
+    _name = 'sale.order.line.possibility'
+
+    line_idd = fields.Many2one('sale.order.subline', readonly=True)
+    product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True)
+    price = fields.Float(compute='_compute_price')
+
+    @api.v8
+    @api.multi
+#    @api.depends("product_id")
+    @api.model
+    def _compute_price(self):
+        for poss in self:
+            poss.price = 1.0
 
 
