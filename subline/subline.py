@@ -4,7 +4,6 @@ import openerp.addons.decimal_precision as dp
 
 class subline(Model):
     _inherit = 'sale.order.line'
-    _name = 'sale.order.line'
 
     possibilities = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities', readonly=True, compute='_computeo2m')
 #    options = fields.One2many('sale.order.line.options', 'line_id', "Options", readonly=True)
