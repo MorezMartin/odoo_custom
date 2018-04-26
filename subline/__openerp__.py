@@ -30,7 +30,7 @@ Add sublines on Sale Order Lines.
     'author' : 'Martin Morez',
     'website' : 'http://www.mh-receptions.com',
     'images' : [],
-    'depends' : ['sale', 'account_voucher', 'account', 'report'], # TODO : Add report
+    'depends' : ['sale', 'account_voucher','product', 'account', 'report'], # TODO : Add report
 #    'data': ['tax_line_report.xml'],
     'demo': [],
     'test' : [],
