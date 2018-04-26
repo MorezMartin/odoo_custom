@@ -2,7 +2,7 @@ from openerp import fields, api
 from openerp.models import Model
 import openerp.addons.decimal_precision as dp
 
-def sale_order_line_possibility(Model):
+class sale_order_line_possibility(Model):
     _name = 'sale.order.line.possibility'
 
     line_id = fields.Many2one('sale.order.subline')
