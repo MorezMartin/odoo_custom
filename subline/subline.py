@@ -21,7 +21,7 @@ def possibilities(Model):
     _name = 'sale.order.line.possibility'
 
     line_id = fields.Many2one("sale.order.line", "Line Reference", readonly=True)
-    product_id = fields.Many2one("product.product", "Product", domain=['sale_ok', '=', True)], readonly=True)
+    product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True)
     price = fields.Float(compute='_compute_price')
 
     @api.v8
