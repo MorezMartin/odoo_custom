@@ -20,9 +20,9 @@ class sale_order_line_possibility(Model):
 
 class subline(Model):
     _inherit = 'sale.order.line'
-    _name = 'sale.order.line'
+    _name = 'sale.order.bline'
 
-    poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities') #, compute='_computeo2m'
+    poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities', compute='_computeo2m')
 #    options = fields.One2many('sale.order.line.options', 'line_id', "Options", readonly=True)
 
     @api.v8
