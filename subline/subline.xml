@@ -14,10 +14,10 @@
         </record>
         <record model="ir.ui.view" id="view_order_line_form2">
             <field name="name">sale.order.line.form2</field>
-            <field name="model">sale.order.subline</field>
+            <field name="model">sale.order.line</field>
 	        <field name="arch" type="xml">
 		    <form>
-		        <field name="possibilities"/>
+		        <field name="poss_ids"/>
 	            </form>
 	        </field>
 	</record>
