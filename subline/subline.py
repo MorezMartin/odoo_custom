@@ -21,3 +21,5 @@ class subline(Model):
     _name = 'sale.order.line'
 
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')
+
+#TODO TESTER affichage produits directement dans subline via compute, puis voir le reste après
