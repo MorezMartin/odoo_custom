@@ -31,7 +31,7 @@ Add sublines on Sale Order Lines.
     'website' : 'http://www.mh-receptions.com',
     'images' : [],
     'depends' : ['sale', 'account_voucher','product', 'account', 'report'], # TODO : Add report
-#    'data': ['tax_line_report.xml'],
+    'data': ['subline.xml'],
     'demo': [],
     'test' : [],
     'installable' : True,
