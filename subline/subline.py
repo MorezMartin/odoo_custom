@@ -27,12 +27,14 @@ class subline(Model):
 
     @api.v8
     @api.multi
-    @api.depends("product_id")
+    @api.depends("id", "product_id", "product_id.alrternative_product_ids")
     @api.model
     def _computeo2m(self):
         for line in self:
-            line.poss_ids.line_id = line.id
-            line.poss_ids.product_id = line.product_id.alternative_product_ids
+            for poss in line.poss_ids:
+                poss.line_id = line.id
+                for product in line.alternative_product_ids
+                    poss.product_id = product.id
 #        for poss, product in self.poss_ids, self.product_id.alternative_product_ids:
 #            poss.product_id = product
 
