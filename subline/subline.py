@@ -10,7 +10,7 @@ class sale_order_line_possibility(Model):
     price = fields.Float(compute='_compute')
 
     def _compute(self):
-        products = self.env['product.product'].browse(line_id.product_id.alt_ids)
+        products = self.env['product.product'].search([])#.browse(line_id.product_id.alt_ids)
         for product in products:
             self.product_id = product.id
             self.price = 1.0
