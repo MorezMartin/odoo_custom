@@ -5,7 +5,7 @@
             <field name="name">sale.order.line.possibility.tree</field>
             <field name="model">sale.order.line.possibility</field>
 	        <field name="arch" type="xml">
-		    <form>
+		    <form string="Sale Order Line Possibility" create="false">
 		        <field name="line_id"/>
 		        <field name="product_id"/>
 		        <field name="price"/>
