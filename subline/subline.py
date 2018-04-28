@@ -31,7 +31,7 @@ class subline(Model):
     @api.model
     def _computeo2m(self):
         for line in self:
-            line.poss_ids = line.product_id.alternative_product_ids
+            line.poss_ids.product_id = line.product_id.alternative_product_ids
 #        for poss, product in self.poss_ids, self.product_id.alternative_product_ids:
 #            poss.product_id = product
 
