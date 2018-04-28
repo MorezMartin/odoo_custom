@@ -33,7 +33,7 @@ class subline(Model):
         for line in self:
             for poss in line.poss_ids:
                 poss.line_id = line.id
-                for product in line.alternative_product_ids
+                for product in line.alternative_product_ids:
                     poss.product_id = product.id
 #        for poss, product in self.poss_ids, self.product_id.alternative_product_ids:
 #            poss.product_id = product
