@@ -2,7 +2,7 @@
 <openerp>
 	<data>
         <record model="ir.ui.view" id="sale_order_line_possibility">
-            <field name="name">sale.order.line.possibility.tree</field>
+            <field name="name">sale.order.line.possibility.form</field>
             <field name="model">sale.order.line.possibility</field>
 	        <field name="arch" type="xml">
 		    <form string="Sale Order Line Possibility" create="true">
