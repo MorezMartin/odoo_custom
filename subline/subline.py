@@ -6,7 +6,7 @@ class sale_order_line_possibility(Model):
     _name = 'sale.order.line.possibility'
 
     line_id = fields.Many2one('sale.order.line')
-    product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True, compute='_compute_o2m')
+    product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True)#, compute='_compute_o2m')
     price = fields.Float(compute='_compute_price')
 
     @api.v8
@@ -20,8 +20,8 @@ class sale_order_line_possibility(Model):
     @api.multi
 #    @api.depends("product_id")
     @api.model
-    def _compute_o2m(self):
-        products = line_id. 
+#    def _compute_o2m(self):
+#        products = line_id. 
 
 
 class subline(Model):
@@ -32,17 +32,17 @@ class subline(Model):
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')#, compute='_computeo2m')
 #    options = fields.One2many('sale.order.line.options', 'line_id', "Options", readonly=True)
 
-#    @api.v8
-#    @api.multi
-#    @api.depends("id", "product_id", "product_id.alternative_product_ids")
-#    @api.model
-#    def _computeo2m(self):
-#        for line in self:
-#            for poss in line.poss_ids:
-#                poss.line_id = line.id
-#                for product in line.product_id.alternative_product_ids:
-#                    poss.product_id = product.id
-#        for poss, product in self.poss_ids, self.product_id.alternative_product_ids:
-#            poss.product_id = product
+    @api.v8
+    @api.multi
+    @api.depends("id", "product_id", "product_id.alternative_product_ids")
+    @api.model
+    def _computeo2m(self):
+        for line in self:
+            for poss in line.poss_ids:
+                poss.line_id = line.id
+                for product in line.product_id.alternative_product_ids:
+                    poss.product_id = product.id
+        for poss, product in self.poss_ids, self.product_id.alternative_product_ids:
+            poss.product_id = product
 
 
