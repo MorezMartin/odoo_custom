@@ -12,7 +12,7 @@
 	            </form>
 	        </field>
         </record>
-        <record id="view_order_line_form2" model="ir.ui.view">
+        <record id="sale.view_order_line_form2" model="ir.ui.view">
             <field name="name">sale.order.line.form2</field>
             <field name="model">sale.order.line</field>
 	        <field name="arch" type="xml">
