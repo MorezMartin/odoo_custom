@@ -15,7 +15,7 @@ class sale_order_line_possibility(Model):
 
 class subline(Model):
     _inherit = 'sale.order.line'
-#    _name = 'sale.order.line'
+    _name = 'sale.order.line'
 
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')
 
