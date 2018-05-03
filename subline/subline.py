@@ -15,7 +15,7 @@ class sale_order_line_possibility(Model):
 
 class subline(Model):
     _inherit = 'sale.order.line'
-    _name = 'sale.order.line'
+#    _name = 'sale.order.line'
 
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')
 
@@ -26,6 +26,6 @@ class subline(Model):
         vals = {}
         poss = self.env['sale.order.line.possibility']
         for prod in product_ids:
-            vals = {'line_id': self.id, 'product_id': prod.id}
+            vals = {'line_id': self, 'product_id': prod}
             poss.create(vals)
         return record
