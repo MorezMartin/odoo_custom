@@ -23,7 +23,6 @@ class subline(Model):
     def create(self, values):
         record = super(subline, self).create(values)
         product_ids = self.product_id.alternative_product_ids
-        vals = {}
         poss = self.env['sale.order.line.possibility']
         for prod in product_ids:
             vals = {'line_id': self.id, 'product_id': prod.id}
