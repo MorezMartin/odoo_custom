@@ -6,7 +6,7 @@ class sale_order_line_possibility(Model):
     _name = 'sale.order.line.possibility'
 
     line_id = fields.Many2one('sale.order.line')
-    product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True)
+    product_id = fields.Many2one("product.template", "Product", domain=[('sale_ok', '=', True)], readonly=True)
     price = fields.Float(compute='_compute')
 
     def _compute(self):
