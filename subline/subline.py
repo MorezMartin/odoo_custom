@@ -20,11 +20,12 @@ class subline(Model):
 
     @api.model
     @api.one
+    @api.depends('poss_ids')
     def create(self, values):
         record = super(subline, self).create(values)
         product_ids = self.product_id.alternative_product_ids
         poss = self.env['sale.order.line.possibility']
         for prod in product_ids:
-            vals = {'line_id': self.id, 'product_id': prod.id}
+            vals = {'line_id': record.id, 'product_id': record.id}
             poss.create(vals)
         return record
