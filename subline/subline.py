@@ -15,13 +15,13 @@ class sale_order_line_possibility(Model):
 
 class subline(Model):
     _inherit = 'sale.order.line'
-    _name = 'sale.order.line'
 
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')
 
     @api.model
+    @api.one
     def create(self, values):
-        record = super(sale.sale_order_line, self).create(values)
+        record = super(subline, self).create(values)
         product_ids = self.product_id.alternative_product_ids
         poss = self.env['sale.order.line.possibility']
         for prod in product_ids:
