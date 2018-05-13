@@ -19,12 +19,13 @@ class subline(Model):
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')
 
     @api.model
-    @api.depends('poss_ids')
+    @api.multi
     def create(self, values):
         record = super(subline, self).create(values)
         product_ids = self.product_id.alternative_product_ids
         poss = self.env['sale.order.line.possibility']
+        line_id = self.id
         for prod in product_ids:
-            vals = {'line_id': record, 'product_id': prod}
+            vals = {'line_id': line_id, 'product_id': prod.id}
             poss.create(vals)
         return record
