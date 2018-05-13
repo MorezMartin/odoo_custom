@@ -19,7 +19,6 @@ class subline(Model):
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')
 
     @api.model
-    @api.one
     @api.depends('poss_ids')
     def create(self, values):
         record = super(subline, self).create(values)
