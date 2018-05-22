@@ -31,9 +31,9 @@ class subline(Model):
 
     @api.multi
     def write(self, values, context=None):
+        old_product_ids = self.poss_ids
         record = super(subline, self).write(values)
         solp = self.env['sale.order.line.possibility']
-        old_product_ids = self.poss_ids
         new_product_ids = record.product_id.alternative_product_ids
 #        if [prod.product_id for prod in old_product_ids] != [prod for prod in new_product_ids]:
         self.poss_ids.unlink()
