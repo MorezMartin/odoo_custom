@@ -32,7 +32,7 @@ class subline(Model):
     @api.multi
     def write(self, values, context=None):
         record = super(subline, self).write(values)
-        product_ids = record.product_id.alternative_product_ids
+        product_ids = self.product_id.alternative_product_ids
         poss = self.env['sale.order.line.possibility']
         for prod in product_ids:
             vals = {'line_id': record.id, 'product_id': prod.id}
