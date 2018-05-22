@@ -34,7 +34,7 @@ class subline(Model):
     def write(self, values, context=None):
         record = super(subline, self).write(values)
         product_ids = self.product_id.alternative_product_ids
-        poss = selfposs_ids
+        poss = self.poss_ids
         line_id = self.id
         for prod in product_ids:
             vals = {'line_id': line_id, 'product_id': prod.id}
