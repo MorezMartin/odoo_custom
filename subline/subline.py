@@ -35,10 +35,10 @@ class subline(Model):
         solp = self.env['sale.order.line.possibility']
         old_product_ids = self.poss_ids
         new_product_ids = record.product_id.alternative_product_ids
-        if [prod.product_id for prod in old_product_ids] != [prod for prod in new_product_ids]:
-            self.poss_ids.unlink()
-            for prod in new_product_ids:
-                vals = {'line_id': self.id, 'product_id': prod.id}
-                solp.create(vals)
+#        if [prod.product_id for prod in old_product_ids] != [prod for prod in new_product_ids]:
+        self.poss_ids.unlink()
+        for prod in new_product_ids:
+            vals = {'line_id': self.id, 'product_id': prod.id}
+            solp.create(vals)
         return record
 
