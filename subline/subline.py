@@ -38,5 +38,5 @@ class subline(Model):
         line_id = self.id
         for prod in product_ids:
             vals = {'line_id': line_id, 'product_id': prod.id}
-            poss.create(vals)
+            poss.write(vals)
         return record
