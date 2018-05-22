@@ -34,7 +34,7 @@ class subline(Model):
     def onchange_product_id(self, values, context=None):
         rec = self.env['sale.order.line.possibility']
         product_ids = self.product_id.alternative_product_ids
-        rec.search([('line_id', '=', self.id)]).unlink()
+        poss_ids = rec.search([('line_id', '=', self.id)])
         for prod in product.ids:
             vals = {'line_id': self.id, 'product_id': prod.id}
             rec.create(vals)
