@@ -30,11 +30,13 @@ class subline(Model):
 
 
     @api.multi
-    def write(self, values, context=None):
-        record = super(subline, self).write(values)
+    @api.onchange('product_id')
+    def onchange_product_id(self, values, context=None):
+        rec = self.env['sale.order.line.possibility']
         product_ids = self.product_id.alternative_product_ids
-        poss = self.env['sale.order.line.possibility']
-        for prod in product_ids:
+        rec.search([('line_id', '=', self.id)]).unlink()
+        for prod in product.ids:
             vals = {'line_id': self.id, 'product_id': prod.id}
-            poss.write(vals)
-        return record
+            rec.create(vals)
+        return rec
+
