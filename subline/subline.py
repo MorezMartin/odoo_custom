@@ -36,5 +36,6 @@ class subline(Model):
         poss = self.env['sale.order.line.possibility']
         for prod in product_ids:
             vals = {'line_id': self.id, 'product_id': prod.id}
+            poss.create(vals)
             poss.write(vals)
         return record
