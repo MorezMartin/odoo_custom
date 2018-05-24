@@ -29,6 +29,7 @@ class subline(Model):
         return record
 
 
+    @api.onchange('product_id')
     @api.multi
     def write(self, values, context=None):
         record = super(subline, self).write(values)
