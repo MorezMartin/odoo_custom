@@ -35,9 +35,10 @@ class subline(Model):
         record = super(subline, self).write(values)
         product_ids = self.product_id.alternative_product_ids
         poss = self.env['sale.order.line.possibility']
-        self.poss_ids.unlink()
-        for prod in product_ids:
-            vals = {'line_id': self.id, 'product_id': prod.id}
-            poss.create(vals)
+        if [poss.product_id for poss in self.poss_ids] != [prod for prod in product_ids]:
+            self.poss_ids.unlink()
+            for prod in product_ids:
+                vals = {'line_id': self.id, 'product_id': prod.id}
+                poss.create(vals)
         return record
 
