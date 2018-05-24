@@ -31,14 +31,12 @@ class subline(Model):
 
     @api.multi
     def write(self, values, context=None):
-        old_product_ids = self.poss_ids
         record = super(subline, self).write(values)
-        solp = self.env['sale.order.line.possibility']
-        new_product_ids = record.product_id.alternative_product_ids
-#        if [prod.product_id for prod in old_product_ids] != [prod for prod in new_product_ids]:
-        self.poss_ids.unlink()
-        for prod in new_product_ids:
+        product_ids = self.product_id.alternative_product_ids
+        poss = self.env['sale.order.line.possibility']
+        for prod in product_ids:
             vals = {'line_id': self.id, 'product_id': prod.id}
-            solp.create(vals)
+            poss.create(vals)
+            poss.write(vals)
         return record
 
