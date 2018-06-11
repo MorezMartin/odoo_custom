@@ -12,11 +12,11 @@ class sale_order_line_possibility(Model):
     @api.multi
     @api.depends('line_id', 'product_id', 'line_id.order_id', 'line_id.order_id.pricelist_id', 'line_id.order_id.partner_id')
     def _compute(self):
-        pricelist = self.line_id.order_id.pricelist_id
-        partner = self.line_id.order_id.partner_id
-        product = self.product_id
         for record in self:
-            record.price = pricelist.price_get(product, 1.0, partner)
+            pricelist = record.line_id.order_id.pricelist_id
+            partner = record.line_id.order_id.partner_id
+            product = record.product_id
+            record.price = pricelist.price_get(product.id, 1.0, partner.id)
 
 class subline(Model):
     _inherit = 'sale.order.line'
