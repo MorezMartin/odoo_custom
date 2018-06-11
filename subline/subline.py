@@ -9,8 +9,10 @@ class sale_order_line_possibility(Model):
     product_id = fields.Many2one("product.template", "Product", domain=[('sale_ok', '=', True)], readonly=True)
     price = fields.Float(compute='_compute')
 
+    @api.multi
     def _compute(self):
-        self.price = 1.0
+        for record in self:
+            self.price = 1.0
 
 
 class subline(Model):
