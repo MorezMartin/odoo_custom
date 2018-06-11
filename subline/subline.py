@@ -10,13 +10,13 @@ class sale_order_line_possibility(Model):
     price = fields.Float(compute='_compute')
 
     @api.multi
-    @api.depends('line_id', 'product_id', 'line_id.order_id', 'line_id.order_id.pricelist_id', 'line_id.order_id.partner_id')
+    @api.depends('line_id', 'product_id', 'line_id.order_id', 'line_id.order_id.pricelist_id', 'line_id.order_id.partner_id', 'line_id.product_uom', 'line_id.order_id.date_order')
     def _compute(self):
         for record in self:
             pricelist = record.line_id.order_id.pricelist_id
             partner = record.line_id.order_id.partner_id
             product = record.product_id
-            price = pricelist.price_get([pricelist.id], product.id, 1, partner.id)
+            price = pricelist.price_get(product.id, 1, partner.id, {'uom': line_id.product_uom.id, 'date' : line_id.order_id.date_order})
             record.price = price[pricelist.id]
 
 class subline(Model):
