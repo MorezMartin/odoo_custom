@@ -10,6 +10,7 @@ class sale_order_line_possibility(Model):
     price = fields.Float(compute='_compute')
 
     @api.multi
+    @api.depends('line_id', 'product_id', 'line_id.order_id', 'line_id.order_id.pricelist_id', 'line_id.order_id.partner_id')
     def _compute(self):
         pricelist = self.line_id.order_id.pricelist_id
         partner = self.line_id.order_id.partner_id
