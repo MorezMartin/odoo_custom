@@ -17,7 +17,7 @@ class sale_order_line_possibility(Model):
             partner = record.line_id.order_id.partner_id
             product = record.product_id
             price = pricelist.price_get(product.id, 1)
-            record.price = price[pricelist]
+            record.price = price[pricelist.id]
 
 class subline(Model):
     _inherit = 'sale.order.line'
