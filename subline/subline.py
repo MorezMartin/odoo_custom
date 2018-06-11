@@ -12,7 +12,7 @@ class sale_order_line_possibility(Model):
     @api.multi
     def _compute(self):
         for record in self:
-            self.price = 1.0
+            record.price = 1.0
 
 
 class subline(Model):
