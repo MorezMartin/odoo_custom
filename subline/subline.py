@@ -12,8 +12,10 @@ class sale_order_line_possibility(Model):
     @api.multi
     def _compute(self):
         for record in self:
-            record.price = 1.0
-
+            pricelist = record.line_id.order_id.pricelist_id
+            partner = record.line_id.order_id.partner_id
+            product = record.product_id
+            record.price = self.env["product.pricelist"].price_get([pricelist], product, 1.0, partner)[pricelist]
 
 class subline(Model):
     _inherit = 'sale.order.line'
