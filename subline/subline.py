@@ -16,7 +16,7 @@ class sale_order_line_possibility(Model):
             pricelist = record.line_id.order_id.pricelist_id
             partner = record.line_id.order_id.partner_id
             product = record.product_id
-            price = pricelist.price_get(product.id, 1, partner.id)#.with_context(date=line_id.order_id.date_order)
+            price = pricelist.with_context(date=record.line_id.order_id.date_order).price_get(product.id, 1, partner.id)#.with_context(date=line_id.order_id.date_order)
             record.price = price[pricelist.id]
 
 class subline(Model):
