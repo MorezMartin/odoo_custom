@@ -29,7 +29,7 @@
 		<group name="website_and_pos" position="after">
 		<group name="poss_and_opt">
 		    <field name="possibilities">
-			    <field name="name">
+			    <field name="name"/>
 		    </field>
 		    <field name="options">
 		    </field>
