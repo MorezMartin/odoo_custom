@@ -28,8 +28,8 @@
 	    <field name="arch" type="xml">   
 		<group name="website_and_pos" position="inside">
 		<group name="poss_and_opt">
-		    <field name="possibilities" widget="one2many_list"/>
-		    <field name="options" widget="one2many_list"/>
+		    <field name="possibilities"/>
+		    <field name="options"/>
 		</group>
                 </group>
 	    </field>
