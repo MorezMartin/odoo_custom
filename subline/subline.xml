@@ -31,9 +31,14 @@
 		    <field name="possibilities">
 		    <tree string="Possibilities" nolabel="1">
 			    <field name="name"/>
+			    <field name="lst_price"/>
 		    </tree>
 		    </field>
 		    <field name="options">
+		    <tree string="Options" nolabel="1">
+			    <field name="name"/>
+			    <field name="lst_price"/>
+		    </tree>
 		    </field>
 		</group>
                 </group>
