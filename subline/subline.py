@@ -52,5 +52,5 @@ class product_template(Model):
     _inherit = 'product.template'
     _name = 'product.template'
 
-    possibilities = fields.Many2one('product.product', 'Product', domain=[{'sale_ok', '=', True}])
-    options = fields.Many2one('product.product', 'Product', domain=[{'sale_ok', '=', True}])
+    possibilities = fields.Many2one('product.product', 'Product', domain=[('sale_ok', '=', True)])
+    options = fields.Many2one('product.product', 'Product', domain=[('sale_ok', '=', True)])
