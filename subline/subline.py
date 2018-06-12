@@ -55,8 +55,8 @@ class subline(Model):
         for prod in product_poss_ids:
             vals = {'line_id': record.id, 'product_id': prod.id}
             poss.create(vals)
-        for opt in product_opt_ids:
-            vals = {'line_id': record.id, 'product_id': opt.id}
+        for prod in product_opt_ids:
+            vals = {'line_id': record.id, 'product_id': prod.id}
             opt.create(vals)
         return record
 
