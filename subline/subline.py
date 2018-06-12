@@ -52,5 +52,5 @@ class product_template(Model):
     _inherit = 'product.template'
     _name = 'product.template'
 
-    possibilities = fields.One2many('product.product', 'product_id', string='Product Possibilties')
-    options = fields.One2many('product.product', 'product_id', string='Product Options')
+    possibilities = fields.One2many('product.product', 'name', string='Product Possibilties')
+    options = fields.One2many('product.product', 'name', string='Product Options')
