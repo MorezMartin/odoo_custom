@@ -27,7 +27,7 @@ class subline(Model):
     @api.model
     def create(self, values, context=None):
         record = super(subline, self).create(values)
-        product_ids = record.product_id.alternative_product_ids
+        product_ids = record.product_id.possibilities
         poss = self.env['sale.order.line.possibility']
         for prod in product_ids:
             vals = {'line_id': record.id, 'product_id': prod.id}
