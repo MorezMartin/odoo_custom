@@ -52,5 +52,5 @@ class product_template(Model):
     _inherit = 'product.template'
     _name = 'product.template'
 
-    possibilities = fields.Many2many('product.product', 'product_possibilities_rel', 'name', domain=[('sale_ok', '=', True)], readonly=False, string="Possibilities")
-    options = fields.Many2many('product.product', 'product_options_rel', 'name', domain=[('sale_ok', '=', True)], readonly=False, string="Options")
+    possibilities = fields.Many2many('product.product', 'product_possibilities_rel', domain=[('sale_ok', '=', True)], readonly=False, string="Possibilities")
+    options = fields.Many2many('product.product', 'product_options_rel', domain=[('sale_ok', '=', True)], readonly=False, string="Options")
