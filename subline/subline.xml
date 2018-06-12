@@ -28,7 +28,13 @@
 	    <field name="arch" type="xml">   
 		<group name="website_and_pos" position="after">
 		<group name="poss_and_opt">
-			<field name="possibilities"/>
+		    <field name="possibilities">
+		    <tree string="Possibilities" nolabel="1">
+			    <field name="name"/>
+		    </tree>
+		    </field>
+		    <field name="options">
+		    </field>
 		</group>
                 </group>
 	    </field>
