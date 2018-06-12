@@ -39,7 +39,7 @@ class subline(Model):
     @api.multi
     def write(self, values, context=None):
         record = super(subline, self).write(values)
-        product_ids = self.product_id.alternative_product_ids
+        product_ids = self.product_id.possibilities
         poss = self.env['sale.order.line.possibility']
         if [poss.product_id for poss in self.poss_ids] != [prod for prod in product_ids]:
             self.poss_ids.unlink()
@@ -48,3 +48,9 @@ class subline(Model):
                 poss.create(vals)
         return record
 
+class product_template(Model):
+    _inherit = 'product.template'
+    _name = 'product.template'
+
+   possibilities = fields.Many2many('product.product', 'product_possibilities_rel', 'src_id', 'dest_id', string='Product Possibilties')
+   options = fields.Many2many('product.product', 'product_options_rel', 'src_id', 'dest_id', string='Product Options')
