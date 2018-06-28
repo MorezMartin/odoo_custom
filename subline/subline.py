@@ -94,7 +94,7 @@ class product_template(Model):
     @api.multi
     def write(self, values, context=None):
         record = super(product_template, self).write(values)
-        sol = self.env['sale.order.line'].search([('product_id.product_tmpl_id', '=', product.id)])
+        sol = self.env['sale.order.line'].search([('product_id.product_tmpl_id', '=', self.id)])
         for line in sol:
             if line.mapped('poss_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.possibilities.sorted(key=lambda r:r.id):
                 super(line, self).write({'id': line.id})
