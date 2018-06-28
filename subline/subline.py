@@ -73,12 +73,14 @@ class subline(Model):
             self.poss_ids.unlink()
             for prod in product_poss_ids:
                 vals = {'line_id': self.id, 'product_id': prod.id}
-                poss.create(vals)
+#                poss.create(vals)
+                poss.write(vals)
         if [opt.product_id for opt in self.opt_ids] != [opt for opt in product_opt_ids]:
             self.opt_ids.unlink()
             for opt in product_opt_ids:
                 vals = {'line_id': self.id, 'product_id': opt.id}
-                opt.create(vals)
+#                opt.create(vals)
+                opt.write(vals)
         return record
 
 class product_template(Model):
