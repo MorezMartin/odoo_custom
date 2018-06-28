@@ -83,7 +83,7 @@ class subline(Model):
                 opt.create(vals)
         return record
 
-class product_template(Model):
+class product_template2(Model):
     _inherit = 'product.template'
     _name = 'product.template'
 
@@ -93,7 +93,7 @@ class product_template(Model):
     @api.onchange('possibilities')
     @api.multi
     def write(self, values):
-        record = super(product_template, self).write(values)
+        record = super(product_template2, self).write(values)
         sol = self.env['sale.order.line'].search([('product_id.product_tmpl_id', '=', self.id)])
         for line in sol:
             if line.mapped('poss_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.possibilities.sorted(key=lambda r:r.id):
