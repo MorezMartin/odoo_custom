@@ -89,3 +89,11 @@ class product_template(Model):
 
     possibilities = fields.Many2many('product.product', 'product_possibilities_rel', domain=[('sale_ok', '=', True)], readonly=False, string="Possibilities")
     options = fields.Many2many('product.product', 'product_options_rel', domain=[('sale_ok', '=', True)], readonly=False, string="Options")
+
+    @api.onchange('possibilities')
+    @api.multi
+    def write(self, values, context=None):
+        sol = self.env['sale.order.line'].search(['product_id.product_tmpl_id', '=', product.id)])
+        for line in sol:
+            if line.mapped('poss_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.possibilities.sorted(key=lambda r:r.id):
+                line.write({'id': line.id})
