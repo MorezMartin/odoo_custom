@@ -90,7 +90,7 @@ class product_template2(Model):
     possibilities = fields.Many2many('product.product', 'product_possibilities_rel', domain=[('sale_ok', '=', True)], readonly=False, string="Possibilities")
     options = fields.Many2many('product.product', 'product_options_rel', domain=[('sale_ok', '=', True)], readonly=False, string="Options")
 
-    @api.onchange('possibilities')
+
     @api.multi
     def write(self, values):
         record = super(product_template2, self).write(values)
