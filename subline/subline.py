@@ -70,13 +70,13 @@ class subline(Model):
         poss = self.env['sale.order.line.possibility']
         opt = self.env['sale.order.line.option']
         if [poss.product_id for poss in self.poss_ids] != [prod for prod in product_poss_ids]:
-            self.poss_ids.unlink()
+#            self.poss_ids.unlink()
             for prod in product_poss_ids:
                 vals = {'line_id': self.id, 'product_id': prod.id}
 #                poss.create(vals)
                 poss.write(vals)
         if [opt.product_id for opt in self.opt_ids] != [opt for opt in product_opt_ids]:
-            self.opt_ids.unlink()
+#            self.opt_ids.unlink()
             for opt in product_opt_ids:
                 vals = {'line_id': self.id, 'product_id': opt.id}
 #                opt.create(vals)
