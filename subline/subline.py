@@ -24,7 +24,7 @@ class sale_order_line_option(Model):
 
     line_id = fields.Many2one('sale.order.line')
     product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True)
-    price = fields.Float(compute='_compute')
+    price = fields.Float()#compute='_compute')
 
     @api.multi
     @api.depends('line_id', 'product_id', 'line_id.order_id', 'line_id.order_id.pricelist_id', 'line_id.order_id.partner_id', 'line_id.product_uom', 'line_id.order_id.date_order')
