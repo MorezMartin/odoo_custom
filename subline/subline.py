@@ -97,5 +97,5 @@ class product_template2(Model):
         sol = self.env['sale.order.line'].search([('product_id.product_tmpl_id', '=', self.id)])
         for order_line in sol:
             if ( order_line.mapped('poss_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.possibilities.sorted(key=lambda r:r.id) ) or ( order_line.mapped('opt_ids').mapped('product_id').sorted(key=lambda k:k.id) != self.options.sorted(key=lambda k:k.id) ):
-                sol.write({'id': order_line.id})
+                order_line.write({'id': order_line.id})
         return record
