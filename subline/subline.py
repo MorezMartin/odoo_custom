@@ -96,6 +96,6 @@ class product_template2(Model):
         record = super(product_template2, self).write(values)
         sol = self.env['sale.order.line'].search([('product_id.product_tmpl_id', '=', self.id)])
         for line in sol:
-            if ( line.mapped('poss_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.possibilities.sorted(key=lambda r:r.id) ) or ( line.mapped('opt_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.options.sorted(key=lambda r:r.id) ):
+            if ( line.mapped('poss_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.possibilities.sorted(key=lambda r:r.id) ) or ( line.mapped('opt_ids').mapped('product_id').sorted(key=lambda k:k.id) != self.options.sorted(key=lambda k:k.id) ):
                 line.write({'id': line.id})
         return record
