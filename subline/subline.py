@@ -24,7 +24,7 @@ class sale_order_line_option(Model):
 
     line_id = fields.Many2one('sale.order.line')
     product_id = fields.Many2one("product.product", "Product", domain=[('sale_ok', '=', True)], readonly=True)
-    price = fields.Float()#compute='_compute')
+    price = fields.Float(compute='_compute')
 
     @api.multi
     @api.depends('line_id', 'product_id', 'line_id.order_id', 'line_id.order_id.pricelist_id', 'line_id.order_id.partner_id', 'line_id.product_uom', 'line_id.order_id.date_order')
@@ -75,11 +75,11 @@ class subline(Model):
             for prod in product_poss_ids:
                 vals = {'line_id': self.id, 'product_id': prod.id}
                 poss.create(vals)
-        if [opt.product_id for opt in self.opt_ids] != [opt for opt in product_opt_ids]:
+        if [opt.product_id for opt in self.opt_ids] != [prod2 for prod2 in product_opt_ids]:
             self.opt_ids.unlink()
             opt.unlink()
             for opt in product_opt_ids:
-                vals = {'line_id': self.id, 'product_id': opt.id}
+                vals = {'line_id': self.id, 'product_id': prod2.id}
                 opt.create(vals)
         return record
 
