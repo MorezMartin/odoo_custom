@@ -78,7 +78,7 @@ class subline(Model):
         if [opt.product_id for opt in self.opt_ids] != [prod2 for prod2 in product_opt_ids]:
             self.opt_ids.unlink()
             opt.unlink()
-            for opt in product_opt_ids:
+            for prod2 in product_opt_ids:
                 vals2 = {'line_id': self.id, 'product_id': prod2.id}
                 opt.create(vals2)
         return record
