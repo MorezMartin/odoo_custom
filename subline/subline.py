@@ -52,9 +52,9 @@ class subline(Model):
         product_opt_ids = record.product_id.options
         poss = self.env['sale.order.line.possibility']
         opt = self.env['sale.order.line.option']
-        for prod in product_poss_ids:
-            vals = {'line_id': record.id, 'product_id': prod.id}
-            poss.create(vals)
+#        for prod in product_poss_ids:
+#            vals = {'line_id': record.id, 'product_id': prod.id}
+#            poss.create(vals)
         for prod2 in product_opt_ids:
             vals2 = {'line_id': record.id, 'product_id': prod2.id}
             opt.create(vals2)
