@@ -63,7 +63,7 @@ class subline(Model):
 
     @api.onchange('product_id')
     @api.multi
-    def write(self, values, context=None):
+    def line_write(self, values, context=None):
         record = super(subline, self).write(values)
         product_poss_ids = self.product_id.possibilities
         product_opt_ids = self.product_id.options
@@ -97,5 +97,5 @@ class product_template2(Model):
         sol = self.env['sale.order.line'].search([('product_id.product_tmpl_id', '=', self.id)])
         for order_line in sol:
 #            if ( order_line.mapped('poss_ids').mapped('product_id').sorted(key=lambda r:r.id) != self.possibilities.sorted(key=lambda r:r.id) ):# or ( order_line.mapped('opt_ids').mapped('product_id').sorted(key=lambda k:k.id) != self.options.sorted(key=lambda k:k.id) ):
-            order_line.write({'id': order_line.id})
+            order_line.line_write({'id': order_line.id})
         return record
