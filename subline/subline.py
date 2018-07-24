@@ -41,6 +41,7 @@ class sale_order_line_option(Model):
 
 class subline(Model):
     _inherit = 'sale.order.line'
+    _name = 'sale.order.subline'
 
     poss_ids = fields.One2many('sale.order.line.possibility', 'line_id', 'Possibilities')
     opt_ids = fields.One2many('sale.order.line.option', 'line_id', 'Options')
@@ -61,27 +62,27 @@ class subline(Model):
         return record
 
 
-#    @api.onchange('product_id')
-#    @api.multi
-#    def write(self, values, context=None):
-#        record = super(subline, self).write(values)
-#        product_poss_ids = self.product_id.possibilities
-#        product_opt_ids = self.product_id.options
-#        poss = self.env['sale.order.line.possibility']
-#        opt = self.env['sale.order.line.option']
-#        if [poss.product_id for poss in self.poss_ids] != [prod for prod in product_poss_ids]:
-#            self.poss_ids.unlink()
-#            poss.unlink()
-#            for prod in product_poss_ids:
-#                vals = {'line_id': self.id, 'product_id': prod.id}
-#                poss.create(vals)
-#        if [opt.product_id for opt in self.opt_ids] != [prod2 for prod2 in product_opt_ids]:
-#            self.opt_ids.unlink()
-#            opt.unlink()
-#            for prod2 in product_opt_ids:
-#                vals2 = {'line_id': self.id, 'product_id': prod2.id}
-#                opt.create(vals2)
-#        return record
+    @api.onchange('product_id')
+    @api.multi
+    def write(self, values, context=None):
+        record = super(subline, self).write(values)
+        product_poss_ids = self.product_id.possibilities
+        product_opt_ids = self.product_id.options
+        poss = self.env['sale.order.line.possibility']
+        opt = self.env['sale.order.line.option']
+        if [poss.product_id for poss in self.poss_ids] != [prod for prod in product_poss_ids]:
+            self.poss_ids.unlink()
+            poss.unlink()
+            for prod in product_poss_ids:
+                vals = {'line_id': self.id, 'product_id': prod.id}
+                poss.create(vals)
+        if [opt.product_id for opt in self.opt_ids] != [prod2 for prod2 in product_opt_ids]:
+            self.opt_ids.unlink()
+            opt.unlink()
+            for prod2 in product_opt_ids:
+                vals2 = {'line_id': self.id, 'product_id': prod2.id}
+                opt.create(vals2)
+        return record
 
 class product_template2(Model):
     _inherit = 'product.template'
